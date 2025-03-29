@@ -13,11 +13,6 @@ import java.util.List;
 @Entity
 public class Alumno extends Usuario{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno")
     private List<AlumnoEmpleo> asociaciones;
 

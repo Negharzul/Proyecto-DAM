@@ -6,24 +6,23 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ProfesorServiceImpl{
+public class ProfesorService {
 
     private final ProfesorRepository profesorRepository;
 
 
-    public Profesor obtenerPorId(Long id) {
+    public Profesor obtenerProfesorPorId(Long id) {
         return profesorRepository.findById(id).orElseThrow(() -> new RuntimeException("profesor no encontrado"));
     }
 
-    public List<Profesor> obtenerTodos() {
+    public List<Profesor> obtenerProfesores() {
         return profesorRepository.findAll();
     }
 
-    public void eliminarPorId(Long id) {
+    public void eliminarProfesorPorId(Long id) {
         if(profesorRepository.existsById(id)) {
             profesorRepository.deleteById(id);
         } else {
@@ -31,11 +30,11 @@ public class ProfesorServiceImpl{
         }
     }
 
-    public Profesor actualizar(Profesor profesor) {
+    public Profesor actualizarProfesor(Profesor profesor) {
         return profesorRepository.save(profesor);
     }
 
-    public Profesor crear(Profesor profesor) {
+    public Profesor crearProfesor(Profesor profesor) {
         return profesorRepository.save(profesor);
     }
 }
