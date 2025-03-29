@@ -1,11 +1,7 @@
 package com.enlaceFP.enlaceFP;
 
-import com.enlaceFP.enlaceFP.Models.Grupo;
-import com.enlaceFP.enlaceFP.Models.Profesor;
-import com.enlaceFP.enlaceFP.Repositories.ProfesorRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class EnlaceFpApplication {

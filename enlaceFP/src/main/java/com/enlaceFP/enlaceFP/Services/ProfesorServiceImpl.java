@@ -10,38 +10,31 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class ProfesorServiceImpl implements ProfesorService {
+public class ProfesorServiceImpl{
 
     private final ProfesorRepository profesorRepository;
 
 
-    @Override
     public Profesor obtenerPorId(Long id) {
-        Optional<Profesor> profesor = profesorRepository.findById(id);
-        if(profesor.isPresent()) return profesor.get();
-        return new Profesor();
+        return profesorRepository.findById(id).orElseThrow(() -> new RuntimeException("profesor no encontrado"));
     }
 
-    @Override
     public List<Profesor> obtenerTodos() {
         return profesorRepository.findAll();
     }
 
-    @Override
     public void eliminarPorId(Long id) {
         if(profesorRepository.existsById(id)) {
             profesorRepository.deleteById(id);
         } else {
-            throw new RuntimeException("No encontrado alumno con ID: " + id);
+            throw new RuntimeException("No encontrado profesor con ID: " + id);
         }
     }
 
-    @Override
     public Profesor actualizar(Profesor profesor) {
         return profesorRepository.save(profesor);
     }
 
-    @Override
     public Profesor crear(Profesor profesor) {
         return profesorRepository.save(profesor);
     }

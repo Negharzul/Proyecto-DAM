@@ -11,16 +11,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Alumno extends Usuario{
+public class Titulacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno")
-    private List<AlumnoEmpleo> asociaciones;
-
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "titulacion")
     private List<AlumnoTitulacion> estudios;
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "titulacion")
+    private List<TitulacionEmpleo> titulacionesEmpleo;
+
 }

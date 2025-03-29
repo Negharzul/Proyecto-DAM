@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Asociacion {
+public class AlumnoEmpleo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.ArrayList;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,18 +17,17 @@ public class Empleo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "alumno_seleccionado_id")
-    private Alumno alumnoSeleccionado;
-
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo", fetch = FetchType.EAGER)
-    private ArrayList<Asociacion> asociaciones;
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
+    private List<AlumnoEmpleo> asociaciones;
 
     @ManyToOne
     @JoinColumn(name = "estudios_id")
-    private Estudios estudiosExigidos;
+    private Titulacion estudiosExigidos;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
+    private List<TitulacionEmpleo> titulacionesEmpleo;
 }
