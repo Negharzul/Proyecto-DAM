@@ -2,6 +2,7 @@ package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Repositories.ProfesorRepository;
+import com.enlaceFP.enlaceFP.mappers.ProfesorDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class ProfesorService {
 
     private final ProfesorRepository profesorRepository;
+    private final ProfesorDTOMapper profesorDTOMapper;
 
 
     public Profesor obtenerProfesorPorId(Long id) {

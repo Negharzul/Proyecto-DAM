@@ -15,12 +15,15 @@ public class AlumnoDTOMapper implements Function<Alumno, AlumnoDTO> {
         return new AlumnoDTO(alumno.getId(),
                 alumno.getNombre(),
                 alumno.getApellidos(),
-                alumno.getRol().getRol(),
+                alumno.getRol() != null ? alumno.getRol().getRol() : null,
                 alumno.getCorreoElectronico(),
                 alumno.getAsociaciones()
                         .stream()
                         .map(asociacion -> asociacion.getEmpleo().getDescripcion())
-                        .collect(Collectors.toList())
-                );
+                        .collect(Collectors.toList()),
+                alumno.getEstudios()
+                        .stream()
+                        .map(estudios -> estudios.getTitulacion().getTitulo())
+                        .collect(Collectors.toList()));
     }
 }

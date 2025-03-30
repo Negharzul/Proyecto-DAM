@@ -8,6 +8,7 @@ public record AlumnoDTO(
         String apellidos,
         String rol,
         String email,
-        List<String> empleos
+        List<String> empleos,
+        List<String> titulos
 ){
 }
