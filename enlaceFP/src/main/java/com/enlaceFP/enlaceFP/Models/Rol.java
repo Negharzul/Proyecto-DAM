@@ -17,7 +17,7 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String rol;
+    private String rolName;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "rol", fetch = FetchType.EAGER)
     private List<RolPermiso> rolPermisos;

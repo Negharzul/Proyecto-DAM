@@ -1,6 +1,6 @@
 package com.enlaceFP.enlaceFP.DTOs;
 
-public record ProfesorDTO(
+public record ProfesorOutputDTO(
         Long id,
         String nombre,
         String apellidos,

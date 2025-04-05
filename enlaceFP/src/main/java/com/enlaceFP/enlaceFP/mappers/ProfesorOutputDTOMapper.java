@@ -1,17 +1,17 @@
 package com.enlaceFP.enlaceFP.mappers;
 
-import com.enlaceFP.enlaceFP.DTOs.ProfesorDTO;
+import com.enlaceFP.enlaceFP.DTOs.ProfesorOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Profesor;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-public class ProfesorDTOMapper implements Function<Profesor, ProfesorDTO> {
+public class ProfesorOutputDTOMapper implements Function<Profesor, ProfesorOutputDTO> {
 
     @Override
-    public ProfesorDTO apply(Profesor profesor) {
-        return new ProfesorDTO(profesor.getId(),
+    public ProfesorOutputDTO apply(Profesor profesor) {
+        return new ProfesorOutputDTO(profesor.getId(),
                 profesor.getNombre(),
                 profesor.getApellidos(),
                 profesor.getRol() != null ? profesor.getRol().getRol() : null,

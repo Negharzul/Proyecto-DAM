@@ -1,15 +1,15 @@
 package com.enlaceFP.enlaceFP.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 public class Empresa {
 
@@ -24,5 +24,5 @@ public class Empresa {
     private String descripcion;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "empresa", fetch = FetchType.EAGER)
-    private ArrayList<Empleo> empleosOfertados;
+    private List<Empleo> empleosOfertados;
 }

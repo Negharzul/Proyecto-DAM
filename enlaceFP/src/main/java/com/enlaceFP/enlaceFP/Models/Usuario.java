@@ -1,9 +1,7 @@
 package com.enlaceFP.enlaceFP.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -11,25 +9,27 @@ import java.util.Objects;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
-    private String nombre;
+    protected  String nombre;
 
-    private String apellidos;
+    protected  String apellidos;
 
-    private LocalDateTime fechaRegistro;
+    protected  LocalDateTime fechaRegistro;
 
-    private String correoElectronico;
+    protected  String correoElectronico;
 
     @ManyToOne
     @JoinColumn(name = "rol_id")
-    private Rol rol;
+    protected  Rol rol;
 
     @Override
     public boolean equals(Object o) {

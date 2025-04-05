@@ -1,8 +1,11 @@
 package com.enlaceFP.enlaceFP.Controllers;
 
-import com.enlaceFP.enlaceFP.DTOs.AlumnoDTO;
+import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
+import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
+import com.enlaceFP.enlaceFP.mappers.AlumnoInputDTOMapper;
+import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,34 +19,38 @@ import java.util.NoSuchElementException;
 public class AlumnoController {
 
     private final AlumnoService alumnoService;
+    private final AlumnoOutputDTOMapper alumnoOutputDTOMapper;
+    private final AlumnoInputDTOMapper alumnoInputDTOMapper;
 
     @GetMapping("/{idAlumno}")
-    public ResponseEntity<AlumnoDTO> getAlumno(@PathVariable Long idAlumno) {
+    public ResponseEntity<AlumnoOutputDTO> getAlumno(@PathVariable Long idAlumno) {
 
         try {
-            AlumnoDTO alumno = alumnoService.obtenerAlumnoPorId(idAlumno);
-            return ResponseEntity.ok(alumno);
+            Alumno alumno = alumnoService.obtenerAlumnoPorId(idAlumno);
+            AlumnoOutputDTO alumnoOutputDTO=alumnoOutputDTOMapper.apply(alumno);
+            return ResponseEntity.ok(alumnoOutputDTO);
         } catch (NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping("/NuevoAlumno")
-    public ResponseEntity<AlumnoDTO> crearAlumno(@RequestBody Alumno alumno){
-        if(alumno==null){
+    public ResponseEntity<Long> crearAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO){
+        if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();
         }
-
-        AlumnoDTO alumnoDTO=alumnoService.crearAlumno(alumno);
-        return ResponseEntity.status(HttpStatus.CREATED).body(alumnoDTO);
+        Alumno alumno =alumnoInputDTOMapper.apply(alumnoInputDTO);
+        alumnoService.crearAlumno(alumno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(alumno.getId());
 
     }
 
     @PatchMapping("/Modificar")
-    public ResponseEntity<AlumnoDTO> modificarAlumno(@RequestBody Alumno alumno){
-        if(alumno==null){
+    public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO){
+        if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();
         }
+        Alumno alumno=alumnoInputDTOMapper.apply(alumnoInputDTO);
         alumnoService.modificarAlumno(alumno);
 
 
@@ -51,7 +58,7 @@ public class AlumnoController {
     }
 
     @DeleteMapping("Borrar/{idAlumno}")
-    public ResponseEntity<AlumnoDTO> borrarAlumno(@PathVariable Long idAlumno){
+    public ResponseEntity<AlumnoOutputDTO> borrarAlumno(@PathVariable Long idAlumno){
         try{
             alumnoService.eliminarAlumnoPorId(idAlumno);
             return ResponseEntity.noContent().build();

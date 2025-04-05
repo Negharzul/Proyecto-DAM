@@ -1,10 +1,8 @@
 package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Empleo;
-import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Repositories.EmpleoRepository;
-import com.enlaceFP.enlaceFP.Repositories.ProfesorRepository;
-import com.enlaceFP.enlaceFP.mappers.EmpleoDTOMapper;
+import com.enlaceFP.enlaceFP.mappers.EmpleoOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,7 @@ import java.util.List;
 public class EmpleoService {
 
     private final EmpleoRepository empleoRepository;
-    private final EmpleoDTOMapper empleoDTOMapper;
+    private final EmpleoOutputDTOMapper empleoOutputDTOMapper;
 
 
     public Empleo obtenerEmpleoPorId(Long id) {

@@ -2,7 +2,7 @@ package com.enlaceFP.enlaceFP.DTOs;
 
 import java.util.List;
 
-public record EmpleoDTO(
+public record EmpleoOutputDTO(
         Long id,
         String nombreEmpleo,
         String descripcion,

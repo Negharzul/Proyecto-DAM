@@ -2,13 +2,12 @@ package com.enlaceFP.enlaceFP.DTOs;
 
 import java.util.List;
 
-public record AlumnoDTO(
+public record AlumnoInputDTO(
         Long id,
         String nombre,
         String apellidos,
-        String rol,
         String email,
-        List<String> empleos,
-        List<String> titulos
-){
+        List<Long> empleos,
+        List<Long> titulos
+) {
 }

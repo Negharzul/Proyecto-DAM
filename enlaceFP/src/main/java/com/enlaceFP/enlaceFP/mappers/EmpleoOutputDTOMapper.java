@@ -1,6 +1,6 @@
 package com.enlaceFP.enlaceFP.mappers;
 
-import com.enlaceFP.enlaceFP.DTOs.EmpleoDTO;
+import com.enlaceFP.enlaceFP.DTOs.EmpleoOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Empleo;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +8,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
-public class EmpleoDTOMapper implements Function<Empleo, EmpleoDTO> {
+public class EmpleoOutputDTOMapper implements Function<Empleo, EmpleoOutputDTO> {
     @Override
-    public EmpleoDTO apply(Empleo empleo) {
-        return new EmpleoDTO(empleo.getId(),
+    public EmpleoOutputDTO apply(Empleo empleo) {
+        return new EmpleoOutputDTO(empleo.getId(),
                 empleo.getNombreEmpleo(),
                 empleo.getDescripcion(),
                 empleo.getAsociaciones()
