@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @AllArgsConstructor
@@ -34,6 +35,15 @@ public class AlumnoController {
         }
     }
 
+    @GetMapping()
+    public ResponseEntity<List<AlumnoOutputDTO>> getAllAlumnos(){
+        List<Alumno> alumnos=alumnoService.obtenerAlumnos();
+        List<AlumnoOutputDTO> alumnosOutputDTO= alumnos.stream().map(alumnoOutputDTOMapper).toList();
+
+        return ResponseEntity.ok(alumnosOutputDTO);
+    }
+
+
     @PostMapping("/NuevoAlumno")
     public ResponseEntity<Long> crearAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO){
         if(alumnoInputDTO==null){
@@ -45,14 +55,13 @@ public class AlumnoController {
 
     }
 
-    @PatchMapping("/Modificar")
-    public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO){
+    @PatchMapping("/Modificar/{AlumnoId}")
+    public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO,@PathVariable Long alumnoId){
         if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();
         }
         Alumno alumno=alumnoInputDTOMapper.apply(alumnoInputDTO);
-        alumnoService.modificarAlumno(alumno);
-
+        alumnoService.modificarAlumno(alumno,alumnoId);
 
         return ResponseEntity.noContent().build();
     }

@@ -10,7 +10,6 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario{
@@ -42,4 +41,5 @@ public abstract class Usuario{
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 }

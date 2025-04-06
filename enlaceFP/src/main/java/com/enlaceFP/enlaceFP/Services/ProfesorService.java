@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @AllArgsConstructor
@@ -38,5 +39,14 @@ public class ProfesorService {
 
     public Profesor crearProfesor(Profesor profesor) {
         return profesorRepository.save(profesor);
+    }
+
+    public Profesor modificarProfesor(Profesor profesor, Long idProfesor){
+        Profesor profesorModificado = profesorRepository.findById(idProfesor).orElseThrow(() -> new NoSuchElementException("Profesor no encontrado"));
+        if(profesor.getNombre()!=null)profesorModificado.setNombre(profesor.getNombre());
+        if(profesor.getApellidos()!=null)profesorModificado.setApellidos(profesor.getApellidos());
+        if(profesor.getCorreoElectronico()!=null)profesorModificado.setCorreoElectronico(profesor.getCorreoElectronico());
+
+        return profesorRepository.save(profesorModificado);
     }
 }

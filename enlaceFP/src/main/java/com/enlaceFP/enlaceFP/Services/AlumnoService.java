@@ -42,8 +42,8 @@ public class AlumnoService {
         return alumnoRepository.save(alumno);
     }
 
-    public Alumno modificarAlumno(Alumno alumno){
-        Alumno alumnoModificado = alumnoRepository.findById(alumno.getId()).orElseThrow(() -> new NoSuchElementException("Alumno no encontrado"));
+    public Alumno modificarAlumno(Alumno alumno,Long alumnoId){
+        Alumno alumnoModificado = alumnoRepository.findById(alumnoId).orElseThrow(() -> new NoSuchElementException("Alumno no encontrado"));
         if(alumno.getNombre()!=null)alumnoModificado.setNombre(alumno.getNombre());
         if(alumno.getApellidos()!=null)alumnoModificado.setApellidos(alumno.getApellidos());
         if(alumno.getCorreoElectronico()!=null)alumnoModificado.setCorreoElectronico(alumno.getCorreoElectronico());

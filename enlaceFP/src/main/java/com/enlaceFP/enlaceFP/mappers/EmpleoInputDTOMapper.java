@@ -17,7 +17,7 @@ public class EmpleoInputDTOMapper implements Function<EmpleoInputDTO, Empleo> {
                 .nombreEmpleo(empleoInputDTO.nombreEmpleo())
                 .descripcion(empleoInputDTO.descripcion())
                 .empresa(Empresa.builder().id(empleoInputDTO.empresaId()).build())
-                .titulacionesEmpleo(empleoInputDTO.titulacionesExigidas()
+                .titulacionesEmpleo(empleoInputDTO.titulacionesExigidas()!=null ? empleoInputDTO.titulacionesExigidas()
                         .stream()
                         .map( id->TitulacionEmpleo
                                 .builder()
@@ -26,7 +26,8 @@ public class EmpleoInputDTOMapper implements Function<EmpleoInputDTO, Empleo> {
                                         .id(id)
                                         .build())
                                 .build())
-                        .toList())
+                        .toList()
+                        :null)
                 .build();
     }
 }
