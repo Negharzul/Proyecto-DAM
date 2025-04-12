@@ -1,6 +1,5 @@
 package com.enlaceFP.enlaceFP.Controllers;
 
-import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaInputDTO;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.MailService;
@@ -16,7 +15,7 @@ import java.util.List;
 public class MailController {
 
     private final MailService mailService;
-    private final AlumnoService alumnoService
+    private final AlumnoService alumnoService;
 
     @PostMapping("/enviar")
     public ResponseEntity<?> enviarCorreo(@RequestParam String destinatario,

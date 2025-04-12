@@ -3,6 +3,7 @@ package com.enlaceFP.enlaceFP.Services;
 import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Repositories.AlumnoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.NoSuchElementException;
 public class AlumnoService {
 
     private final AlumnoRepository alumnoRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Alumno obtenerAlumnoPorId(Long id) {
         return alumnoRepository.findById(id)
@@ -39,6 +41,7 @@ public class AlumnoService {
     }
 
     public Alumno crearAlumno(Alumno alumno) {
+        alumno.setPassword(passwordEncoder.encode(alumno.getPassword()));
         return alumnoRepository.save(alumno);
     }
 

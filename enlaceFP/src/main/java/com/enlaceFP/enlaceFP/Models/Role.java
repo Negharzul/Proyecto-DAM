@@ -1,27 +1,27 @@
 package com.enlaceFP.enlaceFP.Models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
-public class Rol {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String rolName;
+    private String role;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "rol", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
     private List<RolPermiso> rolPermisos;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "rol", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
     private List<Usuario> usuarios;
 }

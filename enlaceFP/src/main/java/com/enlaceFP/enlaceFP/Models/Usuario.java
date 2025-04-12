@@ -1,7 +1,10 @@
 package com.enlaceFP.enlaceFP.Models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -24,11 +27,22 @@ public abstract class Usuario{
 
     protected  LocalDateTime fechaRegistro;
 
+    protected String password;
+
+    protected boolean enabled;
+
+    protected boolean accountNonExpired;
+
+    protected boolean credentialNonExpired;
+
+    protected boolean accountNonLocked;
+
+    @Column(unique = true)
     protected  String correoElectronico;
 
     @ManyToOne
     @JoinColumn(name = "rol_id")
-    protected  Rol rol;
+    protected Role role;
 
     @Override
     public boolean equals(Object o) {
@@ -40,6 +54,16 @@ public abstract class Usuario{
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+
+
+    @PrePersist
+    protected void alCrear(){
+        enabled=true;
+        accountNonExpired=true;
+        credentialNonExpired=true;
+        accountNonLocked=true;
     }
 
 }

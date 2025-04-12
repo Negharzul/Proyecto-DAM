@@ -4,6 +4,7 @@ import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Repositories.ProfesorRepository;
 import com.enlaceFP.enlaceFP.mappers.ProfesorOutputDTOMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.NoSuchElementException;
 public class ProfesorService {
 
     private final ProfesorRepository profesorRepository;
-    private final ProfesorOutputDTOMapper profesorOutputDTOMapper;
+    private final PasswordEncoder passwordEncoder;
 
 
     public Profesor obtenerProfesorPorId(Long id) {
@@ -38,6 +39,7 @@ public class ProfesorService {
     }
 
     public Profesor crearProfesor(Profesor profesor) {
+        profesor.setPassword(passwordEncoder.encode(profesor.getPassword()));
         return profesorRepository.save(profesor);
     }
 

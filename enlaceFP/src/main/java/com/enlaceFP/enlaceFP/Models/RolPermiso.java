@@ -20,6 +20,6 @@ public class RolPermiso {
     private Permiso permiso;
 
     @ManyToOne
-    @JoinColumn(name = "rol_id")
-    private Rol rol;
+    @JoinColumn(name = "role_id")
+    private Role role;
 }
