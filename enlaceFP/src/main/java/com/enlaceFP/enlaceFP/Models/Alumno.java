@@ -20,10 +20,19 @@ public class Alumno extends Usuario{
     private List<AlumnoTitulacion> estudios;
 
     @Builder
-
-    public Alumno(Long id, String nombre, String apellidos, LocalDateTime fechaRegistro, String password, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role, List<AlumnoEmpleo> asociaciones, List<AlumnoTitulacion> estudios) {
-        super(id, nombre, apellidos, fechaRegistro, password, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
+    public Alumno(Long id, String nombre, String apellidos, String dni, LocalDateTime fechaRegistro, String password, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role, List<AlumnoEmpleo> asociaciones, List<AlumnoTitulacion> estudios) {
+        super(id, nombre, apellidos, dni, fechaRegistro, password, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
         this.asociaciones = asociaciones;
         this.estudios = estudios;
+    }
+
+    @PrePersist
+    protected void alCrear(){
+        enabled=true;
+        accountNonExpired=true;
+        credentialNonExpired=true;
+        accountNonLocked=true;
+        role=Role.builder().id(Role.ROLE_ALUMNO).build();
+        fechaRegistro=LocalDateTime.now();
     }
 }

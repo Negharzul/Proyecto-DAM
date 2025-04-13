@@ -11,9 +11,18 @@ import java.time.LocalDateTime;
 @Entity
 public class Profesor extends Usuario{
 
-@Builder
+    @Builder
+    public Profesor(Long id, String nombre, String apellidos, String dni, LocalDateTime fechaRegistro, String password, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role) {
+        super(id, nombre, apellidos, dni, fechaRegistro, password, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
+    }
 
-    public Profesor(Long id, String nombre, String apellidos, LocalDateTime fechaRegistro, String password, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role) {
-        super(id, nombre, apellidos, fechaRegistro, password, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
+    @PrePersist
+    protected void alCrear(){
+        enabled=true;
+        accountNonExpired=true;
+        credentialNonExpired=true;
+        accountNonLocked=true;
+        role=Role.builder().id(Role.ROLE_PROFESOR).build();
+        fechaRegistro=LocalDateTime.now();
     }
 }

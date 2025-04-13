@@ -2,6 +2,7 @@ package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Repositories.EmpleoRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,10 @@ public class EmpleoService {
 
     public Empleo obtenerEmpleoPorId(Long id) {
         return empleoRepository.findById(id).orElseThrow(() -> new RuntimeException("Empleo no encontrado"));
+    }
+
+    public List<Empleo> obtenerEmpleosPorNombreEmpresa(String nombreEmpresa){
+        return empleoRepository.findByNombreEmpresa(nombreEmpresa);
     }
 
     public List<Empleo> obtenerEmpleos() {
@@ -38,6 +43,12 @@ public class EmpleoService {
     public Empleo crearEmpleo(Empleo empleo) {
         return empleoRepository.save(empleo);
     }
+
+    @Transactional
+    public void crearEmpleosEnBloque(List<Empleo> empleos){
+        empleoRepository.saveAll(empleos);
+    }
+
 
     public Empleo modificarEmpleo(Empleo empleo, Long idEmpleo){
         Empleo empleoModificado = empleoRepository.findById(idEmpleo).orElseThrow(() -> new NoSuchElementException("Empleo no encontrado"));

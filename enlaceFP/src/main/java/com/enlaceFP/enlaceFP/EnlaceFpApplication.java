@@ -39,14 +39,12 @@ public class EnlaceFpApplication {
 				.apellidos("Alcantara")
 				.correoElectronico("alfredo@gmail.com")
 				.password("12345")
-				.role(Role.builder().id(2L).build())
 				.build();
 
 		Alumno alumno = Alumno.builder()
 				.nombre("Valverde")
 				.correoElectronico("valverde@gmail.com")
 				.password("12345")
-				.role(Role.builder().id(1L).build())
 		        .build();
 
 

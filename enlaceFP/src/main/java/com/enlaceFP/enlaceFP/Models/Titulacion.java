@@ -17,6 +17,7 @@ public class Titulacion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String titulo;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "titulacion")

@@ -25,6 +25,8 @@ public abstract class Usuario{
 
     protected  String apellidos;
 
+    protected String dni;
+
     protected  LocalDateTime fechaRegistro;
 
     protected String password;
@@ -56,14 +58,5 @@ public abstract class Usuario{
         return Objects.hashCode(id);
     }
 
-
-
-    @PrePersist
-    protected void alCrear(){
-        enabled=true;
-        accountNonExpired=true;
-        credentialNonExpired=true;
-        accountNonLocked=true;
-    }
 
 }
