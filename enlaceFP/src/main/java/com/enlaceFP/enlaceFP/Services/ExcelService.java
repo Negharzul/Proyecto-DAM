@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.StreamSupport;
 
@@ -19,7 +20,7 @@ public class ExcelService {
 
     private final PasswordEncoder passwordEncoder;
 
-    public List<Alumno> leerAlumnosExcel(InputStream is){
+    public List<Alumno> leerAlumnosExcel(InputStream is, Map<String,Long> titulaciones){
         Workbook workbook = StreamingReader.builder()
                 .open(is);
 
@@ -43,7 +44,7 @@ public class ExcelService {
                                         .builder()
                                         .titulacion(Titulacion
                                                 .builder()
-                                                .titulo(titulo)
+                                                .id(titulaciones.get(titulo))
                                                 .build())
                                         .alumno(alumno)
                                         .build());

@@ -51,11 +51,11 @@ public class MailService {
 
     public String generarTextoRegistro(Alumno alumno){
 
-        StringBuilder mensaje= new StringBuilder("Ha sido invitado a usar la bolsa de trabajo privada de fp-enlace./n");
-        mensaje.append("Sus credenciales son:/n");
+        StringBuilder mensaje= new StringBuilder("Ha sido invitado a usar la bolsa de trabajo privada de fp-enlace.\n");
+        mensaje.append("Sus credenciales son:\n");
         mensaje.append("Usuario: "+alumno.getCorreoElectronico());
-        mensaje.append("Contraseña: Su DNI");
-        mensaje.append("Por favor cambie la contraseña a la mayor brevedad/n");
+        mensaje.append(" Contraseña: "+ alumno.getDni()+".\n");
+        mensaje.append("Por favor cambie la contraseña a la mayor brevedad posible.\n");
         mensaje.append("Bienvenido.");
 
         return mensaje.toString();
