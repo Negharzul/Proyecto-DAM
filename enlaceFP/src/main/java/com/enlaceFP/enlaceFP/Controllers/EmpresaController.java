@@ -2,8 +2,12 @@ package com.enlaceFP.enlaceFP.Controllers;
 
 import com.enlaceFP.enlaceFP.DTOs.EmpresaInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
+import com.enlaceFP.enlaceFP.Models.Alumno;
+import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Models.Empresa;
+import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.EmpresaService;
+import com.enlaceFP.enlaceFP.Services.MailService;
 import com.enlaceFP.enlaceFP.mappers.EmpresaInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.EmpresaOutputDTOMapper;
 import lombok.AllArgsConstructor;
@@ -22,6 +26,8 @@ import java.util.NoSuchElementException;
 public class EmpresaController {
 
     private final EmpresaService empresaService;
+    private final EmpleoService empleoService;
+    private final MailService mailService;
     private final EmpresaOutputDTOMapper empresaOutputDTOMapper;
     private final EmpresaInputDTOMapper empresaInputDTOMapper;
 
@@ -29,7 +35,7 @@ public class EmpresaController {
     public ResponseEntity<EmpresaOutputDTO> getEmpresa(@PathVariable Long idEmpleo) {
 
         try {
-            Empresa empleo = empresaService.obtenerEmpleoPorId(idEmpleo);
+            Empresa empleo = empresaService.obtenerEmpresaPorId(idEmpleo);
             EmpresaOutputDTO empresaOutputDTO=empresaOutputDTOMapper.apply(empleo);
             return ResponseEntity.ok(empresaOutputDTO);
         } catch (NoSuchElementException ex) {
@@ -39,14 +45,14 @@ public class EmpresaController {
 
     @GetMapping()
     public ResponseEntity<List<EmpresaOutputDTO>> getAllEmpresas(){
-        List<Empresa> empresas=empresaService.obtenerEmpleos();
+        List<Empresa> empresas=empresaService.obtenerEmpresas();
         List<EmpresaOutputDTO> empresasOutputDTO= empresas.stream().map(empresaOutputDTOMapper).toList();
 
         return ResponseEntity.ok(empresasOutputDTO);
     }
 
 
-    @PostMapping("/NuevaEmpresa")
+    @PostMapping("/nuevaEmpresa")
     public ResponseEntity<Map<String,Long>> crearEmpresa(@RequestBody EmpresaInputDTO empresaInputDTO){
         if(empresaInputDTO==null){
             return ResponseEntity.badRequest().build();
@@ -58,6 +64,7 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
+
 
     @PatchMapping("/Modificar/{idEmpresa}")
     public ResponseEntity<EmpresaOutputDTO> modificarEmpresa(@RequestBody EmpresaInputDTO empresaInputDTO,@PathVariable Long idEmpresa){
@@ -79,7 +86,6 @@ public class EmpresaController {
         }catch(NoSuchElementException ex){
             return ResponseEntity.notFound().build();
         }
-
     }
 
 }

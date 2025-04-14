@@ -15,11 +15,12 @@ public class EmpresaService {
     private final EmpresaRepository empresaRepository;
 
 
-    public Empresa obtenerEmpleoPorId(Long id) {
+
+    public Empresa obtenerEmpresaPorId(Long id) {
         return empresaRepository.findById(id).orElseThrow(() -> new RuntimeException("Empresa no encontrada"));
     }
 
-    public List<Empresa> obtenerEmpleos() {
+    public List<Empresa> obtenerEmpresas() {
         return empresaRepository.findAll();
     }
 

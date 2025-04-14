@@ -44,7 +44,7 @@ public class ExcelService {
                                         .builder()
                                         .titulacion(Titulacion
                                                 .builder()
-                                                .id(titulaciones.get(titulo))
+                                                .id(titulaciones.get(titulo.trim().toLowerCase()))
                                                 .build())
                                         .alumno(alumno)
                                         .build());

@@ -1,9 +1,13 @@
 package com.enlaceFP.enlaceFP.Controllers;
 
+import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoOutputDTO;
+import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
+import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Services.EmpleoService;
+import com.enlaceFP.enlaceFP.Services.MailService;
 import com.enlaceFP.enlaceFP.mappers.EmpleoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.EmpleoOutputDTOMapper;
 import lombok.AllArgsConstructor;
@@ -18,10 +22,11 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/Empleo")
+@RequestMapping("/empleo")
 public class EmpleoController {
 
     private final EmpleoService empleoService;
+    private final MailService mailService;
     private final EmpleoOutputDTOMapper empleoOutputDTOMapper;
     private final EmpleoInputDTOMapper empleoInputDTOMapper;
 
@@ -56,7 +61,22 @@ public class EmpleoController {
         Map<String,Long> response= new HashMap<>();
         response.put("id",empleoPersistido.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
 
+    @PostMapping("/mail/{idEmpleo}")
+    public ResponseEntity<AlumnoOutputDTO> avisarAlumnosInteresados(@RequestBody List<Alumno> alumnos, @PathVariable Long idEmpleo){
+        mailService.correoRecomendacionEmpleo(alumnos,idEmpleo);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/enviarCandidatos/{idEmpleo}")
+    public ResponseEntity<EmpresaOutputDTO> enviarCandidatos(@RequestBody List<Alumno> alumnos, @PathVariable Long idEmpleo){
+
+        Empleo empleo= empleoService.obtenerEmpleoPorId(idEmpleo);
+        mailService.enviarCandidatos(alumnos,empleo);
+
+        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/Modificar/{idEmpleo}")
@@ -81,6 +101,7 @@ public class EmpleoController {
         }
 
     }
+
 
 
 }

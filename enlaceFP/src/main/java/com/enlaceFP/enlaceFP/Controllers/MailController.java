@@ -32,7 +32,7 @@ public class MailController {
                                               @RequestBody EmpresaInputDTO empresa){
         StringBuilder mensaje=new StringBuilder("Los siguientes alumnos estan interesados en realizar la FCT en su empresa:");
         for(String nombre: alumnos){
-            mensaje.append("/n"+nombre);
+            mensaje.append("\n"+nombre);
 
         }
         mailService.enviarCorreo(empresa.nombre(),"Lista alumnos interesados FCT",mensaje.toString());

@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class Profesor extends Usuario{
 
     @Builder
-    public Profesor(Long id, String nombre, String apellidos, String dni, LocalDateTime fechaRegistro, String password, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role) {
-        super(id, nombre, apellidos, dni, fechaRegistro, password, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
+    public Profesor(Long id, String nombre, String apellidos, String dni, LocalDateTime fechaRegistro, String password, String telefono, String direccion, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role) {
+        super(id, nombre, apellidos, dni, fechaRegistro, password, telefono, direccion, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
     }
 
     @PrePersist

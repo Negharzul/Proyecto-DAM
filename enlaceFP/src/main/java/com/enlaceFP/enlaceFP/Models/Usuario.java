@@ -31,6 +31,10 @@ public abstract class Usuario{
 
     protected String password;
 
+    protected String telefono;
+
+    protected String direccion;
+
     protected boolean enabled;
 
     protected boolean accountNonExpired;
