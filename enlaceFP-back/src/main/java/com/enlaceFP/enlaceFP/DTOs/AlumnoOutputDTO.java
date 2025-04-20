@@ -2,6 +2,7 @@ package com.enlaceFP.enlaceFP.DTOs;
 
 import lombok.Builder;
 
+import java.util.List;
 import java.util.Map;
 
 @Builder
@@ -10,7 +11,7 @@ public record AlumnoOutputDTO(
         String nombre,
         String apellidos,
         String email,
-        Map<Long,String> empleos,
-        Map<Long,String> titulos
+        List<String>empleos,
+        List<String> titulos
 ){
 }

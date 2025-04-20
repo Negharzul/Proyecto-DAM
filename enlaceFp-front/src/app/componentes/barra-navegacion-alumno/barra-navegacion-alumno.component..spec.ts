@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarraNavegacionComponent } from './barra-navegacion.component';
+import { BarraNavegacionComponent } from './barra-navegacion-alumno.component.';
 
 describe('BarraNavegacionComponent', () => {
   let component: BarraNavegacionComponent;

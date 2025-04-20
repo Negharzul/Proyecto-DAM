@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-barra-navegacion',
   imports: [],
-  templateUrl: './barra-navegacion.component.html',
-  styleUrl: './barra-navegacion.component.css'
+  templateUrl: './barra-navegacion-alumno.component..html',
+  styleUrl: './barra-navegacion-alumno.component.css'
 })
-export class BarraNavegacionComponent {
+export class BarraNavegacionAlumnoComponent {
 
   menuAbierto = false;
 

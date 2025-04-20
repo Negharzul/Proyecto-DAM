@@ -3,9 +3,11 @@ package com.enlaceFP.enlaceFP;
 import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Models.Role;
+import com.enlaceFP.enlaceFP.Models.Titulacion;
 import com.enlaceFP.enlaceFP.Repositories.RoleRepository;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.ProfesorService;
+import com.enlaceFP.enlaceFP.Services.TitulacionService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +23,7 @@ public class EnlaceFpApplication {
 
 		var roleRepository= context.getBean(RoleRepository.class);
 		var profesorService= context.getBean(ProfesorService.class);
+		var titulacionService=context.getBean(TitulacionService.class);
 		var alumnoService= context.getBean(AlumnoService.class);
 
 
@@ -45,6 +48,11 @@ public class EnlaceFpApplication {
 				.password("12345")
 		        .build();
 
+		Titulacion titulo1=Titulacion.builder().titulo("dam").build();
+		Titulacion titulo2=Titulacion.builder().titulo("mecanica").build();
+
+		titulacionService.crearTitulacion(titulo1);
+		titulacionService.crearTitulacion(titulo2);
 
 		alumnoService.crearAlumno(alumno);
 		profesorService.crearProfesor(profesor);

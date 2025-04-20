@@ -1,1 +1,24 @@
-<p>lista-alumnos works!</p>
+<h1> Lista de Alumnos</h1>
+<table class="table table-info">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">apellidos</th>
+      <th scope="col">Correo</th>
+      <th scope="col">Titulos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tablaAlumnos" *ngFor="let alumno of alumnos">
+      <th scope="row">1</th>
+      <td>{{alumno.id}}</td>
+      <td>{{alumno.nombre}}</td>
+      <td>{{alumno.apellidos}}</td>
+      <td>{{ alumno.email }}</td>
+      <td>{{ alumno.titulos}}</td>
+    </tr>
+
+  </tbody>
+</table>
