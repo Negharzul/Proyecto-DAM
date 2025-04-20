@@ -37,11 +37,19 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .toList()
                 : null;
 
+                /*
+               String telefono,
+        String direccion,
+        String dni,
+         */
         return Alumno.builder()
                 .id(alumnoInputDTO.id())
                 .nombre(alumnoInputDTO.nombre())
                 .apellidos(alumnoInputDTO.apellidos())
                 .correoElectronico(alumnoInputDTO.email())
+                .telefono(alumnoInputDTO.telefono())
+                .direccion(alumnoInputDTO.direccion())
+                .dni(alumnoInputDTO.dni())
                 .asociaciones(empleos)
                 .estudios(estudios)
                 .build();

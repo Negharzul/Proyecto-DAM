@@ -1,0 +1,40 @@
+<form>
+
+  <div class="form-group">
+    <label for="InputNombre">Nombre</label>
+    <input type="text" class="form-control" id="InputNombre" placeholder="Introduce nombre" #nombre (input)="alumno.nombre = nombre.value">
+  </div>
+
+  <div class="form-group">
+    <label for="InputApellidos">Apellidos</label>
+    <input type="text" class="form-control" id="InputApellidos" placeholder="Introduce apellidos" #apellidos (input)="alumno.apellidos = apellidos.value">
+  </div>
+
+  <div class="form-group">
+    <label for="InputEmail">Email</label>
+    <input type="email" class="form-control" id="InputEmail" placeholder="Introduce email" #email (input)="alumno.email = email.value">
+  </div>
+
+  <div class="form-group">
+    <label for="InputTelefono">Teléfono</label>
+    <input type="text" class="form-control" id="InputTelefono" placeholder="Introduce teléfono" #telefono (input)="alumno.telefono = telefono.value">
+  </div>
+
+  <div class="form-group">
+    <label for="InputDireccion">Dirección</label>
+    <input type="text" class="form-control" id="InputDireccion" placeholder="Introduce dirección" #direccion (input)="alumno.direccion = direccion.value">
+  </div>
+
+  <div class="form-group">
+    <label for="InputDni">DNI</label>
+    <input type="text" class="form-control" id="InputDni" placeholder="Introduce DNI" #dni (input)="alumno.dni = dni.value">
+  </div>
+
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+
+  <button type="button" (click)="postAlumno()" class="btn btn-primary">Submit</button>
+
+</form>

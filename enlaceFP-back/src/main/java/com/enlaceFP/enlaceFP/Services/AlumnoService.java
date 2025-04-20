@@ -1,7 +1,6 @@
 package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Alumno;
-import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Repositories.AlumnoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,7 +41,8 @@ public class AlumnoService {
     }
 
     public Alumno crearAlumno(Alumno alumno) {
-        alumno.setPassword(passwordEncoder.encode(alumno.getPassword()));
+        if(alumno.getPassword()!=null) alumno.setPassword(passwordEncoder.encode(alumno.getPassword()));
+        else alumno.setPassword(passwordEncoder.encode(alumno.getDni()));
         return alumnoRepository.save(alumno);
     }
 

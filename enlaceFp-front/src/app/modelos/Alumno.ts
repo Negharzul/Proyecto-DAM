@@ -34,13 +34,16 @@ export class Alumno{
 
 }
   */
-export interface Alumno {
-  id: number
-  nombre: string
-  apellidos: string
-  email: string
-  empleos: Empleos[]
-  titulos: string[]
+export class Alumno {
+  id?: number
+  nombre?: string
+  apellidos?: string
+  email?: string
+  telefono?: string
+  direccion?: string
+  dni?: string
+  empleos?: Empleos[]
+  titulos?: string[]
 
 }
 
