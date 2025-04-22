@@ -3,7 +3,10 @@ package com.enlaceFP.enlaceFP.Controllers;
 import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Alumno;
+import com.enlaceFP.enlaceFP.Models.AlumnoTitulacion;
+import com.enlaceFP.enlaceFP.Models.Titulacion;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
+import com.enlaceFP.enlaceFP.Services.AlumnoTitulacionService;
 import com.enlaceFP.enlaceFP.mappers.AlumnoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
 import lombok.AllArgsConstructor;
@@ -21,6 +24,7 @@ import java.util.NoSuchElementException;
 public class AlumnoController {
 
     private final AlumnoService alumnoService;
+    private final AlumnoTitulacionService alumnoTitulacionService;
     private final AlumnoOutputDTOMapper alumnoOutputDTOMapper;
     private final AlumnoInputDTOMapper alumnoInputDTOMapper;
 
@@ -45,7 +49,7 @@ public class AlumnoController {
     }
 
 
-    @PostMapping("/NuevoAlumno")
+    @PostMapping()
     public ResponseEntity<Long> crearAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO){
         if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();
@@ -75,8 +79,31 @@ public class AlumnoController {
         }catch(NoSuchElementException ex){
             return ResponseEntity.notFound().build();
         }
-
     }
 
+    /**
+     *
+     *  Metodos de la relacion con Titulacion
+     *
+     *
+     */
 
+
+
+    @PostMapping("/titulo/{idAlumno}/{idTitulacion}")
+    public ResponseEntity<?> crearAsociacionConTitulacion(@PathVariable Long idAlumno,@PathVariable Long idTitulacion){
+
+        var relacion= AlumnoTitulacion.builder()
+                .titulacion(Titulacion.builder()
+                        .id(idTitulacion)
+                        .build())
+                .alumno(Alumno.builder()
+                        .id(idAlumno)
+                        .build())
+                .build();
+
+        alumnoTitulacionService.crearRelacion(relacion);
+
+        return ResponseEntity.ok().build();
+    }
 }

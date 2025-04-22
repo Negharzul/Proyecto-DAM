@@ -21,8 +21,14 @@ export class AlumnoService {
   }
 
   insertarAlumno(alumno: Alumno): Observable<any> {
-    return this.http.post(`${baseUrl}/NuevoAlumno`, alumno);
+    return this.http.post(baseUrl, alumno);
   }
+
+  insertarRelacion(idAlumno:number,idTitulo:number): Observable<any> {
+    return this.http.post(`${baseUrl}/titulo/${idAlumno}/${idTitulo}`,null);
+  }
+//"/titulo/{idAlumno]/{idTitulacion}"
+
 
   patchAlumno(id: number, alumno: Alumno): Observable<any> {
     return this.http.patch(`${baseUrl}/${id}`, alumno);

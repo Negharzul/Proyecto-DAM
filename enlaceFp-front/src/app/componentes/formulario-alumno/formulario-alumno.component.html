@@ -1,40 +1,53 @@
-<form>
+<form #alumnoForm="ngForm">
 
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label for="InputNombre">Nombre</label>
-    <input type="text" class="form-control" id="InputNombre" placeholder="Introduce nombre" #nombre (input)="alumno.nombre = nombre.value">
+    <input type="text" class="form-control" id="InputNombre"
+           [(ngModel)]="alumno.nombre" name="nombre"
+           placeholder="Introduce nombre" required>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label for="InputApellidos">Apellidos</label>
-    <input type="text" class="form-control" id="InputApellidos" placeholder="Introduce apellidos" #apellidos (input)="alumno.apellidos = apellidos.value">
+    <input type="text" class="form-control" id="InputApellidos"
+           [(ngModel)]="alumno.apellidos" name="apellidos"
+           placeholder="Introduce apellidos" required>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label for="InputEmail">Email</label>
-    <input type="email" class="form-control" id="InputEmail" placeholder="Introduce email" #email (input)="alumno.email = email.value">
+    <input type="email" class="form-control" id="InputEmail"
+           [(ngModel)]="alumno.email" name="email"
+           placeholder="Introduce email" required>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label for="InputTelefono">Teléfono</label>
-    <input type="text" class="form-control" id="InputTelefono" placeholder="Introduce teléfono" #telefono (input)="alumno.telefono = telefono.value">
+    <input type="text" class="form-control" id="InputTelefono"
+           [(ngModel)]="alumno.telefono" name="telefono"
+           placeholder="Introduce teléfono">
   </div>
 
-  <div class="form-group">
+  <div class="form-group mb-3">
     <label for="InputDireccion">Dirección</label>
-    <input type="text" class="form-control" id="InputDireccion" placeholder="Introduce dirección" #direccion (input)="alumno.direccion = direccion.value">
+    <input type="text" class="form-control" id="InputDireccion"
+           [(ngModel)]="alumno.direccion" name="direccion"
+           placeholder="Introduce dirección">
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="InputDni">DNI</label>
+    <input type="text" class="form-control" id="InputDni"
+           [(ngModel)]="alumno.dni" name="dni"
+           placeholder="Introduce DNI" required>
   </div>
 
   <div class="form-group">
-    <label for="InputDni">DNI</label>
-    <input type="text" class="form-control" id="InputDni" placeholder="Introduce DNI" #dni (input)="alumno.dni = dni.value">
+    <label for="InputDireccion">Titulación</label>
+    <app-seleccion-titulo (idSeleccionado)="recibirId($event)"></app-seleccion-titulo>
   </div>
 
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-
-  <button type="button" (click)="postAlumno()" class="btn btn-primary">Submit</button>
-
+  <button type="button" (click)="postAlumno()" class="btn btn-primary"
+          [disabled]="!alumnoForm.valid">Enviar</button>
 </form>
+

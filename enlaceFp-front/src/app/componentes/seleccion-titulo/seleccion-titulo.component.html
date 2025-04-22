@@ -1,0 +1,14 @@
+
+<select
+  class="form-select"
+  aria-label="Selección de titulación"
+  (change)="emitirId($any($event.target).value)"
+>
+  <option value="" selected>Selecciona una titulación</option>
+  <option
+    *ngFor="let titulo of titulos"
+    [value]="titulo.id"
+  >
+    {{ titulo.nombre }}
+  </option>
+</select>
