@@ -68,7 +68,7 @@ public class AlumnoController {
         Alumno alumno=alumnoInputDTOMapper.apply(alumnoInputDTO);
         alumnoService.modificarAlumno(alumno,alumnoId);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("Borrar/{idAlumno}")
@@ -81,13 +81,12 @@ public class AlumnoController {
         }
     }
 
-    /**
+    /*
      *
      *  Metodos de la relacion con Titulacion
      *
      *
      */
-
 
 
     @PostMapping("/titulo/{idAlumno}/{idTitulacion}")

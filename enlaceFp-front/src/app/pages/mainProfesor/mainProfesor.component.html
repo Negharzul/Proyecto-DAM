@@ -1,2 +1,14 @@
 <app-barra-navegacion-profesor></app-barra-navegacion-profesor>
-<app-formulario-alumno></app-formulario-alumno>
+
+<div class="botones">
+  <button type="button" class="btn btn-success" (click)="mostrarAdministracion()">Administrar</button>
+
+  <button type="button" class="btn btn-success" (click)="mostrarRegistro()">Registrar</button>
+
+  <button type="button" class="btn btn-warning" >Registro masivo</button>
+</div>
+
+<app-formulario-alumno *ngIf="mostrandoRegistro"></app-formulario-alumno>
+<app-lista-alumnos (activarFormulario)="mostrarModificacion($event)"  *ngIf="mostrandoAdministracion"></app-lista-alumnos>
+<app-formulario-modificar-alumno [idAlumno]="idAlumnoModificar!" *ngIf="mostrandoModificacion" ></app-formulario-modificar-alumno>
+

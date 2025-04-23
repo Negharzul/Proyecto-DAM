@@ -1,4 +1,5 @@
-<h1>Alumno:</h1>
+<div *ngIf="alumno">
+<h1 >Modificar Alumno</h1>
 
 <form #alumnoForm="ngForm">
 
@@ -18,7 +19,7 @@
 
   <div class="form-group mb-3">
     <label for="InputEmail">Email</label>
-    <input type="email" class="form-control" id="InputEmail"
+    <input type="email" class="form-control" id="InputEmail"s
            [(ngModel)]="alumno.email" name="email"
            placeholder="Introduce email" required>
   </div>
@@ -44,12 +45,8 @@
            placeholder="Introduce DNI" required>
   </div>
 
-  <div class="form-group mb-3">
-    <label id="titulacion">Titulación</label>
-    <app-seleccion-titulo (idSeleccionado)="recibirId($event)"></app-seleccion-titulo>
-  </div>
 
-  <button type="button" (click)="postAlumno()" class="btn btn-primary"
-          [disabled]="!alumnoForm.valid">Enviar</button>
+  <button type="button" (click)="patchAlumno()" class="btn btn-primary">Actualizar</button>
 </form>
+</div>
 

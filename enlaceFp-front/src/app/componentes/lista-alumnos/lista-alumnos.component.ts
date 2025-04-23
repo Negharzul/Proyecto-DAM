@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { AlumnoService } from '../../servicios/alumno.service';
 import { Alumno } from '../../modelos/Alumno';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,13 @@ export class ListaAlumnosComponent implements OnInit{
   alumnos?:Alumno[];
   alumnoService = inject(AlumnoService);
 
+  //idAlumnoSeleccionado: number | null = null;
+
+  @Output() activarFormulario = new EventEmitter<number>();
+
+  emitirEvento(id:number) {
+    this.activarFormulario.emit(id);
+  }
 
   ngOnInit(): void{
     this.obtenerAlumnos();

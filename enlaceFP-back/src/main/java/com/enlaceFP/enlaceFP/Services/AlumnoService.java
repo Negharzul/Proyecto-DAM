@@ -55,6 +55,9 @@ public class AlumnoService {
         if(alumno.getNombre()!=null)alumnoModificado.setNombre(alumno.getNombre());
         if(alumno.getApellidos()!=null)alumnoModificado.setApellidos(alumno.getApellidos());
         if(alumno.getCorreoElectronico()!=null)alumnoModificado.setCorreoElectronico(alumno.getCorreoElectronico());
+        if(alumno.getTelefono()!=null)alumnoModificado.setTelefono(alumno.getTelefono());
+        if(alumno.getDireccion()!=null)alumnoModificado.setDireccion(alumno.getDireccion());
+        if(alumno.getDni()!=null)alumnoModificado.setDni(alumno.getDni());
         return alumnoRepository.save(alumnoModificado);
     }
 

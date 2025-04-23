@@ -1,4 +1,4 @@
-<h1> Lista de Alumnos</h1>
+<h1> Lista de Alumnos:</h1>
 <table class="table table-info">
   <thead>
     <tr>
@@ -18,6 +18,8 @@
       <td>{{alumno.apellidos}}</td>
       <td>{{ alumno.email }}</td>
       <td>{{ alumno.titulos}}</td>
+      <button type="button" class="btn btn-success" (click)="emitirEvento(alumno.id!)" >?</button>
+      <button type="button" class="btn btn-success" >x</button>
     </tr>
 
   </tbody>

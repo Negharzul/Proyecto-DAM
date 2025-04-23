@@ -6,3 +6,7 @@ body{
   padding: 0;
   font-family: 'Poppins', monospace;
 }
+
+.fondo-profesor{
+  background: linear-gradient(to right, #ffffff, #b7d9f5);
+}

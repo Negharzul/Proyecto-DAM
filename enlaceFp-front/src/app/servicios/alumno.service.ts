@@ -30,8 +30,8 @@ export class AlumnoService {
 //"/titulo/{idAlumno]/{idTitulacion}"
 
 
-  patchAlumno(id: number, alumno: Alumno): Observable<any> {
-    return this.http.patch(`${baseUrl}/${id}`, alumno);
+  patchAlumno(idAlumno: number, alumno: Alumno): Observable<any> {
+    return this.http.patch(`${baseUrl}/Modificar/${idAlumno}`, alumno);
   }
 
   deleteById(id: number): Observable<any> {
