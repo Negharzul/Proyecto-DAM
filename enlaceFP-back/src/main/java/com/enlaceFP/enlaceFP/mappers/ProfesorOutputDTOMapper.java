@@ -14,7 +14,7 @@ public class ProfesorOutputDTOMapper implements Function<Profesor, ProfesorOutpu
         return new ProfesorOutputDTO(profesor.getId(),
                 profesor.getNombre(),
                 profesor.getApellidos(),
-                profesor.getRole() != null ? profesor.getRole().getRole() : null,
+                profesor.getRole() != null ? profesor.getRole().getNombreRole() : null,
                 profesor.getCorreoElectronico());
     }
 }

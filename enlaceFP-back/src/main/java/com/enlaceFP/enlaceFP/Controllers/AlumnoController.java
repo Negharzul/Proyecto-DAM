@@ -19,7 +19,6 @@ import java.util.NoSuchElementException;
 
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = {"http://localhost:4200/"})
 @RequestMapping("/alumno")
 public class AlumnoController {
 
@@ -60,7 +59,7 @@ public class AlumnoController {
 
     }
 
-    @PatchMapping("/Modificar/{AlumnoId}")
+    @PatchMapping("/Modificar/{alumnoId}")
     public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO,@PathVariable Long alumnoId){
         if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();

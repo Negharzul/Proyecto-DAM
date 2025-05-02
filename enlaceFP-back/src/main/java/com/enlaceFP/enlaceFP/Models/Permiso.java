@@ -17,8 +17,8 @@ public class Permiso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String permiso;
+    private String nombre;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "permiso", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "permiso")
     private List<RolPermiso> rolPermisos;
 }

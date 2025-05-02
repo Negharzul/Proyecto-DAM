@@ -19,7 +19,7 @@
       <td>{{ alumno.email }}</td>
       <td>{{ alumno.titulos}}</td>
       <button type="button" class="btn btn-success" (click)="emitirEvento(alumno.id!)" >?</button>
-      <button type="button" class="btn btn-success" >x</button>
+      <button type="button" class="btn btn-success" (click)="borrarAlumno(alumno.id!)">x</button>
     </tr>
 
   </tbody>

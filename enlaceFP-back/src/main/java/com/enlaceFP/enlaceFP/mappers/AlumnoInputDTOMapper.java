@@ -17,7 +17,7 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .apellidos(alumnoInputDTO.apellidos())
                 .correoElectronico(alumnoInputDTO.email())
                 .build();
-
+/*
 
         List<AlumnoEmpleo> empleos = alumnoInputDTO.empleos() != null ? alumnoInputDTO.empleos()
                 .stream()
@@ -37,6 +37,8 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .toList()
                 : null;
 
+
+ */
                 /*
                String telefono,
         String direccion,
@@ -50,8 +52,6 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .telefono(alumnoInputDTO.telefono())
                 .direccion(alumnoInputDTO.direccion())
                 .dni(alumnoInputDTO.dni())
-                .asociaciones(empleos)
-                .estudios(estudios)
                 .build();
     }
 }

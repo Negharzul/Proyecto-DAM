@@ -1,3 +1,4 @@
+import { Titulo } from "./Titulo"
 
 export class Alumno {
   id?: number
@@ -7,8 +8,8 @@ export class Alumno {
   telefono?: string
   direccion?: string
   dni?: string
-  empleos?: string[]
-  titulos?: string[]
+  empleos?: number[]
+  titulos?: Titulo[]
 
 }
 

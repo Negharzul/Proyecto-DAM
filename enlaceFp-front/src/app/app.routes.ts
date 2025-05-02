@@ -4,6 +4,8 @@ import { mainProfesorComponent } from './pages/mainProfesor/mainProfesor.compone
 import { mainAlumnoComponent } from './pages/mainAlumno/mainAlumno.component';
 import { SeleccionTituloComponent } from './componentes/seleccion-titulo/seleccion-titulo.component';
 import { FormularioAlumnoModificacionComponent } from './componentes/formulario-alumno-modificacion/formulario-alumno-modificacion.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+
 
 export const routes: Routes = [
 
@@ -22,6 +24,10 @@ export const routes: Routes = [
 {
   path:'titulo',
   component: SeleccionTituloComponent
+},
+{
+  path:'login',
+  component:LoginPageComponent
 }
 
 

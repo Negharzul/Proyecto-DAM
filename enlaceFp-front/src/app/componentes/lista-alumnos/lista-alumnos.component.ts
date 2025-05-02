@@ -42,5 +42,15 @@ export class ListaAlumnosComponent implements OnInit{
     return alumno.titulos;
   }
 
+  borrarAlumno(id:number){
+    console.log("id recibida en metodo"+id)
+
+    this.alumnoService.deleteById(id).subscribe({
+      next: () => {
+        this.obtenerAlumnos();
+      },
+      error: (err) => console.log(err)
+    });
+  }
 
 }

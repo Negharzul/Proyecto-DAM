@@ -2,8 +2,10 @@ package com.enlaceFP.enlaceFP.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -13,10 +15,10 @@ import java.util.List;
 @Entity
 public class Alumno extends Usuario{
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno",orphanRemoval = true)
     private List<AlumnoEmpleo> asociaciones;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno",orphanRemoval = true)
     private List<AlumnoTitulacion> estudios;
 
     @Builder
@@ -35,4 +37,6 @@ public class Alumno extends Usuario{
         role=Role.builder().id(Role.ROLE_ALUMNO).build();
         fechaRegistro=LocalDateTime.now();
     }
+
+
 }

@@ -21,11 +21,11 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String role;
+    private String nombreRole;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role")
     private List<RolPermiso> rolPermisos;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "role")
     private List<Usuario> usuarios;
 }

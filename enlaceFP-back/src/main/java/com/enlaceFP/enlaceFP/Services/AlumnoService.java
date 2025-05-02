@@ -5,6 +5,7 @@ import com.enlaceFP.enlaceFP.Repositories.AlumnoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,9 +26,11 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
+    @Transactional
     public void eliminarAlumnoPorId(Long id) {
         if(alumnoRepository.existsById(id)) {
             alumnoRepository.deleteById(id);
+            alumnoRepository.flush();
         } else {
             throw new RuntimeException("No encontrado alumno con ID: " + id);
         }

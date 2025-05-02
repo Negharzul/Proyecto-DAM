@@ -5,8 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Setter
@@ -15,7 +21,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario{
+public abstract class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +53,7 @@ public abstract class Usuario{
     protected  String correoElectronico;
 
     @ManyToOne
-    @JoinColumn(name = "rol_id")
+    @JoinColumn(name = "role_id")
     protected Role role;
 
     @Override
@@ -62,5 +68,37 @@ public abstract class Usuario{
         return Objects.hashCode(id);
     }
 
+
+    @Override
+    public String getUsername() {
+        return correoElectronico;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getGrantedAuthorities();
+    }
+
+
+    private List<String> getPrivileges(){
+        List<String> privileges = new ArrayList<>();
+        privileges.add(role.getNombreRole());
+
+        privileges.addAll(role.getRolPermisos()
+                .stream()
+                .map( rolePermiso -> rolePermiso.getPermiso().getNombre())
+                .toList());
+
+        return privileges;
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(){
+        List<String> privileges = getPrivileges();
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for(String privilege : privileges){
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
+        return authorities;
+    }
 
 }

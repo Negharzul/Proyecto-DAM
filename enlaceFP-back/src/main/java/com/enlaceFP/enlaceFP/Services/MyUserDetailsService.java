@@ -1,10 +1,13 @@
 package com.enlaceFP.enlaceFP.Services;
 
+import com.enlaceFP.enlaceFP.Models.Alumno;
+import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Models.Role;
 import com.enlaceFP.enlaceFP.Models.Usuario;
 import com.enlaceFP.enlaceFP.Repositories.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,39 +31,14 @@ public class MyUserDetailsService implements UserDetailsService {
         Usuario usuario= usuarioRepository.findByCorreoElectronico(correoElectronico)
                 .orElseThrow(()->new UsernameNotFoundException("Usuario no encontrado con correo :"+ correoElectronico));
 
-        return new org.springframework.security.core.userdetails.User(
-                usuario.getCorreoElectronico(),
-                usuario.getPassword(),
-                usuario.isEnabled(),
-                usuario.isAccountNonExpired(),
-                usuario.isCredentialNonExpired(),
-                usuario.isAccountNonLocked(),
-                getAuthorities(usuario.getRole()));
+        Hibernate.initialize(usuario.getRole().getRolPermisos());
+        return switch (usuario){
+            case Alumno alumno -> alumno;
+            case Profesor profesor -> profesor;
+            default -> throw new UsernameNotFoundException("Usuario no encontrado con correo :"+ correoElectronico);
+        };
     }
 
-    private List<? extends GrantedAuthority> getAuthorities(Role role){
-        return getGrantedAuthorities(getPrivileges(role));
-    }
-
-    private List<String> getPrivileges(Role role){
-        List<String> privileges = new ArrayList<>();
-        privileges.add(role.getRole());
-
-        privileges.addAll(role.getRolPermisos()
-                .stream()
-                .map( rolePermiso -> rolePermiso.getPermiso().getPermiso())
-                .toList());
-
-                return privileges;
-    }
-
-    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges){
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for(String privilege : privileges){
-            authorities.add(new SimpleGrantedAuthority(privilege));
-        }
-        return authorities;
-    }
 
 
 }
