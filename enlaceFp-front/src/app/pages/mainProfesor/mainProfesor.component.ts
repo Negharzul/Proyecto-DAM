@@ -4,6 +4,8 @@ import { BarraNavegacionProfesorComponent } from "../../componentes/barra-navega
 import { FormularioAlumnoComponent } from "../../componentes/formulario-alumno/formulario-alumno.component";
 import { ListaAlumnosComponent } from "../../componentes/lista-alumnos/lista-alumnos.component";
 import { FormularioAlumnoModificacionComponent } from "../../componentes/formulario-alumno-modificacion/formulario-alumno-modificacion.component";
+import { FileService } from "../../servicios/File.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-profesor',
@@ -19,6 +21,12 @@ export class mainProfesorComponent {
   mostrandoModificacion=false;
 
   idAlumnoModificar?:number
+  fileService:FileService
+  archivoSeleccionado?:File;
+
+  constructor(fileService:FileService){
+    this.fileService=fileService
+  }
 
   mostrarRegistro(){
     this.todosFalso();
@@ -42,4 +50,29 @@ export class mainProfesorComponent {
     this.mostrandoRegistro=false;
     this.mostrandoModificacion=false;
   }
+
+  seleccionarArchivo(event: Event){
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.archivoSeleccionado = input.files[0];  // Asignamos correctamente el archivo a la propiedad
+    }
+
+    // Verificamos si 'archivoSeleccionado' no es undefined
+    if (this.archivoSeleccionado) {
+      const formData = new FormData();
+      formData.append('excel', this.archivoSeleccionado);  // Usamos la propiedad correctamente
+
+      this.fileService.enviarExcel(formData).subscribe({
+        next: value => alert('Excel procesado adecuadamente'),
+        error: (error: HttpErrorResponse) => {
+          console.error('Full error:', error);
+          console.error('Error details:', error.error);
+          console.error('Status:', error.status);
+        }
+      });
+    } else {
+      alert('No has seleccionado un archivo');
+    }
+  }
+
 }

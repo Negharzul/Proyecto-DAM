@@ -5,7 +5,8 @@
 
   <button type="button" class="btn btn-success" (click)="mostrarRegistro()">Registrar</button>
 
-  <button type="button" class="btn btn-warning" >Registro masivo</button>
+  <input type="file" #fileInput hidden (change)="seleccionarArchivo($event)" />
+  <button type="button" (click)="fileInput.click()" class="btn btn-warning" >Registro masivo</button>
 </div>
 
 <app-formulario-alumno *ngIf="mostrandoRegistro"></app-formulario-alumno>

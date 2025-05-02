@@ -39,10 +39,10 @@ export class FormularioAlumnoComponent {
       next: (alumno) => {
         console.log('Alumno creado exitosamente', alumno);
         alert('Alumno registrado con éxito!');
-         this.idAlumnoCreado=alumno;
-         console.log('ID del alumno creado:', this.idAlumnoCreado);
-         this.insertarRelacion();
-         this.resetForm();
+        this.idAlumnoCreado=alumno;
+        console.log('ID del alumno creado:', this.idAlumnoCreado);
+        this.insertarRelacion();
+        this.resetForm();
 
       },
       error: (error: HttpErrorResponse) => {
