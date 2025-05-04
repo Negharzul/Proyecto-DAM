@@ -5,6 +5,8 @@ import { mainAlumnoComponent } from './pages/mainAlumno/mainAlumno.component';
 import { SeleccionTituloComponent } from './componentes/seleccion-titulo/seleccion-titulo.component';
 import { FormularioAlumnoModificacionComponent } from './componentes/formulario-alumno-modificacion/formulario-alumno-modificacion.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { EmpresaProfesorComponent } from './pages/empresa-profesor/empresa-profesor.component';
+
 
 
 export const routes: Routes = [
@@ -28,6 +30,10 @@ export const routes: Routes = [
 {
   path:'login',
   component:LoginPageComponent
+},
+{
+  path: 'profesor/empresa',
+  component: EmpresaProfesorComponent
 }
 
 

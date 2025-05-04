@@ -1,0 +1,12 @@
+<app-barra-navegacion-profesor></app-barra-navegacion-profesor>
+
+<div class="botones">
+  <button type="button" class="btn btn-success" (click)="mostrarAdministracion()">Administrar</button>
+
+  <button type="button" class="btn btn-success" (click)="mostrarRegistro()">Registrar</button>
+
+
+</div>
+
+<app-formulario-empresa *ngIf="mostrandoRegistro"></app-formulario-empresa>
+<app-lista-empresas-profesor *ngIf="mostrandoAdministracion"></app-lista-empresas-profesor>

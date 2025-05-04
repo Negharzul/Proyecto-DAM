@@ -2,8 +2,6 @@ package com.enlaceFP.enlaceFP.Controllers;
 
 import com.enlaceFP.enlaceFP.DTOs.EmpresaInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
-import com.enlaceFP.enlaceFP.Models.Alumno;
-import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Models.Empresa;
 import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.EmpresaService;

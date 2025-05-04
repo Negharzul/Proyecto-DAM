@@ -1,0 +1,23 @@
+<h1> Lista de Empresas:</h1>
+<table class="table table-info">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Correo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="tablaEmpresas" *ngFor="let empresa of empresas">
+      <th scope="row">1</th>
+      <td>{{empresa.id}}</td>
+      <td>{{empresa.nombre}}</td>
+      <td>{{empresa.descripcion}}</td>
+      <td>{{ empresa.email }}</td>
+      <button type="button" class="btn btn-success" (click)="emitirEvento(empresa.id!)" >?</button>
+      <button type="button" class="btn btn-success" (click)="borrarEmpresa(empresa.id!)">x</button>
+    </tr>
+
+  </tbody>
+</table>
