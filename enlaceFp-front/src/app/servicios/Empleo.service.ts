@@ -21,7 +21,7 @@ export class EmpleoService {
   }
 
   insertarEmpleo(empleo: Empleo): Observable<any> {
-    return this.http.post(baseUrl, empleo,{withCredentials: true});
+    return this.http.post(baseUrl+'/NuevoEmpleo', empleo,{withCredentials: true});
   }
 
   patchTitulo(id: number, empleo: Empleo): Observable<any> {

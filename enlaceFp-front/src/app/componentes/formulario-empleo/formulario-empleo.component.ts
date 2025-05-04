@@ -22,15 +22,15 @@ export class FormularioEmpleoComponent {
 
   constructor(private empleoService:EmpleoService){}
 
-  postEmpresa(){
+  postEmpleo(){
     this.insertarEmpleo();
   }
 
   insertarEmpleo(){
     this.empleoService.insertarEmpleo(this.empleo!).subscribe({
       next: (empleo) => {
-        console.log('Empresa creado exitosamente', empleo);
-        alert('Empleo registrada con éxito!');
+        console.log('Empleo creado exitosamente', empleo);
+        alert('Empleo registrado con éxito!');
         this.idEmpleoCreado=empleo;
         console.log('ID del Empleo creado:', this.idEmpleoCreado);
         this.resetForm();

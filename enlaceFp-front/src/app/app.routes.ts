@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ListaAlumnosComponent } from './componentes/lista-alumnos/lista-alumnos.component';
+
 import { mainProfesorComponent } from './pages/mainProfesor/mainProfesor.component';
 import { mainAlumnoComponent } from './pages/mainAlumno/mainAlumno.component';
 import { SeleccionTituloComponent } from './componentes/seleccion-titulo/seleccion-titulo.component';
@@ -7,6 +7,8 @@ import { FormularioAlumnoModificacionComponent } from './componentes/formulario-
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmpresaProfesorComponent } from './pages/empresa-profesor/empresa-profesor.component';
 import { EmpleosProfesorComponent } from './pages/empleos-profesor/empleos-profesor.component';
+import { TitulosProfesorComponent } from './pages/titulos-profesor/titulos-profesor.component';
+
 
 
 
@@ -39,6 +41,10 @@ export const routes: Routes = [
 {
   path: 'profesor/empleo',
   component: EmpleosProfesorComponent
+},
+{
+  path: 'profesor/titulo',
+  component: TitulosProfesorComponent
 }
 
 

@@ -1,0 +1,11 @@
+<app-barra-navegacion-profesor></app-barra-navegacion-profesor>
+<div class="botones">
+  <button type="button" class="btn btn-success" (click)="mostrarAdministracion()">Titulos disponibles</button>
+
+  <button type="button" class="btn btn-success" (click)="mostrarRegistro()">Nuevo Titulo</button>
+
+
+</div>
+
+<app-lista-titulos-profesor *ngIf="mostrandoTitulos"></app-lista-titulos-profesor>
+<app-formulario-titulo *ngIf="mostrandoRegistro"></app-formulario-titulo>
