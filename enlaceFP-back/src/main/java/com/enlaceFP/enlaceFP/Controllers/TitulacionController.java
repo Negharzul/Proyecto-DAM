@@ -69,7 +69,7 @@ public class TitulacionController {
 
      */
 
-    @DeleteMapping("Borrar/{idTitulacion}")
+    @DeleteMapping("{idTitulacion}")
     public ResponseEntity<TitulacionDTO> borrarTitulacion(@PathVariable Long idTitulacion){
         try{
             titulacionService.eliminarTitulacionPorId(idTitulacion);

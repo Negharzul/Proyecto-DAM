@@ -8,6 +8,6 @@ public record EmpleoOutputDTO(
         String descripcion,
         List<String> Alumnos,
         List<String> titulacionesExigidas,
-        String Empresa
+        String empresa
 ) {
 }
