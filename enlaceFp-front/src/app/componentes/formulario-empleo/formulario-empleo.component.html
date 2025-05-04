@@ -1,0 +1,17 @@
+<h1>Empresa:</h1>
+
+<form #empresaForm="ngForm">
+
+  <div class="form-group mb-3">
+    <label for="InputNombre">Nombre</label>
+    <input type="text" class="form-control" id="InputNombre"
+           [(ngModel)]="empleo.nombreEmpleo" name="nombre"
+           placeholder="Introduce nombre" required>
+  </div>
+
+
+
+  <button type="button" (click)="postEmpresa()" class="btn btn-primary"
+          [disabled]="!empresaForm.valid">Enviar</button>
+</form>
+

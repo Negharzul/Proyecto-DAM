@@ -6,6 +6,7 @@ import { SeleccionTituloComponent } from './componentes/seleccion-titulo/selecci
 import { FormularioAlumnoModificacionComponent } from './componentes/formulario-alumno-modificacion/formulario-alumno-modificacion.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmpresaProfesorComponent } from './pages/empresa-profesor/empresa-profesor.component';
+import { EmpleosProfesorComponent } from './pages/empleos-profesor/empleos-profesor.component';
 
 
 
@@ -34,6 +35,10 @@ export const routes: Routes = [
 {
   path: 'profesor/empresa',
   component: EmpresaProfesorComponent
+},
+{
+  path: 'profesor/empleo',
+  component: EmpleosProfesorComponent
 }
 
 

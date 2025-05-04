@@ -1,0 +1,11 @@
+<app-barra-navegacion-profesor></app-barra-navegacion-profesor>
+<div class="botones">
+  <button type="button" class="btn btn-success" (click)="mostrarAdministracion()">Empleos ofertados</button>
+
+  <button type="button" class="btn btn-success" (click)="mostrarRegistro()">Nuevo Empleo</button>
+
+
+</div>
+
+<app-lista-empleos-profesor *ngIf="mostrandoEmpleos"></app-lista-empleos-profesor>
+<app-formulario-empleo *ngIf="mostrandoRegistro"></app-formulario-empleo>
