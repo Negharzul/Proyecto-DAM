@@ -18,7 +18,6 @@ export class LoginPageComponent {
     usuario: '',
     password: ''
   };
-  role?:string
 
   constructor(private autenticacionService:AutenticacionService,private router: Router){}
 
@@ -26,9 +25,16 @@ export class LoginPageComponent {
     this.autenticacionService.login(this.credenciales!).subscribe({
       next: data => {
         console.log('Acceso autorizado:', data)
-        this.role!=data
 
-        this.router.navigate(['/profesor']);
+        const role = data?.nombreRole;
+
+
+        if(role === 'ROLE_Profesor'){
+          this.router.navigate(['/profesor']);
+        }else{
+          this.router.navigate(['/alumno']);
+        }
+
       }
       ,
 

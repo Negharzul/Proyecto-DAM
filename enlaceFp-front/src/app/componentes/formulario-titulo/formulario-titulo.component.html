@@ -1,6 +1,6 @@
-<h1>Empresa:</h1>
+<h1>Titulo:</h1>
 
-<form #empresaForm="ngForm">
+<form #tituloForm="ngForm">
 
   <div class="form-group mb-3">
     <label for="InputNombre">Nombre</label>
@@ -10,5 +10,5 @@
   </div>
 
   <button type="button" (click)="postEmpresa()" class="btn btn-primary"
-          [disabled]="!empresaForm.valid">Enviar</button>
+          [disabled]="!tituloForm.valid">Enviar</button>
 </form>
