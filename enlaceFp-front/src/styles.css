@@ -10,3 +10,7 @@ body{
 .fondo-profesor{
   background: linear-gradient(to right, #ffffff, #b7d9f5);
 }
+
+.fondo-alumno{
+  background: linear-gradient(to right, #ecfaec, #cdf7d0);
+}

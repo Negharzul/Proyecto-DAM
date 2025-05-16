@@ -15,6 +15,8 @@ public class AlumnoEmpleo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean interesado;
+
     @ManyToOne
     @JoinColumn(name = "alumno_id")
     private Alumno alumno;

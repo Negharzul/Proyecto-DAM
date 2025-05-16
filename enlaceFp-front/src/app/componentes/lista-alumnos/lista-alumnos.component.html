@@ -2,24 +2,26 @@
 <table class="table table-info">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Id</th>
       <th scope="col">Nombre</th>
       <th scope="col">apellidos</th>
       <th scope="col">Correo</th>
       <th scope="col">Titulos</th>
+      <td scope="col">Acciones</td>
     </tr>
   </thead>
   <tbody>
     <tr class="tablaAlumnos" *ngFor="let alumno of alumnos">
-      <th scope="row">1</th>
       <td>{{alumno.id}}</td>
-      <td>{{alumno.nombre}}</td>
-      <td>{{alumno.apellidos}}</td>
+      <td  class="clickable">{{ alumno.nombre }}</td>
+      <td >{{alumno.apellidos}}</td>
       <td>{{ alumno.email }}</td>
       <td>{{ alumno.titulos}}</td>
-      <button type="button" class="btn btn-success" (click)="emitirEvento(alumno.id!)" >?</button>
+      <td>
+      <button type="button" class="btn btn-success" (click)="emitirEvento(alumno.id!)">?</button>
       <button type="button" class="btn btn-success" (click)="borrarAlumno(alumno.id!)">x</button>
+      <button type="button" class="btn btn-success" (click)="emitirEventoDatos(alumno.id!)">lol</button>
+      </td>
     </tr>
 
   </tbody>

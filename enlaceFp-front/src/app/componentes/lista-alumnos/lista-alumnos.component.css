@@ -6,3 +6,16 @@ table{
 h1{
   margin-left: 25px;
 }
+.clickable{
+  font-size: large;
+  font-weight: bolder;
+  font-style: oblique;
+  color: rgb(6, 126, 163);
+  text-decoration: underline;
+  cursor: pointer
+  hover
+}
+.clickable:hover{
+  color: rgb(71, 146, 168);
+  cursor: pointer
+}

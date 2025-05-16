@@ -1,0 +1,42 @@
+
+
+<ul class="list-group" *ngFor="let empleo of empleos">
+  <li class="list-group-item">{{empleo.nombreEmpleo}}</li>
+</ul>
+
+<div class="contenedor-principal">
+        <header class="cabecera">
+            <h1><i class="fas fa-briefcase"></i>Empleos</h1>
+        </header>
+
+        <div class="lista-empleos" *ngFor="let empleo of empleos">
+            <div class="tarjeta-empleo">
+                <div class="empresa">
+                 {{empleo.empresa}}
+                </div>
+                <div class="encabezado-tarjeta">
+                  <h2>{{empleo.nombreEmpleo}}</h2>
+                  <span >Publicado: 20/05/2023</span>
+                </div>
+
+
+                <div class="detalles">
+                    <div class="detalle-item">
+
+                        <span>{{empleo.descripcion}} </span>
+                    </div>
+
+                </div>
+                <div class="acciones">
+                    <button type="button" class="btn btn-primary" (click)="interesEmpleo(empleo.id!,true)">
+                         Interesado
+                    </button>
+                    <button type="button" class="btn btn-warning"(click)="interesEmpleo(empleo.id!,false)">
+                         No interesado
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

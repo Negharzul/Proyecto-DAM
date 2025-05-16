@@ -5,7 +5,10 @@ import com.enlaceFP.enlaceFP.DTOs.EmpleoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Alumno;
+import com.enlaceFP.enlaceFP.Models.AlumnoEmpleo;
 import com.enlaceFP.enlaceFP.Models.Empleo;
+import com.enlaceFP.enlaceFP.Services.AlumnoEmpleoService;
+import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.MailService;
 import com.enlaceFP.enlaceFP.mappers.EmpleoInputDTOMapper;
@@ -13,6 +16,7 @@ import com.enlaceFP.enlaceFP.mappers.EmpleoOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -29,6 +33,8 @@ public class EmpleoController {
     private final MailService mailService;
     private final EmpleoOutputDTOMapper empleoOutputDTOMapper;
     private final EmpleoInputDTOMapper empleoInputDTOMapper;
+    private final AlumnoService alumnoService;
+    private final AlumnoEmpleoService alumnoEmpleoService;
 
     @GetMapping("/{idEmpleo}")
     public ResponseEntity<EmpleoOutputDTO> getEmpleo(@PathVariable Long idEmpleo) {
@@ -40,6 +46,19 @@ public class EmpleoController {
         } catch (NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/empleosAlumno/{idAlumno}")
+    public ResponseEntity<List<EmpleoOutputDTO>> getEmpleosByAlumnoId(@PathVariable Long idAlumno) {
+
+        Alumno alumno = alumnoService.obtenerAlumnoPorId(idAlumno);
+        List<Empleo> empleos=alumno.getAsociaciones()
+                .stream()
+                .map(AlumnoEmpleo::getEmpleo)
+                .toList();
+        List<EmpleoOutputDTO> empleosOutputDTO= empleos.stream().map(empleoOutputDTOMapper).toList();
+
+        return ResponseEntity.ok(empleosOutputDTO);
     }
 
     @GetMapping()
@@ -103,5 +122,24 @@ public class EmpleoController {
     }
 
 
+    //Seccion de Alumno-Empleo
 
+    @PostMapping("/interesadoEmpleo/{empleoId}")
+    public ResponseEntity<Map<String,Long>> crearAlumnoEmpleo(@PathVariable Long empleoId,@RequestParam Boolean interesado, @AuthenticationPrincipal Alumno alumno){
+
+        AlumnoEmpleo relacion=AlumnoEmpleo.builder()
+                .alumno(alumno)
+                .empleo(Empleo.builder()
+                        .id(empleoId)
+                        .build())
+                .interesado(interesado)
+                .build();
+        alumnoEmpleoService.crearRelacion(relacion);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
+    //Seccion de Empleo-titulacion
 }

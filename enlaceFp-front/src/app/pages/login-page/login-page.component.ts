@@ -38,7 +38,12 @@ export class LoginPageComponent {
       }
       ,
 
-      error: err => console.error('Acceso denegado:', err)
+      error: err => {
+        console.error('Acceso denegado:', err);
+        this.router.navigate(['/login']);
+        this.credenciales.password='';
+        this.credenciales.usuario='';
+      }
     });
   }
 }

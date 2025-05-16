@@ -20,8 +20,16 @@ export class EmpleoService {
     return this.http.get<Empleo[]>(baseUrl,{withCredentials: true});
   }
 
+  obtenerTodosLosEmpleosDeAlumno(id: number):Observable<Empleo[]>{
+    return this.http.get<Empleo[]>(`${baseUrl}/empleosAlumno/${id}`,{withCredentials: true});
+  }
+
   insertarEmpleo(empleo: Empleo): Observable<any> {
     return this.http.post(baseUrl+'/NuevoEmpleo', empleo,{withCredentials: true});
+  }
+
+  elegirEmpleo(idEmpleo:number,interesado:boolean): Observable<any> {
+    return this.http.post(`${baseUrl}/interesadoEmpleo/${idEmpleo}?interesado=${interesado}`,{withCredentials: true});
   }
 
   patchTitulo(id: number, empleo: Empleo): Observable<any> {

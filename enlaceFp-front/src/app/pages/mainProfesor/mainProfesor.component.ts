@@ -6,10 +6,11 @@ import { ListaAlumnosComponent } from "../../componentes/lista-alumnos/lista-alu
 import { FormularioAlumnoModificacionComponent } from "../../componentes/formulario-alumno-modificacion/formulario-alumno-modificacion.component";
 import { FileService } from "../../servicios/File.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { DatosAlumnoComponent } from "../../componentes/datos-empleo/datos-alumno.component";
 
 @Component({
   selector: 'app-profesor',
-  imports: [CommonModule, BarraNavegacionProfesorComponent, FormularioAlumnoComponent, ListaAlumnosComponent, FormularioAlumnoModificacionComponent],
+  imports: [CommonModule, BarraNavegacionProfesorComponent, FormularioAlumnoComponent, ListaAlumnosComponent, FormularioAlumnoModificacionComponent, DatosAlumnoComponent],
   templateUrl: './mainProfesor.component.html',
   styleUrl: './mainProfesor.component.css',
 })
@@ -19,7 +20,9 @@ export class mainProfesorComponent {
   mostrandoRegistro=false;
   mostrandoAdministracion=true;
   mostrandoModificacion=false;
+  mostrandoAlumno=false;
 
+  idAlumnoMostrar?:number
   idAlumnoModificar?:number
   fileService:FileService
   archivoSeleccionado?:File;
@@ -38,6 +41,13 @@ export class mainProfesorComponent {
     this.mostrandoAdministracion=true;
   }
 
+  mostrarLista(id:number){
+    this.idAlumnoMostrar=id
+    this.todosFalso();
+    this.mostrandoAlumno=true;
+    console.log('Recibiendo ID:', this.idAlumnoMostrar);
+  }
+
   mostrarModificacion(id:number){
     this.idAlumnoModificar=id
     this.todosFalso();
@@ -45,10 +55,13 @@ export class mainProfesorComponent {
     console.log("Id de alumno:"+this.idAlumnoModificar)
   }
 
+
+
   todosFalso(){
     this.mostrandoAdministracion=false;
     this.mostrandoRegistro=false;
     this.mostrandoModificacion=false;
+    this.mostrandoAlumno=false;
   }
 
   seleccionarArchivo(event: Event){
