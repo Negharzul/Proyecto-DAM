@@ -1,10 +1,58 @@
-table{
-  margin: 25px;
-  margin-left: 50px;
-  justify-content: center;
+.mi-tabla {
+  width: 90%;
+  margin: 2rem auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #c1d7f7;
+  background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+  background-repeat: repeat;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.mi-tabla thead {
+  background-color: #5f93f3;
+  color: white;
+}
+
+.mi-tabla th, .mi-tabla td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.mi-tabla tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.mi-tabla tbody tr:hover {
+  background-color: #6be9f7;
+}
+
+.mi-tabla th:first-child,
+.mi-tabla td:first-child {
+  border-top-left-radius: 10px;
+}
+
+.mi-tabla th:last-child,
+.mi-tabla td:last-child {
+  border-top-right-radius: 10px;
+}
+.mi-tabla:hover{
+  transform: scale(1.02);
 }
 h1{
+  display: flex;
+  justify-content: center;
   margin-left: 25px;
+  font-family: 'Roboto Slab', serif;
+  font: 1em sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 1px;
+
 }
 .clickable{
   font-size: large;

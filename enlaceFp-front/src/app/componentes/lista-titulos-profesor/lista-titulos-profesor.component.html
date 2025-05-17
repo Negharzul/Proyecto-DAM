@@ -1,19 +1,21 @@
-<h1> Lista de Empresas:</h1>
-<table class="table table-info">
+<h1> Lista de Titulos:</h1>
+<table class="mi-tabla">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Id</th>
       <th scope="col">Nombre</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr class="tablaEmpresas" *ngFor="let titulo of titulos">
-      <th scope="row">1</th>
-      <td>{{titulo.id}}</td>
+
       <td>{{titulo.nombre}}</td>
+      <td>
       <button type="button" class="btn btn-success" (click)="emitirEvento(titulo.id!)" >?</button>
       <button type="button" class="btn btn-success" (click)="borrarTitulo(titulo.id!)">x</button>
+
+      </td>
+
     </tr>
 
   </tbody>

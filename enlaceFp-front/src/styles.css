@@ -8,9 +8,12 @@ body{
 }
 
 .fondo-profesor{
-  background: linear-gradient(to right, #ffffff, #b7d9f5);
+background-color: #a5d0f3;
+background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
 }
 
 .fondo-alumno{
-  background: linear-gradient(to right, #ecfaec, #cdf7d0);
+background-color: #acf7b1;
+background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

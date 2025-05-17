@@ -3,6 +3,7 @@ package com.enlaceFP.enlaceFP.Models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -21,7 +22,8 @@ public class Empleo {
 
     private String descripcion;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
+    private LocalDate fechaPublicacion=LocalDate.now();
+    
     private List<AlumnoEmpleo> asociaciones;
 
     @ManyToOne

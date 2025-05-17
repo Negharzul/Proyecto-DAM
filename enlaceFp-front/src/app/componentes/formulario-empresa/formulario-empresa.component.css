@@ -1,5 +1,5 @@
-.input{
-  width: 100px;
+input{
+   background-color: #e2f2fd;
 }
 *{
  display: grid; place-items: center;

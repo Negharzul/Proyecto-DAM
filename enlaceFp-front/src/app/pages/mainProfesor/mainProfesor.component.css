@@ -6,3 +6,57 @@
 button{
   margin: 15px;
 }
+
+
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tabs label {
+      padding: 0.5rem 1rem;
+      background: #e0f7ec;
+      color: #014421;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .tabs input[type="radio"] {
+      display: none;
+    }
+
+    .tabs input:checked + label {
+      background: #50C878;
+      color: white;
+    }
+
+    .tab-content {
+      background: white;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    #primaria:checked ~ .content #content-primaria,
+    #secundaria:checked ~ .content #content-secundaria,
+    #bachillerato:checked ~ .content #content-bachillerato {
+      display: block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #c4ecf7;
+      color: #012b44;
+    }

@@ -1,21 +1,21 @@
-<nav>
-  <div class="navBar">
-  <img src="LogoAzul.png">
-  <ul>
-    <li>
-      <a href="#">Tu nombre ▾</a>
-      <ul class="dropdown">
-          <li><a href="#">Perfil</a></li>
-          <li><a href="#">Configuración</a></li>
-          <li><a href="#">Idioma</a></li>
-          <li><a href="#">Logout</a></li>
-      </ul>
-  </li>
-  <li><a routerLink="/profesor" routerLinkActive="active">Alumnos</a></li>
-  <li><a routerLink="/profesor/empresa" routerLinkActive="active">Empresas</a></li>
-  <li><a routerLink="/profesor/empleo" routerLinkActive="active">Empleos</a></li>
-  <li><a routerLink="/profesor/titulo" routerLinkActive="active">Titulos</a></li>
 
-  </ul>
-</div>
-</nav>
+  <nav class="navbar">
+
+    <div class="navbar-links">
+        <div class="dropdown">
+        <span class="dropdown-toggle">Tu nombre</span>
+        <div class="dropdown-menu">
+          <a>Perfil</a>
+          <a>Contacto</a>
+          <a>Logout</a>
+        </div>
+
+      </div>
+        <a routerLink="/profesor" routerLinkActive="active">Alumnos</a>
+        <a routerLink="/profesor/empresa" routerLinkActive="active">Empresas</a>
+        <a routerLink="/profesor/empleo" routerLinkActive="active">Empleos</a>
+        <a routerLink="/profesor/titulo" routerLinkActive="active">Titulos</a>
+
+
+    </div>
+  </nav>

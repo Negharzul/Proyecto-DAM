@@ -1,6 +1,7 @@
-.input{
-   width: 100px;
+input{
+   background-color: #e2f2fd;
 }
+
 *{
   display: grid; place-items: center;
 }
@@ -18,5 +19,4 @@ form{
   padding: 20px; /* Espacio interno */
   width: 500px; /* Ancho opcional */
   margin:  auto; /* Centrar el formulario */
-
 }

@@ -1,24 +1,27 @@
 
 <h1> Lista de Empleos:</h1>
-<table class="table table-info">
+<table class="mi-tabla">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Id</th>
       <th scope="col">Empresa</th>
-      <th scope="col">Nombre</th>
+      <th scope="col">Empleo</th>
+      <th scope="col">Descripción</th>
       <th scope="col">Titulaciones Exigidas</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr class="tablaEmpresas" *ngFor="let empleo of empleos">
-      <th scope="row">1</th>
-      <td>{{empleo.id}}</td>
+
       <td>{{empleo.empresa}}</td>
       <td>{{empleo.nombreEmpleo}}</td>
+      <td>{{empleo.descripcion}}</td>
       <td>{{empleo.titulacionesExigidas}}</td>
+      <td>
       <button type="button" class="btn btn-success" (click)="emitirEvento(empleo.id!)" >?</button>
       <button type="button" class="btn btn-success" (click)="borrarEmpleo(empleo.id!)">x</button>
+      </td>
+
     </tr>
 
   </tbody>
