@@ -4,9 +4,7 @@ import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
-import com.enlaceFP.enlaceFP.Models.Alumno;
-import com.enlaceFP.enlaceFP.Models.AlumnoEmpleo;
-import com.enlaceFP.enlaceFP.Models.Empleo;
+import com.enlaceFP.enlaceFP.Models.*;
 import com.enlaceFP.enlaceFP.Services.AlumnoEmpleoService;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.EmpleoService;
@@ -19,10 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @AllArgsConstructor
 @RestController
@@ -58,6 +53,35 @@ public class EmpleoController {
                 .toList();
         List<EmpleoOutputDTO> empleosOutputDTO= empleos.stream().map(empleoOutputDTOMapper).toList();
 
+        return ResponseEntity.ok(empleosOutputDTO);
+    }
+
+    @GetMapping("/posiblesEmpleos")
+    public ResponseEntity<List<EmpleoOutputDTO>> getPosiblesEmpleos(@AuthenticationPrincipal Alumno alumno) {
+
+        List<Titulacion> titulosAlumno=alumno.getEstudios()
+                .stream()
+                .map(AlumnoTitulacion::getTitulacion)
+                .toList();
+
+
+        //TODO mover logica de filtrado a capa de servicio.
+        List<Empleo> empleos=empleoService.obtenerEmpleos();
+        List<Empleo> empleosAlumno=empleos
+                .stream()
+                .filter(empleo->empleo
+                        .getAsociaciones()
+                        .stream()
+                        .noneMatch(asociacion->asociacion
+                                .getAlumno()
+                                .equals(alumno)))
+                .filter(empleo->empleo
+                        .getTitulacionesEmpleo()
+                        .stream()
+                        .anyMatch(asociacion->titulosAlumno.contains(asociacion.getTitulacion())))
+                .toList();
+
+        List<EmpleoOutputDTO> empleosOutputDTO= empleosAlumno.stream().map(empleoOutputDTOMapper).toList();
         return ResponseEntity.ok(empleosOutputDTO);
     }
 

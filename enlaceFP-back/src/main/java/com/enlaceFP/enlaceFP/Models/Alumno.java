@@ -18,7 +18,7 @@ public class Alumno extends Usuario{
     @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno",orphanRemoval = true)
     private List<AlumnoEmpleo> asociaciones;
 
-    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno",orphanRemoval = true)
+    @OneToMany(cascade= CascadeType.ALL, mappedBy = "alumno",orphanRemoval = true,fetch = FetchType.EAGER)
     private List<AlumnoTitulacion> estudios;
 
     @Builder

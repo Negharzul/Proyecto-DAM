@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Empleo } from '../../modelos/Empleo';
 import { EmpleoService } from '../../servicios/Empleo.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-datos-alumno',
@@ -23,13 +24,17 @@ export class DatosAlumnoComponent implements OnInit{
     console.log(this.empleos)
   }
   private obtenerEmpleos(){
-  this.empleoService.obtenerTodosLosEmpleos().subscribe({
+  this.empleoService.obtenerPosiblesEmpleosAlumno().subscribe({
     next: value => {
       this.empleos = value
       console.log(value)
 
     },
-    error: error => {console.log(error)}
+      error: (error: HttpErrorResponse) => {
+        console.error('Full error:', error);
+        console.error('Error details:', error.error);
+        console.error('Status:', error.status);
+      }
     })
   }
 
@@ -37,9 +42,14 @@ export class DatosAlumnoComponent implements OnInit{
     this.empleoService.elegirEmpleo(idEmpleo,interesado).subscribe({
     next: value => {
       console.log(value)
+      this.obtenerEmpleos()
 
     },
-    error: error => {console.log(error)}
+          error: (error: HttpErrorResponse) => {
+        console.error('Full error:', error);
+        console.error('Error details:', error.error);
+        console.error('Status:', error.status);
+      }
     })
   }
 
