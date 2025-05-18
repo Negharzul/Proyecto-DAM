@@ -15,12 +15,8 @@ public class EmpresaInputDTOMapper implements Function<EmpresaInputDTO,Empresa> 
         return Empresa.builder()
                 .nombre(empresaInputDTO.nombre())
                 .descripcion(empresaInputDTO.descripcion())
-                .correoElectronico(empresaInputDTO.correoElectronico())
-                .empleosOfertados(empresaInputDTO.empleosOfertados() != null ? empresaInputDTO.empleosOfertados()
-                .stream()
-                .map(id -> Empleo.builder().id(id).build())
-                .toList()
-                : null)
+                .correoElectronico(empresaInputDTO.email())
+                .telefono(empresaInputDTO.telefono())
                 .build();
     }
 }

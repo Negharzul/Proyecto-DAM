@@ -3,11 +3,12 @@ import { BarraNavegacionProfesorComponent } from '../../componentes/barra-navega
 import { ListaEmpresasProfesorComponent } from "../../componentes/lista-empresas-profesor/lista-empresas-profesor.component";
 import { FormularioEmpresaComponent } from "../../componentes/formulario-empresa/formulario-empresa.component";
 import { CommonModule } from '@angular/common';
+import { FormularioEmpresaModificacionComponent } from "../../componentes/formulario-empresa-modificacion/formulario-empresa-modificacion.component";
 
 
 @Component({
   selector: 'app-empresa-profesor',
-  imports: [BarraNavegacionProfesorComponent,CommonModule, ListaEmpresasProfesorComponent, FormularioEmpresaComponent],
+  imports: [BarraNavegacionProfesorComponent, CommonModule, ListaEmpresasProfesorComponent, FormularioEmpresaComponent, FormularioEmpresaModificacionComponent],
   templateUrl: './empresa-profesor.component.html',
   styleUrl: './empresa-profesor.component.css'
 })

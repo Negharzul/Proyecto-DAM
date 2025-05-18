@@ -21,8 +21,13 @@ export class AutenticacionService {
     return this.http.get(baseUrl,  {headers: headers, withCredentials:true},);
     //return this.http.post(baseUrl,credenciales );
 
-
-
   }
 
+  logout():Observable<any>{
+        const credentials = btoa(`falseaccount#123asd:falseaccount#123asd`);
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${credentials}`
+    });
+    return this.http.get(baseUrl,  {headers: headers, withCredentials:true},);
+  }
 }

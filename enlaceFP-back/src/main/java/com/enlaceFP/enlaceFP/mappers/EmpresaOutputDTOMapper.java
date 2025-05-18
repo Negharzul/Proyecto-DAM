@@ -12,10 +12,12 @@ public class EmpresaOutputDTOMapper implements Function<Empresa, EmpresaOutputDT
 
     @Override
     public EmpresaOutputDTO apply(Empresa empresa) {
-        return new EmpresaOutputDTO(empresa.getId(),
+        return new EmpresaOutputDTO(
+                empresa.getId(),
                 empresa.getNombre(),
                 empresa.getDescripcion(),
                 empresa.getCorreoElectronico(),
+                empresa.getTelefono(),
                 empresa.getEmpleosOfertados()
                         .stream()
                         .map(empleo -> empleo.getNombreEmpleo())

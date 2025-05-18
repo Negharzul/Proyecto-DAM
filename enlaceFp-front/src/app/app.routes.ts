@@ -8,11 +8,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { EmpresaProfesorComponent } from './pages/empresa-profesor/empresa-profesor.component';
 import { EmpleosProfesorComponent } from './pages/empleos-profesor/empleos-profesor.component';
 import { TitulosProfesorComponent } from './pages/titulos-profesor/titulos-profesor.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 
 
 export const routes: Routes = [
+{ path: '', redirectTo: 'login', pathMatch: 'full' },
+
 
 {
   path:'modificar',
@@ -45,9 +48,9 @@ export const routes: Routes = [
 {
   path: 'profesor/titulo',
   component: TitulosProfesorComponent
-}
+},
 
-
+{ path: '**', component: NotFoundComponent }
 
 
 

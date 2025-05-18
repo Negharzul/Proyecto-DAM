@@ -23,7 +23,8 @@ public class Empleo {
     private String descripcion;
 
     private LocalDate fechaPublicacion=LocalDate.now();
-    
+
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
     private List<AlumnoEmpleo> asociaciones;
 
     @ManyToOne

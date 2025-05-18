@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        document.body.className = ''; // Borra clases previas
+        document.body.className = '';
         const ruta = event.urlAfterRedirects.split('/')[1];
         document.body.classList.add(`fondo-${ruta}`);
       }

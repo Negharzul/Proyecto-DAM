@@ -1,4 +1,5 @@
-<h1>Empresa:</h1>
+<div *ngIf="empresa">
+<h1>Modificar empresa:</h1>
 
 <form #empresaForm="ngForm">
 
@@ -13,7 +14,7 @@
     <label for="InputDescripcion">Descripción</label>
     <input type="text" class="form-control" id="InputDescricion"
            [(ngModel)]="empresa.descripcion" name="descripcion"
-           placeholder="Introduce descripcin de la empresa">
+           placeholder="Introduce descripción de la empresa">
   </div>
 
 
@@ -25,16 +26,18 @@
   </div>
 
   <div class="form-group mb-3">
-    <label for="InputTelefono">Teléfono</label>
+    <label for="InputDescripcion">Teléfono</label>
     <input type="text" class="form-control" id="InputDescricion"
-           [(ngModel)]="empresa.telefono" name="telefono"
+           [(ngModel)]="empresa.telefono" name="descripcion"
            placeholder="Introduce el teléfono la empresa">
   </div>
 
 
 
 
-  <button type="button" (click)="postEmpresa()" class="btn btn-primary"
+
+  <button type="button" (click)="patchEmpresa()" class="btn btn-primary"
           [disabled]="!empresaForm.valid">Enviar</button>
 </form>
 
+</div>

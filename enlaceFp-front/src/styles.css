@@ -17,3 +17,8 @@ background-color: #acf7b1;
 background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
+
+.fondo-login{
+background-color: #a5d0f3;
+background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+}

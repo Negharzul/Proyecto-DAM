@@ -1,0 +1,22 @@
+input{
+   background-color: #e2f2fd;
+}
+*{
+ display: grid; place-items: center;
+}
+
+#titulacion{
+ justify-content: center;
+}
+
+.form-group{
+ width: 350px;
+}
+
+form{
+ border: 2px solid #2c546e; /* Borde sólido negro de 2px */
+ padding: 20px; /* Espacio interno */
+ width: 500px; /* Ancho opcional */
+ margin:  auto; /* Centrar el formulario */
+
+}

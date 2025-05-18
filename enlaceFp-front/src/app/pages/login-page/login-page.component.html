@@ -2,6 +2,7 @@
 <div class="login-container">
   <h1>Iniciar Sesión</h1>
   <form class="login-form" #loginForm="ngForm">
+    <p *ngIf="credencialesIncorrectos" class="Error">Credenciales incorrectos </p>
       <div class="form-group">
           <label for="username">Usuario</label>
           <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required [(ngModel)]="credenciales!.usuario">

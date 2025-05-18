@@ -9,7 +9,8 @@ public record EmpresaOutputDTO(
         Long id,
         String nombre,
         String descripcion,
-        String correoElectronico,
+        String email,
+        String telefono,
         List<String> empleosOfertados
 ) {
 

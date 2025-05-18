@@ -20,9 +20,11 @@ public class Empresa {
     @Column(unique = true)
     private String nombre;
 
-    private String correoElectronico;
-
     private String descripcion;
+
+    private String telefono;
+
+    private String correoElectronico;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "empresa", fetch = FetchType.EAGER)
     private List<Empleo> empleosOfertados;

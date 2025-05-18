@@ -9,4 +9,5 @@
 </div>
 
 <app-formulario-empresa *ngIf="mostrandoRegistro"></app-formulario-empresa>
-<app-lista-empresas-profesor *ngIf="mostrandoAdministracion"></app-lista-empresas-profesor>
+<app-lista-empresas-profesor (activarFormulario)="mostrarModificacion($event)" *ngIf="mostrandoAdministracion"></app-lista-empresas-profesor>
+<app-formulario-empresa-modificacion [idEmpresa]="idEmpresaModificar!" *ngIf="mostrandoModificacion"></app-formulario-empresa-modificacion>

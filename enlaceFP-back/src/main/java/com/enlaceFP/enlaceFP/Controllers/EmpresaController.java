@@ -30,11 +30,11 @@ public class EmpresaController {
     private final EmpresaInputDTOMapper empresaInputDTOMapper;
 
     @GetMapping("/{idEmpresa}")
-    public ResponseEntity<EmpresaOutputDTO> getEmpresa(@PathVariable Long idEmpleo) {
+    public ResponseEntity<EmpresaOutputDTO> getEmpresa(@PathVariable Long idEmpresa) {
 
         try {
-            Empresa empleo = empresaService.obtenerEmpresaPorId(idEmpleo);
-            EmpresaOutputDTO empresaOutputDTO=empresaOutputDTOMapper.apply(empleo);
+            Empresa empresa = empresaService.obtenerEmpresaPorId(idEmpresa);
+            EmpresaOutputDTO empresaOutputDTO=empresaOutputDTOMapper.apply(empresa);
             return ResponseEntity.ok(empresaOutputDTO);
         } catch (NoSuchElementException ex) {
             return ResponseEntity.notFound().build();

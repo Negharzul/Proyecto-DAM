@@ -1,8 +1,9 @@
 
     .navbar {
-      background-color: #e6fce7;
+      background-color: #29852e;
       background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */   padding-right: 40px;
+      box-shadow: 0 4px 12px rgba(20, 206, 20, 0.4);
+      padding-right: 40px;
       padding-left: 10px;
       display: flex;
       align-items: center;

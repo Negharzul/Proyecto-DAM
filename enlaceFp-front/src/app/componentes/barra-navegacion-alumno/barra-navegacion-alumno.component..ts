@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutenticacionService } from '../../servicios/Autenticacion.service';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -10,7 +11,20 @@ export class BarraNavegacionAlumnoComponent {
 
   menuAbierto = false;
 
+  constructor(private autenticacionService:AutenticacionService) {}
+
   toggleMenu() {
     this.menuAbierto = !this.menuAbierto;
   }
+
+  Logout(){
+    this.autenticacionService.logout().subscribe({
+      next: value => {
+        console.log(value)
+
+      },
+      error: error => {console.log(error)}
+    })
+  }
+
 }

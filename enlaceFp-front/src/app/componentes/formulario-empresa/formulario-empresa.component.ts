@@ -12,18 +12,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './formulario-empresa.component.css'
 })
 export class FormularioEmpresaComponent {
-  empresa = {
-    nombre: '',
-    email: '',
-    descripcion: ''
-  }
-
+  empresa: Empresa = {
+  nombre: '',
+  descripcion: '',
+  email: '',
+  telefono: ''
+};
   idEmpresaCreada?:number
 
   constructor(private empresaService:EmpresaService){}
 
   postEmpresa(){
     this.insertarEmpresa();
+    console.log(this.empresa +"probando"+ this.empresa.email)
   }
 
   insertarEmpresa(){

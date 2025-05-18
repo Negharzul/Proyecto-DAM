@@ -7,6 +7,6 @@ import java.util.List;
 @Builder
 public record EmpresaInputDTO(String nombre,
                               String descripcion,
-                              String correoElectronico,
-                              List<Long> empleosOfertados) {
+                              String email,
+                              String telefono) {
 }

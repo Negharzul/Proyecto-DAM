@@ -14,6 +14,8 @@ import { Credenciales } from '../../modelos/Credenciales';
 })
 export class LoginPageComponent {
 
+  credencialesIncorrectos=false;
+
   credenciales: Credenciales = {
     usuario: '',
     password: ''
@@ -40,9 +42,9 @@ export class LoginPageComponent {
 
       error: err => {
         console.error('Acceso denegado:', err);
-        this.router.navigate(['/login']);
         this.credenciales.password='';
         this.credenciales.usuario='';
+        this.credencialesIncorrectos=true;
       }
     });
   }
