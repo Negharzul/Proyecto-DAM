@@ -36,6 +36,10 @@ export class EmpleoService {
     return this.http.post(`${baseUrl}/interesadoEmpleo/${idEmpleo}?interesado=${interesado}`,{},{withCredentials: true});
   }
 
+  empresaParaEmpleo(idEmpleo:number,idEmpresa:number):  Observable<any>{
+    return this.http.post(`${baseUrl}/tituloEmpleo/${idEmpleo}/${idEmpresa}`,null,{withCredentials: true})
+  }
+
   patchTitulo(id: number, empleo: Empleo): Observable<any> {
     return this.http.patch(`${baseUrl}/${id}`, empleo,{withCredentials: true});
   }
@@ -43,4 +47,5 @@ export class EmpleoService {
   deleteEmpleoById(id: number): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`,{withCredentials: true});
   }
+
 }

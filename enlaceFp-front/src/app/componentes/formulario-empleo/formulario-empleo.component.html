@@ -3,10 +3,28 @@
 <form #empleoForm="ngForm">
 
   <div class="form-group mb-3">
-    <label for="InputNombre">Nombre</label>
+    <label for="InputNombre">Empleo</label>
     <input type="text" class="form-control" id="InputNombre"
-           [(ngModel)]="empleo.nombreEmpleo" name="nombre"
+           [(ngModel)]="empleo.nombreEmpleo" name="empleo"
            placeholder="Introduce nombre" required>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="InputNombre">Descripción</label>
+    <input type="text" class="form-control" id="InputDescripcion"
+           [(ngModel)]="empleo.descripcion" name="descripcion"
+           placeholder="Introduce nombre" required>
+  </div>
+
+
+  <div class="form-group mb-3">
+    <label id="titulacion">Empresa</label>
+    <app-selecion-empresa (idSeleccionado)="recibirIdEmpresa($event)"></app-selecion-empresa>
+  </div>
+
+  <div class="form-group mb-3">
+    <label id="titulacion">Titulo</label>
+    <app-seleccion-titulo></app-seleccion-titulo>
   </div>
 
 

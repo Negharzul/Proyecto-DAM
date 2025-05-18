@@ -5,10 +5,7 @@ import com.enlaceFP.enlaceFP.DTOs.EmpleoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpleoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.EmpresaOutputDTO;
 import com.enlaceFP.enlaceFP.Models.*;
-import com.enlaceFP.enlaceFP.Services.AlumnoEmpleoService;
-import com.enlaceFP.enlaceFP.Services.AlumnoService;
-import com.enlaceFP.enlaceFP.Services.EmpleoService;
-import com.enlaceFP.enlaceFP.Services.MailService;
+import com.enlaceFP.enlaceFP.Services.*;
 import com.enlaceFP.enlaceFP.mappers.EmpleoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.EmpleoOutputDTOMapper;
 import lombok.AllArgsConstructor;
@@ -30,6 +27,7 @@ public class EmpleoController {
     private final EmpleoInputDTOMapper empleoInputDTOMapper;
     private final AlumnoService alumnoService;
     private final AlumnoEmpleoService alumnoEmpleoService;
+    private final TitulacionEmpleoService titulacionEmpleoService;
 
     @GetMapping("/{idEmpleo}")
     public ResponseEntity<EmpleoOutputDTO> getEmpleo(@PathVariable Long idEmpleo) {
@@ -149,7 +147,7 @@ public class EmpleoController {
     //Seccion de Alumno-Empleo
 
     @PostMapping("/interesadoEmpleo/{empleoId}")
-    public ResponseEntity<Map<String,Long>> crearAlumnoEmpleo(@PathVariable Long empleoId,@RequestParam Boolean interesado, @AuthenticationPrincipal Alumno alumno){
+    public ResponseEntity<Void> crearAlumnoEmpleo(@PathVariable Long empleoId,@RequestParam Boolean interesado, @AuthenticationPrincipal Alumno alumno){
 
         AlumnoEmpleo relacion=AlumnoEmpleo.builder()
                 .alumno(alumno)
@@ -166,4 +164,16 @@ public class EmpleoController {
 
 
     //Seccion de Empleo-titulacion
+
+    @PostMapping("/tituloEmpleo/{idEmpleo}/{idTitulo}")
+    public ResponseEntity<Void> crearTitulacionEmpleo(@PathVariable Long idEmpleo,@PathVariable Long idTitulo){
+
+        titulacionEmpleoService.crearRelacion(TitulacionEmpleo
+                .builder()
+                .empleo(Empleo.builder().id(idEmpleo).build())
+                .titulacion(Titulacion.builder().id(idTitulo).build())
+                .build());
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

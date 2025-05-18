@@ -5,7 +5,8 @@ import java.util.List;
 public record EmpleoInputDTO (
         String nombreEmpleo,
         String descripcion,
-        List<Long> titulacionesExigidas,
-        Long empresaId
+        Long empresaId,
+        List<Long> titulacionesExigidas
+
 ) {
 }

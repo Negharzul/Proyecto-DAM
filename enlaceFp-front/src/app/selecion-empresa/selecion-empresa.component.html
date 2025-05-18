@@ -1,0 +1,14 @@
+
+<select
+  class="form-select"
+  aria-label="Selección de empresa"
+  (change)="emitirId($any($event.target).value)"
+>
+  <option value="" selected>Selecciona una Empresa</option>
+  <option
+    *ngFor="let empresa of empresas"
+    [value]="empresa.id"
+  >
+    {{ empresa.nombre }}
+  </option>
+</select>

@@ -3,10 +3,12 @@ import { EmpleoService } from '../../servicios/Empleo.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SelecionEmpresaComponent } from "../../selecion-empresa/selecion-empresa.component";
+import { SeleccionTituloComponent } from "../seleccion-titulo/seleccion-titulo.component";
 
 @Component({
   selector: 'app-formulario-empleo',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SelecionEmpresaComponent, SeleccionTituloComponent],
   templateUrl: './formulario-empleo.component.html',
   styleUrl: './formulario-empleo.component.css'
 })
@@ -14,11 +16,15 @@ export class FormularioEmpleoComponent {
 
   empleo = {
     nombreEmpleo: '',
+    descripcion:'',
     empresa: '',
+    titulaciones: ['']
   }
 
+  Titulos?:number[]
 
   idEmpleoCreado?:number
+  idEmpresa?:number
 
   constructor(private empleoService:EmpleoService){}
 
@@ -44,10 +50,32 @@ export class FormularioEmpleoComponent {
     });
   }
 
+  insertarRelacion(){
+    console.log('Ejecutando insertar Relacion con:', this.idEmpleoCreado, this.idEmpresa);
+    if (this.idEmpleoCreado && this.idEmpresa) {
+      this.empleoService.empresaParaEmpleo(this.idEmpleoCreado, this.idEmpresa).subscribe({
+        next: (relacion) => {
+          console.log('Relación creada exitosamente', relacion);
+        },
+        error: (err) => {
+          console.error('Error al crear la relación:', err);
+        }
+      });
+    } else {
+      console.warn('Faltan datos: idAlumno o idTitulo');
+    }
+  }
+
+
   resetForm() {
     this.empleo = {
       nombreEmpleo: '',
-      empresa: ''
+      descripcion:'',
+      empresa: '',
+      titulaciones: ['']
     };
+  }
+  recibirIdEmpresa(id:number){
+    this.idEmpresa= id
   }
 }

@@ -3,10 +3,11 @@ import { BarraNavegacionProfesorComponent } from "../../componentes/barra-navega
 import { ListaEmpleosProfesorComponent } from "../../componentes/lista-empleos-profesor/lista-empleos-profesor.component";
 import { CommonModule } from '@angular/common';
 import { FormularioEmpleoComponent } from "../../componentes/formulario-empleo/formulario-empleo.component";
+import { SelecionEmpresaComponent } from "../../selecion-empresa/selecion-empresa.component";
 
 @Component({
   selector: 'app-empleos-profesor',
-  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent],
+  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent, SelecionEmpresaComponent],
   templateUrl: './empleos-profesor.component.html',
   styleUrl: './empleos-profesor.component.css'
 })
