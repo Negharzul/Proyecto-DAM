@@ -17,8 +17,8 @@ export class FormularioEmpleoComponent {
   empleo = {
     nombreEmpleo: '',
     descripcion:'',
-    empresa: '',
-    titulaciones: ['']
+    empresaId: '',
+    titulacionesExigidas: [] as number[]
   }
 
   Titulos?:number[]
@@ -36,6 +36,7 @@ export class FormularioEmpleoComponent {
     this.empleoService.insertarEmpleo(this.empleo!).subscribe({
       next: (empleo) => {
         console.log('Empleo creado exitosamente', empleo);
+        console.log('Datos: ', this.empleo);
         alert('Empleo registrado con éxito!');
         this.idEmpleoCreado=empleo;
         console.log('ID del Empleo creado:', this.idEmpleoCreado);
@@ -43,6 +44,7 @@ export class FormularioEmpleoComponent {
 
       },
       error: (error: HttpErrorResponse) => {
+        console.log('Datos: ', this.empleo);
         console.error('Full error:', error);
         console.error('Error details:', error.error);
         console.error('Status:', error.status);
@@ -71,11 +73,15 @@ export class FormularioEmpleoComponent {
     this.empleo = {
       nombreEmpleo: '',
       descripcion:'',
-      empresa: '',
-      titulaciones: ['']
+      empresaId: this.empleo.empresaId,
+      titulacionesExigidas: this.empleo.titulacionesExigidas
     };
   }
-  recibirIdEmpresa(id:number){
-    this.idEmpresa= id
+  recibirIdEmpresa(id :number){
+    this.empleo.empresaId= id.toString(10)
+  }
+
+  recibirIds(ids:number[]){
+    this.empleo.titulacionesExigidas = ids
   }
 }

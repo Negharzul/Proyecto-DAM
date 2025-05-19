@@ -3,8 +3,8 @@ export class Empleo {
   nombreEmpleo?: string
   descripcion?: string
   alumnos?: string[]
-  titulacionesExigidas?:string[]
-  empresa?: string
+  titulacionesExigidas?:number[]
+  empresaId?: string
 }
 
 
