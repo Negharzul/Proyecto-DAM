@@ -21,11 +21,12 @@ export class FormularioAlumnoComponent {
     email: '',
     telefono: '',
     direccion: '',
-    dni: ''
+    dni: '',
+    titulos:[] as number[]
   }
 
   idAlumnoCreado?:number;
-  idTitulo?:number;
+  idsTitulos?:number[];
 
 
   constructor(private alumnoService: AlumnoService,private tituloService:TituloService) {}
@@ -37,11 +38,11 @@ export class FormularioAlumnoComponent {
   insertarAlumno(){
     this.alumnoService.insertarAlumno(this.alumno).subscribe({
       next: (alumno) => {
-        console.log('Alumno creado exitosamente', alumno);
+        console.log('Alumno creado exitosamente', this.alumno);
         alert('Alumno registrado con éxito!');
         this.idAlumnoCreado=alumno;
         console.log('ID del alumno creado:', this.idAlumnoCreado);
-        this.insertarRelacion();
+        this.insertarRelaciones();
         this.resetForm();
 
       },
@@ -49,24 +50,23 @@ export class FormularioAlumnoComponent {
         console.error('Full error:', error);
         console.error('Error details:', error.error);
         console.error('Status:', error.status);
+        console.log('datos de alumno', this.alumno);
       }
     });
   }
 
-  insertarRelacion(){
-    console.log('Ejecutando insertarRelacion con:', this.idAlumnoCreado, this.idTitulo);
-    if (this.idAlumnoCreado && this.idTitulo) {
-      this.alumnoService.insertarRelacion(this.idAlumnoCreado, this.idTitulo).subscribe({
+  insertarRelaciones(){
+    console.log('Ejecutando insertarRelacion con:', this.idAlumnoCreado, this.alumno.titulos);
+      this.alumnoService.insertarRelaciones(this.idAlumnoCreado!, this.alumno.titulos).subscribe({
         next: (relacion) => {
           console.log('Relación creada exitosamente', relacion);
         },
         error: (err) => {
           console.error('Error al crear la relación:', err);
+          console.log("Datos: "+this.idAlumnoCreado+this.alumno.titulos)
         }
       });
-    } else {
-      console.warn('Faltan datos: idAlumno o idTitulo');
-    }
+
   }
 
   resetForm() {
@@ -76,12 +76,13 @@ export class FormularioAlumnoComponent {
       email: '',
       telefono: '',
       direccion: '',
-      dni: ''
+      dni: '',
+    titulos:[]
     };
 
   }
 
-  recibirId(id:number){
-    this.idTitulo= id
+  recibirIds(ids:number[]){
+    this.alumno.titulos = ids
   }
 }

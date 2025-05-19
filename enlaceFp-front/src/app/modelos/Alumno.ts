@@ -9,7 +9,7 @@ export class Alumno {
   direccion?: string
   dni?: string
   empleos?: number[]
-  titulos?: Titulo[]
+  titulos?: number[]
 
 }
 

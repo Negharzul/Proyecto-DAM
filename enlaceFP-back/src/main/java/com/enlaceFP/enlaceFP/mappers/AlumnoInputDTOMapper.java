@@ -12,10 +12,10 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
     @Override
     public Alumno apply(AlumnoInputDTO alumnoInputDTO) {
         Alumno alumno = Alumno.builder()
-                .id(alumnoInputDTO.id())
                 .nombre(alumnoInputDTO.nombre())
                 .apellidos(alumnoInputDTO.apellidos())
                 .correoElectronico(alumnoInputDTO.email())
+                .dni(alumnoInputDTO.dni())
                 .build();
 /*
 
@@ -38,14 +38,13 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 : null;
 
 
- */
+
                 /*
                String telefono,
         String direccion,
         String dni,
          */
         return Alumno.builder()
-                .id(alumnoInputDTO.id())
                 .nombre(alumnoInputDTO.nombre())
                 .apellidos(alumnoInputDTO.apellidos())
                 .correoElectronico(alumnoInputDTO.email())

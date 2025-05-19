@@ -13,9 +13,9 @@ export class SeleccionTituloComponent implements OnInit{
 
   titulos?:Titulo[];
   tituloService :TituloService;
-  tituloSeleccionado?:Titulo;
+  titulosSeleccionados?:Titulo[];
 
-  @Output() idSeleccionado = new EventEmitter<number>();
+  @Output() idSeleccionados = new EventEmitter<number[]>();
 
   constructor(tituloService:TituloService){
     this.tituloService=tituloService;
@@ -35,10 +35,23 @@ export class SeleccionTituloComponent implements OnInit{
     })
   }
 
-  emitirId(id: string) {
-    const idNumber = Number(id);
-    if (!isNaN(idNumber)) {
-      this.idSeleccionado.emit(idNumber);
-    }
+/*
+    emitirIds(ids: number[]) {
+    this.idSeleccionados.emit(ids!);
   }
+    */
+
+
+  emitirIds(event: Event): void {
+  const select = event.target as HTMLSelectElement;
+
+  // Obtener los IDs seleccionados
+  const selectedIds = Array.from(select.selectedOptions).map(
+    option => Number(option.value)
+  );
+
+  this.idSeleccionados.emit(selectedIds)
+
+}
+
 }

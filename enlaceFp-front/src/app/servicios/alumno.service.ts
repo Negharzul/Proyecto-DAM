@@ -24,8 +24,8 @@ export class AlumnoService {
     return this.http.post(baseUrl, alumno,{withCredentials: true});
   }
 
-  insertarRelacion(idAlumno:number,idTitulo:number): Observable<any> {
-    return this.http.post(`${baseUrl}/titulo/${idAlumno}/${idTitulo}`,null,{withCredentials: true});
+  insertarRelaciones(idAlumno:number,idsTitulos:number[]): Observable<any> {
+    return this.http.post(`${baseUrl}/titulo/${idAlumno}`,idsTitulos,{withCredentials: true});
   }
 //"/titulo/{idAlumno]/{idTitulacion}"
 

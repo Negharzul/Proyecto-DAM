@@ -9,6 +9,7 @@ public record AlumnoInputDTO(
         String email,
         String telefono,
         String direccion,
-        String dni
+        String dni,
+        List<Long> titulos
 ) {
 }

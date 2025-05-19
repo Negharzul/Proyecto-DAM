@@ -1,10 +1,10 @@
 
-<select
+<select multiple
   class="form-select"
   aria-label="Selección de titulación"
-  (change)="emitirId($any($event.target).value)"
+  (change)="emitirIds($event)"
 >
-  <option value="" selected>Selecciona una titulación</option>
+  <option disabled>Selecciona una o más titulaciones</option>
   <option
     *ngFor="let titulo of titulos"
     [value]="titulo.id"

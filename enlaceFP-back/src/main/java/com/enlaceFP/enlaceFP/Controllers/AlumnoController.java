@@ -12,6 +12,7 @@ import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -88,19 +89,24 @@ public class AlumnoController {
      */
 
 
-    @PostMapping("/titulo/{idAlumno}/{idTitulacion}")
-    public ResponseEntity<?> crearAsociacionConTitulacion(@PathVariable Long idAlumno,@PathVariable Long idTitulacion){
+    @PostMapping("/titulo/{idAlumno}")
+    @Transactional
+    public ResponseEntity<?> crearAsociacionesConTitulaciones(@PathVariable Long idAlumno,@RequestBody List<Long> idsTitulaciones){
 
-        var relacion= AlumnoTitulacion.builder()
-                .titulacion(Titulacion.builder()
-                        .id(idTitulacion)
-                        .build())
-                .alumno(Alumno.builder()
-                        .id(idAlumno)
-                        .build())
-                .build();
 
-        alumnoTitulacionService.crearRelacion(relacion);
+        for(Long id:idsTitulaciones){
+            var relacion= AlumnoTitulacion.builder()
+                    .titulacion(Titulacion.builder()
+                            .id(id)
+                            .build())
+                    .alumno(Alumno.builder()
+                            .id(idAlumno)
+                            .build())
+                    .build();
+
+            alumnoTitulacionService.crearRelacion(relacion);
+        }
+
 
         return ResponseEntity.ok().build();
     }
