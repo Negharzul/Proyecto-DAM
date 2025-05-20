@@ -15,10 +15,13 @@ import { SeleccionTituloComponent } from "../seleccion-titulo/seleccion-titulo.c
 export class FormularioEmpleoComponent {
 
   empleo = {
+
     nombreEmpleo: '',
     descripcion:'',
     empresaId: '',
     titulacionesExigidas: [] as number[]
+
+
   }
 
   Titulos?:number[]
@@ -38,8 +41,10 @@ export class FormularioEmpleoComponent {
         console.log('Empleo creado exitosamente', empleo);
         console.log('Datos: ', this.empleo);
         alert('Empleo registrado con éxito!');
-        this.idEmpleoCreado=empleo;
+        this.idEmpleoCreado=empleo.id;
+        this.Titulos=empleo.titulacionesExigidas;
         console.log('ID del Empleo creado:', this.idEmpleoCreado);
+        this.insertarRelacionesTitulos()
         this.resetForm();
 
       },
@@ -52,10 +57,9 @@ export class FormularioEmpleoComponent {
     });
   }
 
-  insertarRelacion(){
-    console.log('Ejecutando insertar Relacion con:', this.idEmpleoCreado, this.idEmpresa);
-    if (this.idEmpleoCreado && this.idEmpresa) {
-      this.empleoService.empresaParaEmpleo(this.idEmpleoCreado, this.idEmpresa).subscribe({
+  insertarRelacionesTitulos(){
+    console.log('Ejecutando insertar Relacion con:', this.idEmpleoCreado, this.empleo.titulacionesExigidas)
+      this.empleoService.insertarRelacionesTitulaciones(this.idEmpleoCreado!, this.empleo.titulacionesExigidas).subscribe({
         next: (relacion) => {
           console.log('Relación creada exitosamente', relacion);
         },
@@ -63,9 +67,7 @@ export class FormularioEmpleoComponent {
           console.error('Error al crear la relación:', err);
         }
       });
-    } else {
-      console.warn('Faltan datos: idAlumno o idTitulo');
-    }
+
   }
 
 

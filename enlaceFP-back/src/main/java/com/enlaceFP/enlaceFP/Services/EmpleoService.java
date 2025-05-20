@@ -1,6 +1,7 @@
 package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Empleo;
+import com.enlaceFP.enlaceFP.Models.Empresa;
 import com.enlaceFP.enlaceFP.Repositories.EmpleoRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -28,12 +29,19 @@ public class EmpleoService {
         return empleoRepository.findAll();
     }
 
+    @Transactional
     public void eliminarEmpleoPorId(Long id) {
-        if(empleoRepository.existsById(id)) {
-            empleoRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("No encontrado empleo con ID: " + id);
+        Empleo empleo = empleoRepository.findById(id).orElseThrow();
+
+
+        Empresa empresa = empleo.getEmpresa();
+        if (empresa != null) {
+            empresa.getEmpleosOfertados().remove(empleo);
+            empleo.setEmpresa(null);
         }
+
+
+            empleoRepository.deleteById(id);
     }
 
     public Empleo actualizarEmpleo(Empleo empleo) {

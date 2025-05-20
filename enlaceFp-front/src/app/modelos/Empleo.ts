@@ -4,7 +4,7 @@ export class Empleo {
   descripcion?: string
   alumnos?: string[]
   titulacionesExigidas?:number[]
-  empresaId?: string
+  empresa?: string
 }
 
 

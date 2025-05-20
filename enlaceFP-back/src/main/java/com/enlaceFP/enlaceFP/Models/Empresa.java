@@ -26,6 +26,6 @@ public class Empresa {
 
     private String correoElectronico;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empresa", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empresa", fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Empleo> empleosOfertados;
 }

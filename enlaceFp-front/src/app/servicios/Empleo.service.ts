@@ -37,8 +37,12 @@ export class EmpleoService {
   }
 
   empresaParaEmpleo(idEmpleo:number,idEmpresa:number):  Observable<any>{
-    return this.http.post(`${baseUrl}/tituloEmpleo/${idEmpleo}/${idEmpresa}`,null,{withCredentials: true})
+    return this.http.post(`${baseUrl}/tituloEmpleo/${idEmpleo}`,null,{withCredentials: true})
   }
+
+    insertarRelacionesTitulaciones(idEmpleo:number,idsTitulos:number[]): Observable<any> {
+      return this.http.post(`${baseUrl}/titulosEmpleo/${idEmpleo}`,idsTitulos,{withCredentials: true});
+    }
 
   patchTitulo(id: number, empleo: Empleo): Observable<any> {
     return this.http.patch(`${baseUrl}/${id}`, empleo,{withCredentials: true});

@@ -24,13 +24,13 @@ public class Empleo {
 
     private LocalDate fechaPublicacion=LocalDate.now();
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo",orphanRemoval = true)
     private List<AlumnoEmpleo> asociaciones;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo",orphanRemoval = true)
     private List<TitulacionEmpleo> titulacionesEmpleo;
 }

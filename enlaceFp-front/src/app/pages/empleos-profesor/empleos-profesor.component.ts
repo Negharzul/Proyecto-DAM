@@ -7,7 +7,7 @@ import { SelecionEmpresaComponent } from "../../selecion-empresa/selecion-empres
 
 @Component({
   selector: 'app-empleos-profesor',
-  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent, SelecionEmpresaComponent],
+  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent],
   templateUrl: './empleos-profesor.component.html',
   styleUrl: './empleos-profesor.component.css'
 })

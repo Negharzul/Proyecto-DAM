@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -132,7 +133,7 @@ public class EmpleoController {
         return ResponseEntity.ok(empleoOutputDTO);
     }
 
-    @DeleteMapping("Borrar/{idEmpleo}")
+    @DeleteMapping("/{idEmpleo}")
     public ResponseEntity<EmpleoOutputDTO> borrarEmpleo(@PathVariable Long idEmpleo){
         try{
             empleoService.eliminarEmpleoPorId(idEmpleo);
@@ -165,14 +166,17 @@ public class EmpleoController {
 
     //Seccion de Empleo-titulacion
 
-    @PostMapping("/tituloEmpleo/{idEmpleo}/{idTitulo}")
-    public ResponseEntity<Void> crearTitulacionEmpleo(@PathVariable Long idEmpleo,@PathVariable Long idTitulo){
+    @Transactional
+    @PostMapping("/titulosEmpleo/{idEmpleo}")
+    public ResponseEntity<Void> crearTitulacionesEmpleo(@PathVariable Long idEmpleo,@RequestBody List<Long> idsTitulaciones){
 
-        titulacionEmpleoService.crearRelacion(TitulacionEmpleo
-                .builder()
-                .empleo(Empleo.builder().id(idEmpleo).build())
-                .titulacion(Titulacion.builder().id(idTitulo).build())
-                .build());
+        for(Long id:idsTitulaciones){
+            titulacionEmpleoService.crearRelacion(TitulacionEmpleo
+                    .builder()
+                    .empleo(Empleo.builder().id(idEmpleo).build())
+                    .titulacion(Titulacion.builder().id(id).build())
+                    .build());
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
