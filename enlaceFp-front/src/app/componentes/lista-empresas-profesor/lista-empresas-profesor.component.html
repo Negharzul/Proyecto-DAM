@@ -17,8 +17,8 @@
       <td>{{ empresa.email }}</td>
       <td>{{ empresa.telefono }}</td>
       <td>
-      <button type="button" class="btn btn-success" (click)="emitirEvento(empresa.id!)" >?</button>
-      <button type="button" class="btn btn-success" (click)="borrarEmpresa(empresa.id!)">x</button>
+      <button type="button" class="btn btn-warning" (click)="emitirEvento(empresa.id!)" ><i class="bi bi-pencil-square"></i></button>
+      <button type="button" class="btn btn-danger" (click)="borrarEmpresa(empresa.id!)"><i class="bi bi-trash3-fill"></i></button>
       </td>
 
 
