@@ -6,14 +6,19 @@
     <label for="InputNombre">Nombre</label>
     <input type="text" class="form-control" id="InputNombre"
            [(ngModel)]="empresa.nombre" name="nombre"
-           placeholder="Introduce nombre" required>
+           placeholder="Introduce nombre"
+           pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$"
+           title="Solo se permiten letras y espacios"
+           required>
   </div>
 
   <div class="form-group mb-3">
     <label for="InputDescripcion">Descripción</label>
     <input type="text" class="form-control" id="InputDescricion"
            [(ngModel)]="empresa.descripcion" name="descripcion"
-           placeholder="Introduce descripcin de la empresa">
+           placeholder="Introduce descripcin de la empresa"
+           pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$"
+           title="Solo se permiten letras y espacios">
   </div>
 
 
@@ -28,7 +33,9 @@
     <label for="InputTelefono">Teléfono</label>
     <input type="text" class="form-control" id="InputDescricion"
            [(ngModel)]="empresa.telefono" name="telefono"
-           placeholder="Introduce el teléfono la empresa">
+           placeholder="Introduce el teléfono la empresa"
+           pattern="^\+?[0-9\s\-()]{7,15}$"
+           title="Introduce un número válido (7 a 15 dígitos, puede incluir +, espacios, paréntesis y guiones)">
   </div>
 
 

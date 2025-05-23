@@ -9,6 +9,8 @@ import { EmpresaProfesorComponent } from './pages/empresa-profesor/empresa-profe
 import { EmpleosProfesorComponent } from './pages/empleos-profesor/empleos-profesor.component';
 import { TitulosProfesorComponent } from './pages/titulos-profesor/titulos-profesor.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AlumnoContactoComponent } from './pages/alumno-contacto/alumno-contacto.component';
+
 
 
 
@@ -48,6 +50,10 @@ export const routes: Routes = [
 {
   path: 'profesor/titulo',
   component: TitulosProfesorComponent
+},
+{
+  path: 'alumno/contacto',
+  component: AlumnoContactoComponent
 },
 
 { path: '**', component: NotFoundComponent }

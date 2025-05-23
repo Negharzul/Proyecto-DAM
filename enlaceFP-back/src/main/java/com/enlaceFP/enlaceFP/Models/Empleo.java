@@ -18,6 +18,7 @@ public class Empleo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombreEmpleo;
 
     private String descripcion;
@@ -28,7 +29,7 @@ public class Empleo {
     private List<AlumnoEmpleo> asociaciones;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "empresa_id",nullable = false)
     private Empresa empresa;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "empleo",orphanRemoval = true)

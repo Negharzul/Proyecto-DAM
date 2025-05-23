@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AutenticacionService } from '../../servicios/Autenticacion.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-barra-navegacion',
-  imports: [],
+  imports: [RouterLink,RouterLinkActive],
   templateUrl: './barra-navegacion-alumno.component..html',
   styleUrl: './barra-navegacion-alumno.component.css'
 })
