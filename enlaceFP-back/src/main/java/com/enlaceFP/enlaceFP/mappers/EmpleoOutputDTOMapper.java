@@ -14,14 +14,15 @@ public class EmpleoOutputDTOMapper implements Function<Empleo, EmpleoOutputDTO> 
         return new EmpleoOutputDTO(empleo.getId(),
                 empleo.getNombreEmpleo(),
                 empleo.getDescripcion(),
-                empleo.getAsociaciones()
-                        .stream()
-                        .map(asociacion-> asociacion.getAlumno().getNombre()+" "+asociacion.getAlumno().getApellidos())
-                        .collect(Collectors.toList()),
+//                empleo.getAsociaciones()
+//                        .stream()
+//                        .map(asociacion-> asociacion.getAlumno().getNombre()+" "+asociacion.getAlumno().getApellidos())
+//                        .collect(Collectors.toList()),
                 empleo.getTitulacionesEmpleo()
                         .stream()
                         .map(titulacion ->titulacion.getTitulacion().getTitulo())
                         .collect(Collectors.toList()),
+                empleo.getEmpresa() != null ? empleo.getEmpresa().getId() : null,
                 empleo.getEmpresa() != null ? empleo.getEmpresa().getNombre() : null);
     }
 }

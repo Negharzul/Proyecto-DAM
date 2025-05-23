@@ -15,11 +15,6 @@ export class ListaTitulosProfesorComponent {
 
   constructor(private tituloService:TituloService){}
 
-  @Output() activarFormulario = new EventEmitter<number>();
-
-  emitirEvento(id:number) {
-    this.activarFormulario.emit(id);
-  }
 
   ngOnInit(): void {
     this.obtenerTitulos();

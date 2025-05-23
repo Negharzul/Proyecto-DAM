@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -61,6 +62,8 @@ public class AlumnoService {
         if(alumno.getTelefono()!=null)alumnoModificado.setTelefono(alumno.getTelefono());
         if(alumno.getDireccion()!=null)alumnoModificado.setDireccion(alumno.getDireccion());
         if(alumno.getDni()!=null)alumnoModificado.setDni(alumno.getDni());
+        //if(alumno.getEstudios()!=null)alumnoModificado.setEstudios(new ArrayList<>(alumno.getEstudios()));
+
         return alumnoRepository.save(alumnoModificado);
     }
 

@@ -20,6 +20,7 @@ export class ListaEmpleosProfesorComponent {
 
   emitirEvento(id:number) {
     this.activarFormulario.emit(id);
+    console.log("Acabo de emitir la id:",id)
   }
 
   ngOnInit(): void {

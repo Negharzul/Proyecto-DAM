@@ -45,6 +45,10 @@
            placeholder="Introduce DNI" required>
   </div>
 
+  <div class="form-group mb-3">
+    <label id="titulacion">Titulación</label>
+    <app-seleccion-titulo (idSeleccionados)="recibirIds($event)"></app-seleccion-titulo>
+  </div>
 
   <button type="button" (click)="patchAlumno()" class="btn btn-primary">Actualizar</button>
 </form>

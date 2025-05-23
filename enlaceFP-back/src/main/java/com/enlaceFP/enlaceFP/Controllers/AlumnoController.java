@@ -7,16 +7,21 @@ import com.enlaceFP.enlaceFP.Models.AlumnoTitulacion;
 import com.enlaceFP.enlaceFP.Models.Titulacion;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.AlumnoTitulacionService;
+import com.enlaceFP.enlaceFP.Services.TitulacionService;
 import com.enlaceFP.enlaceFP.mappers.AlumnoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
+import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -27,6 +32,8 @@ public class AlumnoController {
     private final AlumnoTitulacionService alumnoTitulacionService;
     private final AlumnoOutputDTOMapper alumnoOutputDTOMapper;
     private final AlumnoInputDTOMapper alumnoInputDTOMapper;
+    private final TitulacionService titulacionService;
+    private EntityManager entityManager;
 
     @GetMapping("/{idAlumno}")
     public ResponseEntity<AlumnoOutputDTO> getAlumno(@PathVariable Long idAlumno) {
@@ -60,13 +67,29 @@ public class AlumnoController {
 
     }
 
+@Transactional
     @PatchMapping("/Modificar/{alumnoId}")
     public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO,@PathVariable Long alumnoId){
         if(alumnoInputDTO==null){
             return ResponseEntity.badRequest().build();
         }
+    if(alumnoInputDTO.titulos()!=null) {
+        alumnoTitulacionService.eliminarRelacionesIdAlumno(alumnoId);
+        entityManager.flush();
+        entityManager.clear();
+    }
+
         Alumno alumno=alumnoInputDTOMapper.apply(alumnoInputDTO);
         alumnoService.modificarAlumno(alumno,alumnoId);
+
+
+        for(Long id:alumnoInputDTO.titulos()){
+            System.out.println(id);
+            alumnoTitulacionService.crearRelacion(AlumnoTitulacion.builder()
+                .titulacion(Titulacion.builder().id(id).build())
+                .alumno(Alumno.builder().id(alumnoId).build())
+                .build());
+        }
 
         return ResponseEntity.ok().build();
     }

@@ -10,7 +10,7 @@ import { Alumno } from '../../modelos/Alumno';
 
 @Component({
   selector: 'app-formulario-modificar-alumno',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SeleccionTituloComponent],
   templateUrl: './formulario-alumno-modificacion.component.html',
   styleUrl: './formulario-alumno-modificacion.component.css'
 })
@@ -46,6 +46,7 @@ export class FormularioAlumnoModificacionComponent implements OnInit{
   }
 
   actualizarAlumno(){
+    console.log("Datos varios: ",this.idAlumno,this.alumno)
     this.alumnoService.patchAlumno(this.idAlumno,this.alumno).subscribe({
       next: (alumno) => {
         console.log('Alumno modificado exitosamente', alumno);
@@ -58,5 +59,9 @@ export class FormularioAlumnoModificacionComponent implements OnInit{
         console.error('Status:', error.status);
       }
     });
+  }
+
+    recibirIds(ids:number[]){
+    this.alumno.titulos = ids
   }
 }

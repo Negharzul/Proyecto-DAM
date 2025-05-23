@@ -8,6 +8,7 @@ import com.enlaceFP.enlaceFP.Models.*;
 import com.enlaceFP.enlaceFP.Services.*;
 import com.enlaceFP.enlaceFP.mappers.EmpleoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.EmpleoOutputDTOMapper;
+import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class EmpleoController {
     private final AlumnoService alumnoService;
     private final AlumnoEmpleoService alumnoEmpleoService;
     private final TitulacionEmpleoService titulacionEmpleoService;
+    private final EmpresaService empresaService;
+    private EntityManager entityManager;
 
     @GetMapping("/{idEmpleo}")
     public ResponseEntity<EmpleoOutputDTO> getEmpleo(@PathVariable Long idEmpleo) {
@@ -121,16 +124,40 @@ public class EmpleoController {
         return ResponseEntity.ok().build();
     }
 
+    @Transactional
     @PatchMapping("/Modificar/{idEmpleo}")
     public ResponseEntity<EmpleoOutputDTO> modificarEmpleo(@RequestBody EmpleoInputDTO empleoInputDTO,@PathVariable Long idEmpleo){
         if(empleoInputDTO==null){
             return ResponseEntity.badRequest().build();
         }
-        Empleo empleo=empleoInputDTOMapper.apply(empleoInputDTO);
-        Empleo empleoPersistido=empleoService.modificarEmpleo(empleo,idEmpleo);
-        EmpleoOutputDTO empleoOutputDTO=empleoOutputDTOMapper.apply(empleoPersistido);
+//        Empleo empleo=empleoInputDTOMapper.apply(empleoInputDTO);
+//        Empleo empleoPersistido=empleoService.modificarEmpleo(empleo,idEmpleo);
+//        EmpleoOutputDTO empleoOutputDTO=empleoOutputDTOMapper.apply(empleoPersistido);
 
-        return ResponseEntity.ok(empleoOutputDTO);
+
+        if(empleoInputDTO.titulacionesExigidas()!=null) {
+            titulacionEmpleoService.eliminarRelacionesIdEmpleo(idEmpleo);
+            entityManager.flush();
+            entityManager.clear();
+        }
+
+        Empleo empleo=empleoInputDTOMapper.apply(empleoInputDTO);
+
+
+        //Prueba a pasarle el numero uno a ver si es que no recibe bien la id por algun motivo
+        Empresa empresa=empresaService.obtenerEmpresaPorId(empleoInputDTO.empresaId());
+        System.out.println("id de empresa:"+empleoInputDTO.empresaId());
+        empleoService.modificarEmpleo(empleo,idEmpleo,empresa);
+
+        for(Long id:empleoInputDTO.titulacionesExigidas()){
+            System.out.println(id);
+            titulacionEmpleoService.crearRelacion(TitulacionEmpleo.builder()
+                    .titulacion(Titulacion.builder().id(id).build())
+                    .empleo(Empleo.builder().id(idEmpleo).build())
+                    .build());
+        }
+
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{idEmpleo}")

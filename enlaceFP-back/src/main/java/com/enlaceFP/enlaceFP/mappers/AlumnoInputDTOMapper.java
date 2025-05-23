@@ -4,6 +4,7 @@ import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
 import com.enlaceFP.enlaceFP.Models.*;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -27,23 +28,19 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                         .build())
                 .toList()
                 : null;
-
-        List<AlumnoTitulacion> estudios = alumnoInputDTO.titulos() != null ? alumnoInputDTO.titulos()
+*/
+        List<AlumnoTitulacion> estudios = alumnoInputDTO.titulos() != null ?
+                 new ArrayList<>(alumnoInputDTO.titulos()
                 .stream()
                 .map(id -> AlumnoTitulacion.builder()
-                        .alumno(alumno)
+                        .alumno(Alumno.builder().id(alumno.getId()).build())
                         .titulacion(Titulacion.builder().id(id).build())
                         .build())
-                .toList()
+                .toList())
                 : null;
 
 
 
-                /*
-               String telefono,
-        String direccion,
-        String dni,
-         */
         return Alumno.builder()
                 .nombre(alumnoInputDTO.nombre())
                 .apellidos(alumnoInputDTO.apellidos())
@@ -51,6 +48,7 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .telefono(alumnoInputDTO.telefono())
                 .direccion(alumnoInputDTO.direccion())
                 .dni(alumnoInputDTO.dni())
+                .estudios(estudios)
                 .build();
     }
 }

@@ -5,6 +5,7 @@ import com.enlaceFP.enlaceFP.Models.TitulacionEmpleo;
 import com.enlaceFP.enlaceFP.Repositories.TitulacionEmpleoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 
@@ -27,6 +28,13 @@ public class TitulacionEmpleoService {
             throw new RuntimeException("No encontrada relacion con ID: " + id);
         }
     }
+
+    @Transactional
+    public void eliminarRelacionesIdEmpleo(Long idEmpleo){
+        titulacionEmpleoRepository.deleteByEmpleoId(idEmpleo);
+
+    }
+
 
     public TitulacionEmpleo crearRelacion(TitulacionEmpleo relacion) {
         return titulacionEmpleoRepository.save(relacion);

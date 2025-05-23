@@ -58,13 +58,15 @@ public class EmpleoService {
     }
 
 
-    public Empleo modificarEmpleo(Empleo empleo, Long idEmpleo){
+    public Empleo modificarEmpleo(Empleo empleo, Long idEmpleo,Empresa empresa){
         Empleo empleoModificado = empleoRepository.findById(idEmpleo).orElseThrow(() -> new NoSuchElementException("Empleo no encontrado"));
         if(empleo.getNombreEmpleo()!=null)empleoModificado.setNombreEmpleo(empleo.getNombreEmpleo());
         if(empleo.getDescripcion()!=null)empleoModificado.setDescripcion(empleo.getDescripcion());
-        if(empleo.getAsociaciones()!=null)empleoModificado.setAsociaciones(empleo.getAsociaciones());
-        if(empleo.getTitulacionesEmpleo()!=null)empleoModificado.setTitulacionesEmpleo(empleo.getTitulacionesEmpleo());
-        if(empleo.getEmpresa()!=null)empleoModificado.setEmpresa(empleo.getEmpresa());
+        //if(empleo.getAsociaciones()!=null)empleoModificado.setAsociaciones(empleo.getAsociaciones());
+        //if(empleo.getTitulacionesEmpleo()!=null)empleoModificado.setTitulacionesEmpleo(empleo.getTitulacionesEmpleo());
+        if(empleo.getEmpresa()!=null){
+            empleoModificado.setEmpresa(empresa);
+        }
         return empleoRepository.save(empleoModificado);
     }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Empresa } from '../modelos/Empresa';
-import { EmpresaService } from '../servicios/Empresa.service';
+import { Empresa } from '../../modelos/Empresa';
+import { EmpresaService } from '../../servicios/Empresa.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

@@ -3,7 +3,7 @@ import { EmpleoService } from '../../servicios/Empleo.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SelecionEmpresaComponent } from "../../selecion-empresa/selecion-empresa.component";
+import { SelecionEmpresaComponent } from "../selecion-empresa/selecion-empresa.component";
 import { SeleccionTituloComponent } from "../seleccion-titulo/seleccion-titulo.component";
 
 @Component({
@@ -18,7 +18,8 @@ export class FormularioEmpleoComponent {
 
     nombreEmpleo: '',
     descripcion:'',
-    empresaId: '',
+    empresaId: 0,
+    empresaNombre:'' ,
     titulacionesExigidas: [] as number[]
 
 
@@ -75,12 +76,13 @@ export class FormularioEmpleoComponent {
     this.empleo = {
       nombreEmpleo: '',
       descripcion:'',
-      empresaId: this.empleo.empresaId,
+      empresaId: 0,
+      empresaNombre:'',
       titulacionesExigidas: this.empleo.titulacionesExigidas
     };
   }
   recibirIdEmpresa(id :number){
-    this.empleo.empresaId= id.toString(10)
+    this.empleo.empresaId= id
   }
 
   recibirIds(ids:number[]){

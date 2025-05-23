@@ -6,8 +6,8 @@ public record EmpleoOutputDTO(
         Long id,
         String nombreEmpleo,
         String descripcion,
-        List<String> Alumnos,
         List<String> titulacionesExigidas,
-        String empresa
+        Long empresaId,
+        String empresaNombre
 ) {
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Empresa } from '../modelos/Empresa';
-import { EmpresaService } from '../servicios/Empresa.service';
+import { Empresa } from '../../modelos/Empresa';
+import { EmpresaService } from '../../servicios/Empresa.service';
 
 @Component({
   selector: 'app-selecion-empresa',
@@ -13,7 +13,7 @@ export class SelecionEmpresaComponent implements OnInit{
 
   empresas?:Empresa[];
   empresaService :EmpresaService;
-  empresaSeleccionado?:Empresa;
+
 
   @Output() idSeleccionado = new EventEmitter<number>();
 
@@ -35,10 +35,10 @@ export class SelecionEmpresaComponent implements OnInit{
     })
   }
 
-  emitirId(id: string) {
-    const idNumber = Number(id);
-    if (!isNaN(idNumber)) {
-      this.idSeleccionado.emit(idNumber);
-    }
+  emitirId(event: Event) {
+  const selectElement = event.target as HTMLSelectElement;
+  const id = Number(selectElement.value);
+  console.log("seleccion-empresa emitiendo: ", id);
+  this.idSeleccionado.emit(id);
   }
 }

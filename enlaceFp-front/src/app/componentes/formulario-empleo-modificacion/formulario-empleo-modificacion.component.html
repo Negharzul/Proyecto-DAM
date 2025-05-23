@@ -1,0 +1,33 @@
+<div *ngIf="empleo">
+<h1 >Modificar Alumno</h1>
+
+<form #alumnoForm="ngForm">
+
+  <div class="form-group mb-3">
+    <label for="InputNombre">Empleo</label>
+    <input type="text" class="form-control" id="InputNombre"
+           [(ngModel)]="empleo.nombreEmpleo" name="nombre"
+           placeholder="Introduce nombre" required>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="InputNombre">Descripción</label>
+    <input type="text" class="form-control" id="InputDescripcion"
+           [(ngModel)]="empleo.descripcion" name="descripcion"
+           placeholder="Introduce nombre" required>
+  </div>
+
+  <div class="form-group mb-3">
+    <label id="titulacion">Empresa</label>
+    <app-selecion-empresa (idSeleccionado)="recibirIdEmpresa($event)"></app-selecion-empresa>
+  </div>
+
+  <div class="form-group mb-3">
+    <label id="titulacion">Titulos</label>
+    <app-seleccion-titulo (idSeleccionados)="recibirIds($event)"></app-seleccion-titulo>
+  </div>
+
+
+  <button type="button" (click)="patchEmpleo()" class="btn btn-primary">Actualizar</button>
+</form>
+</div>
