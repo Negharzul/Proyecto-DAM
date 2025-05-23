@@ -18,5 +18,8 @@ form{
  padding: 20px;
  width: 500px;
  margin:  auto;
+}
 
+button:disabled {
+  background-color: #3f5688;
 }

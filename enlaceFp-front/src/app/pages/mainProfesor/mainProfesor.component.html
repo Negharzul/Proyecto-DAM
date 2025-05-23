@@ -10,6 +10,10 @@
 </div>
 
 <app-formulario-alumno *ngIf="mostrandoRegistro"></app-formulario-alumno>
-<app-lista-alumnos (activarFormulario)="mostrarModificacion($event)" (mostrarAlumno)="mostrarLista($event)" *ngIf="mostrandoAdministracion"></app-lista-alumnos>
+<app-lista-alumnos (activarFormulario)="mostrarModificacion($event)"
+(mostrarAlumno)="mostrarLista($event)"
+(emailCorreo)="mostrarCorreo($event)"
+*ngIf="mostrandoAdministracion" ></app-lista-alumnos>
 <app-formulario-modificar-alumno [idAlumno]="idAlumnoModificar!" *ngIf="mostrandoModificacion" ></app-formulario-modificar-alumno>
 <app-datos-alumno *ngIf="mostrandoAlumno"> </app-datos-alumno>
+<app-profesor-correo-alumno [direccion]="direccion!" *ngIf="mostrandoCorreo"></app-profesor-correo-alumno>

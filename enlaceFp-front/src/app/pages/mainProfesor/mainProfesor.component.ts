@@ -7,10 +7,11 @@ import { FormularioAlumnoModificacionComponent } from "../../componentes/formula
 import { FileService } from "../../servicios/File.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { DatosAlumnoComponent } from "../../componentes/datos-empleo/datos-alumno.component";
+import { ProfesorCorreoAlumnoComponent } from "../../componentes/profesor-correo-alumno/profesor-correo-alumno.component";
 
 @Component({
   selector: 'app-profesor',
-  imports: [CommonModule, BarraNavegacionProfesorComponent, FormularioAlumnoComponent, ListaAlumnosComponent, FormularioAlumnoModificacionComponent, DatosAlumnoComponent],
+  imports: [CommonModule, BarraNavegacionProfesorComponent, FormularioAlumnoComponent, ListaAlumnosComponent, FormularioAlumnoModificacionComponent, DatosAlumnoComponent, ProfesorCorreoAlumnoComponent],
   templateUrl: './mainProfesor.component.html',
   styleUrl: './mainProfesor.component.css',
 })
@@ -21,11 +22,13 @@ export class mainProfesorComponent {
   mostrandoAdministracion=true;
   mostrandoModificacion=false;
   mostrandoAlumno=false;
+  mostrandoCorreo=false;
 
   idAlumnoMostrar?:number
   idAlumnoModificar?:number
   fileService:FileService
   archivoSeleccionado?:File;
+  direccion?:string;
 
   constructor(fileService:FileService){
     this.fileService=fileService
@@ -55,13 +58,18 @@ export class mainProfesorComponent {
     console.log("Id de alumno:"+this.idAlumnoModificar)
   }
 
-
+  mostrarCorreo(direccion:string){
+    this.todosFalso()
+    this.mostrandoCorreo=true;
+    this.direccion=direccion;
+  }
 
   todosFalso(){
     this.mostrandoAdministracion=false;
     this.mostrandoRegistro=false;
     this.mostrandoModificacion=false;
     this.mostrandoAlumno=false;
+    this.mostrandoCorreo=false
   }
 
   seleccionarArchivo(event: Event){

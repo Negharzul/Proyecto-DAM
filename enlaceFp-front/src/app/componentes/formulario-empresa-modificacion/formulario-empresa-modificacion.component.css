@@ -20,3 +20,7 @@ form{
  margin:  auto; /* Centrar el formulario */
 
 }
+
+button:disabled {
+  background-color: #3f5688;
+}

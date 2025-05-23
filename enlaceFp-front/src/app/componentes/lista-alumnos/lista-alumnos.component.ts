@@ -22,6 +22,8 @@ export class ListaAlumnosComponent implements OnInit{
 
   @Output() activarFormulario = new EventEmitter<number>();
 
+  @Output() emailCorreo =new EventEmitter<string>();
+
 
   emitirEvento(id:number){
     this.activarFormulario.emit(id);
@@ -30,6 +32,10 @@ export class ListaAlumnosComponent implements OnInit{
   emitirEventoDatos(id:number) {
     this.mostrarAlumno.emit(id);
     console.log('Emitiendo ID:', id);
+  }
+
+  mandarCorreo(direccion:string){
+    this.emailCorreo.emit(direccion)
   }
 
   ngOnInit(): void{

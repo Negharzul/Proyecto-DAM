@@ -14,9 +14,12 @@ input{
 }
 
 form{
- border: 2px solid #2c546e; /* Borde sólido negro de 2px */
- padding: 20px; /* Espacio interno */
- width: 500px; /* Ancho opcional */
- margin:  auto; /* Centrar el formulario */
+ border: 2px solid #2c546e;
+ padding: 20px;
+ width: 500px;
+ margin:  auto;
+}
 
+button:disabled {
+  background-color: #3f5688;
 }
