@@ -14,6 +14,8 @@ public record AlumnoOutputDTO(
         String telefono,
         String direccion,
         List<String>empleos,
-        List<String> titulos
+        List<String> titulos,
+        boolean notificaciones
+
 ){
 }

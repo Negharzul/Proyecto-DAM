@@ -1,12 +1,14 @@
 
 
+  <div *ngIf="alumno">
   <nav class="navbar">
 
     <div class="navbar-links">
         <div class="dropdown">
-        <span class="dropdown-toggle">Tu nombre</span>
+        <span class="dropdown-toggle">{{alumno.nombre}}</span>
         <div class="dropdown-menu">
           <a >Perfil</a>
+          <a> Notificaciones&nbsp; &nbsp; <input type="checkbox" [(ngModel)]="recibirNotificaciones" (change)="cambiarNotificaciones()"></a>
           <a>Mis empleos pendientes</a>
           <a (click)="Logout()">Logout</a>
         </div>
@@ -18,3 +20,4 @@
       <a routerLink="/alumno/contacto" routerLinkActive="active">Contacto</a>
     </div>
   </nav>
+</div>

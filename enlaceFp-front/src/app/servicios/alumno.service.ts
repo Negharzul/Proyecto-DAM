@@ -16,6 +16,11 @@ export class AlumnoService {
     return this.http.get<Alumno>(`${baseUrl}/${id}`,{withCredentials: true});
   }
 
+  obtenerAlumnoPropio(): Observable<Alumno>{
+    return this.http.get<Alumno>(`${baseUrl}/alumnoPropio`,{withCredentials: true});
+  }
+
+
   obtenerTodosLosAlumnos(): Observable<Alumno[]> {
     return this.http.get<Alumno[]>(baseUrl,{withCredentials: true});
   }
@@ -32,6 +37,10 @@ export class AlumnoService {
 
   patchAlumno(idAlumno: number, alumno: Alumno): Observable<any> {
     return this.http.patch(`${baseUrl}/Modificar/${idAlumno}`, alumno,{withCredentials: true});
+  }
+
+  cambiarNotificaciones(cambiar:boolean): Observable<any> {
+    return this.http.patch(`${baseUrl}/notificaciones?activar=${cambiar}`, null,{withCredentials: true});
   }
 
   deleteById(id: number): Observable<any> {

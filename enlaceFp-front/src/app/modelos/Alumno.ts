@@ -10,6 +10,7 @@ export class Alumno {
   dni?: string
   empleos?: number[]
   titulos?: number[]
+  notificaciones?: boolean
 
 }
 

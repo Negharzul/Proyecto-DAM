@@ -24,6 +24,7 @@ public class AlumnoOutputDTOMapper implements Function<Alumno, AlumnoOutputDTO> 
                 alumno.getEstudios()
                         .stream()
                         .map(asociacion->asociacion.getTitulacion().getTitulo())
-                        .toList());
+                        .toList(),
+                alumno.isNotificaciones());
     }
 }

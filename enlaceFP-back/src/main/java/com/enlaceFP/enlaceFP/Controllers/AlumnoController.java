@@ -14,14 +14,12 @@ import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @RestController
@@ -47,6 +45,14 @@ public class AlumnoController {
         }
     }
 
+    @GetMapping("/alumnoPropio")
+    public ResponseEntity<AlumnoOutputDTO> getAlumnoPropio(@AuthenticationPrincipal Alumno alumno) {
+
+        Alumno alumnoBd=alumnoService.obtenerAlumnoPorId(alumno.getId());
+        AlumnoOutputDTO alumnoOutputDTO= alumnoOutputDTOMapper.apply(alumnoBd);
+        return ResponseEntity.ok(alumnoOutputDTO);
+    }
+
     @GetMapping()
     public ResponseEntity<List<AlumnoOutputDTO>> getAllAlumnos(){
         List<Alumno> alumnos=alumnoService.obtenerAlumnos();
@@ -67,7 +73,7 @@ public class AlumnoController {
 
     }
 
-@Transactional
+    @Transactional
     @PatchMapping("/Modificar/{alumnoId}")
     public ResponseEntity<AlumnoOutputDTO> modificarAlumno(@RequestBody AlumnoInputDTO alumnoInputDTO,@PathVariable Long alumnoId){
         if(alumnoInputDTO==null){
@@ -78,10 +84,8 @@ public class AlumnoController {
         entityManager.flush();
         entityManager.clear();
     }
-
         Alumno alumno=alumnoInputDTOMapper.apply(alumnoInputDTO);
         alumnoService.modificarAlumno(alumno,alumnoId);
-
 
         for(Long id:alumnoInputDTO.titulos()){
             System.out.println(id);
@@ -90,9 +94,18 @@ public class AlumnoController {
                 .alumno(Alumno.builder().id(alumnoId).build())
                 .build());
         }
-
         return ResponseEntity.ok().build();
     }
+
+
+
+    @PatchMapping("/notificaciones")
+    public ResponseEntity<Void> cambiarNotificaciones(@RequestParam boolean activar, @AuthenticationPrincipal Alumno alumno){
+
+        alumnoService.cambiarNotificaciones(activar,alumno);
+        return ResponseEntity.ok().build();
+    }
+
 
     @DeleteMapping("Borrar/{idAlumno}")
     public ResponseEntity<AlumnoOutputDTO> borrarAlumno(@PathVariable Long idAlumno){

@@ -41,25 +41,23 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #29852e;
+      background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+      box-shadow: 0 4px 12px rgba(20, 206, 20, 0.4);
       border-radius: 0.5rem;
       overflow: hidden;
-      min-width: 160px;
+      min-width: 180px;
       z-index: 1001;
     }
 
     .dropdown-menu a {
       display: block;
       padding: 0.75rem 1rem;
-      color: #014421;
+      color: black;
       text-decoration: none;
-      background-color: white;
+
     }
 
-    .dropdown-menu a:hover {
-      background-color: #e0f7ec;
-    }
 
     .dropdown:hover .dropdown-menu {
       display: block;

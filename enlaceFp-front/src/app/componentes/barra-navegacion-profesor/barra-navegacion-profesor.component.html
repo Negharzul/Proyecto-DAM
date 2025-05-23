@@ -1,9 +1,9 @@
-
+<div *ngIf="profesor">
   <nav class="navbar">
 
     <div class="navbar-links">
         <div class="dropdown">
-        <span class="dropdown-toggle">Tu nombre</span>
+        <span class="dropdown-toggle">{{profesor.nombre}}</span>
         <div class="dropdown-menu">
           <a>Perfil</a>
           <a>Contacto</a>
@@ -18,4 +18,6 @@
 
 
     </div>
+
   </nav>
+</div>

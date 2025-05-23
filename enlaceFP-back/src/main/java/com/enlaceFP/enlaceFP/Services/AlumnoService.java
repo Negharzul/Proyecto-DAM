@@ -67,6 +67,10 @@ public class AlumnoService {
         return alumnoRepository.save(alumnoModificado);
     }
 
+    public  void cambiarNotificaciones(boolean cambiar,Alumno alumno){
+        alumno.setNotificaciones(cambiar);
+        alumnoRepository.save(alumno);
+    }
 
 
 }

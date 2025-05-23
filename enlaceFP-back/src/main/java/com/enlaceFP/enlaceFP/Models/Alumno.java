@@ -28,6 +28,8 @@ public class Alumno extends Usuario{
         this.estudios = estudios;
     }
 
+    private boolean notificaciones;
+
     @PrePersist
     protected void alCrear(){
         enabled=true;
@@ -36,6 +38,7 @@ public class Alumno extends Usuario{
         accountNonLocked=true;
         role=Role.builder().id(Role.ROLE_ALUMNO).build();
         fechaRegistro=LocalDateTime.now();
+        notificaciones=false;
     }
 
 

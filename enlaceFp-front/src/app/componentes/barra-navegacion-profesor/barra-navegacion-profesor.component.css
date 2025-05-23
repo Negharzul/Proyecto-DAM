@@ -56,9 +56,6 @@
 
     }
 
-    .dropdown-menu a:hover {
-      background-color: #5f93f3;
-    }
 
     .dropdown:hover .dropdown-menu {
       display: block;

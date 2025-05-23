@@ -1,7 +1,9 @@
 package com.enlaceFP.enlaceFP.Controllers;
 
+import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.DTOs.ProfesorInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.ProfesorOutputDTO;
+import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Models.Profesor;
 import com.enlaceFP.enlaceFP.Services.ProfesorService;
 import com.enlaceFP.enlaceFP.mappers.ProfesorInputDTOMapper;
@@ -9,6 +11,7 @@ import com.enlaceFP.enlaceFP.mappers.ProfesorOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -36,6 +39,14 @@ public class ProfesorController {
         } catch (NoSuchElementException ex) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/profesorPropio")
+    public ResponseEntity<ProfesorOutputDTO> getProfesorPropio(@AuthenticationPrincipal Profesor profesor) {
+
+        Profesor profesorBd=profesorService.obtenerProfesorPorId(profesor.getId());
+        ProfesorOutputDTO profesorOutputDTO= profesorOutputDTOMapper.apply(profesorBd);
+        return ResponseEntity.ok(profesorOutputDTO);
     }
 
     @GetMapping()
