@@ -1,4 +1,4 @@
-<h1>Empleo:</h1>
+<h1>Empleo</h1>
 
 <form #empleoForm="ngForm">
 
@@ -11,9 +11,9 @@
 
   <div class="form-group mb-3">
     <label for="InputNombre">Descripción</label>
-    <input type="text" class="form-control" id="InputDescripcion"
+    <textarea type="text" class="form-control" id="InputDescripcion"
            [(ngModel)]="empleo.descripcion" name="descripcion"
-           placeholder="Introduce nombre" required>
+           placeholder="Introduce nombre" required></textarea>
   </div>
 
 

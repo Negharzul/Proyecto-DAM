@@ -1,7 +1,8 @@
 <div class="login-wrapper">
 <div class="login-container">
-  <h1>Iniciar Sesión</h1>
-  <form class="login-form" #loginForm="ngForm">
+  <h1 *ngIf="mostrandoLogin">Iniciar Sesión</h1>
+  <h1 *ngIf="mostrandoPassword">Cambiar contraseña</h1>
+  <form class="login-form" #loginForm="ngForm" *ngIf="mostrandoLogin">
     <p *ngIf="credencialesIncorrectos" class="Error">Credenciales incorrectos </p>
       <div class="form-group">
           <label for="username">Usuario</label>
@@ -12,6 +13,26 @@
           <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required [(ngModel)]="credenciales!.password">
       </div>
       <button type="submit" class="login-button" (click)="login()" [disabled]="!loginForm.valid">Ingresar</button>
+      <button type="submit" class="login-button" (click)="cambiarEstado()" >Cambiar Contraseña</button>
+  </form>
+
+    <form class="login-form" #loginForm="ngForm" *ngIf="mostrandoPassword">
+    <p *ngIf="credencialesIncorrectos" class="Error">Credenciales incorrectos </p>
+      <div class="form-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required [(ngModel)]="credenciales!.usuario">
+      </div>
+      <div class="form-group">
+          <label for="password">Antigua contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Ingresa tu antigua contraseña" required [(ngModel)]="credenciales!.password">
+      </div>
+
+      <div class="form-group">
+          <label for="password">Nueva Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Ingresa tu nueva contraseña" required [(ngModel)]="nuevaPassword">
+      </div>
+      <button type="submit" class="login-button" (click)="cambiarPassword()" [disabled]="!loginForm.valid">Confirmar</button>
+      <button type="submit" class="login-button" (click)="cambiarEstado()" >Volver login</button>
   </form>
 </div>
 </div>

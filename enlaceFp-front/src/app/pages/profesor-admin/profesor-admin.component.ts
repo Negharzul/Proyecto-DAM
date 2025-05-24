@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { BarraNavegacionProfesorComponent } from "../../componentes/barra-navegacion-profesor/barra-navegacion-profesor.component";
 import { CommonModule } from '@angular/common';
 import { ListaProfesoresComponent } from "../../componentes/lista-profesores/lista-profesores.component";
-import { FormularioProfesorComponent } from "../../componentes/formulario-profesor/formulario-profesor.component";
-import { FormularioProfesorModificacionComponent } from "../../componentes/formulario-profesor-modificacion/formulario-profesor-modificacion.component";
+import { FormularioProfesorComponent } from "../../formulario-profesor/formulario-profesor.component";
+import { FormularioProfesorModificacionComponent } from "../../formulario-profesor-modificacion/formulario-profesor-modificacion.component";
 
 @Component({
   selector: 'app-profesor-admin',

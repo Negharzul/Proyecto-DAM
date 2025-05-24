@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Credenciales } from '../modelos/Credenciales';
 import { Observable } from 'rxjs';
@@ -28,5 +28,17 @@ export class AutenticacionService {
       'Authorization': `Basic ${credentials}`
     });
     return this.http.get(baseUrl,  {headers: headers, withCredentials:true},);
+  }
+
+  cambiarPassword(credenciales:Credenciales,password:string) :Observable<any>{
+    const credentials = btoa(`${credenciales.usuario}:${credenciales.password}`);
+    const headers = new HttpHeaders({
+      'Authorization': `Basic ${credentials}`
+    });
+    const params = new HttpParams().set('password', password);
+      return this.http.post(`${baseUrl}/cambiarPassword`, null, {
+    headers: headers,
+    params: params
+  });
   }
 }

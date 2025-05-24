@@ -6,7 +6,6 @@ export class Alumno {
   apellidos?: string
   email?: string
   telefono?: string
-  direccion?: string
   dni?: string
   empleos?: number[]
   titulos?: number[]

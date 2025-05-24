@@ -22,3 +22,15 @@ background-image: url("https://www.transparenttextures.com/patterns/batthern.png
 background-color: #a5d0f3;
 background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
 }
+h1{
+  display: flex;
+  justify-content: center;
+  margin-left: 25px;
+  font-family: 'Roboto Slab', serif;
+  font: 1em sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 1px;
+
+}

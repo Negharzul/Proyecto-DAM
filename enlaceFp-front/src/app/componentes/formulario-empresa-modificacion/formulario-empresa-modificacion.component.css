@@ -1,4 +1,4 @@
-input{
+input,textarea{
    background-color: #e2f2fd;
 }
 *{
@@ -23,4 +23,8 @@ form{
 
 button:disabled {
   background-color: #3f5688;
+}
+
+textarea{
+  min-height: 100px;
 }

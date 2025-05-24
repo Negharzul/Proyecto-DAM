@@ -57,6 +57,10 @@ export const routes: Routes = [
   component: AlumnoContactoComponent
 },
 {
+  path: 'profesor/contacto',
+  component: AlumnoContactoComponent
+},
+{
   path: 'profesor/admin',
   component: ProfesorAdminComponent
 },

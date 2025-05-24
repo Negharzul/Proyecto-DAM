@@ -1,5 +1,5 @@
 <div *ngIf="empresa">
-<h1>Modificar empresa:</h1>
+<h1>Modificar empresa</h1>
 
 <form #empresaForm="ngForm">
 
@@ -12,9 +12,11 @@
 
   <div class="form-group mb-3">
     <label for="InputDescripcion">Descripción</label>
-    <input type="text" class="form-control" id="InputDescricion"
+    <textarea type="text" class="form-control" id="InputDescricion"
            [(ngModel)]="empresa.descripcion" name="descripcion"
-           placeholder="Introduce descripción de la empresa">
+           placeholder="Introduce descripción de la empresa"
+           pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$"
+           title="Solo se permiten letras y espacios"></textarea>
   </div>
 
 

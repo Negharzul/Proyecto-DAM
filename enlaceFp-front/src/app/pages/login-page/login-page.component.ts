@@ -14,7 +14,11 @@ import { Credenciales } from '../../modelos/Credenciales';
 })
 export class LoginPageComponent {
 
+  nuevaPassword?:string
   credencialesIncorrectos=false;
+  mostrandoLogin=true;
+  mostrandoPassword=false;
+
 
   credenciales: Credenciales = {
     usuario: '',
@@ -22,6 +26,14 @@ export class LoginPageComponent {
   };
 
   constructor(private autenticacionService:AutenticacionService,private router: Router){}
+
+
+  cambiarEstado(){
+    console.log("click")
+    this.mostrandoPassword=!this.mostrandoPassword;
+    this.mostrandoLogin=!this.mostrandoLogin;
+  }
+
 
   login(){
     this.autenticacionService.login(this.credenciales!).subscribe({
@@ -47,5 +59,27 @@ export class LoginPageComponent {
         this.credencialesIncorrectos=true;
       }
     });
+  }
+
+
+  cambiarPassword(){
+    this.autenticacionService.cambiarPassword(this.credenciales,this.nuevaPassword!).subscribe({
+      next: data => {
+        console.log('Acceso autorizado:', data)
+        alert('Contraseña cambiada')
+        this.cambiarEstado();
+
+      }
+      ,
+
+      error: err => {
+        console.error('Acceso denegado:', err);
+        this.credenciales.password='';
+        this.credenciales.usuario='';
+        this.nuevaPassword='';
+        alert('Datos incorrectos')
+      }
+    });
+
   }
 }

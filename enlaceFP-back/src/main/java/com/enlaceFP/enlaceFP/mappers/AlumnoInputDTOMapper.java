@@ -29,15 +29,15 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .toList()
                 : null;
 */
-        List<AlumnoTitulacion> estudios = alumnoInputDTO.titulos() != null ?
-                 new ArrayList<>(alumnoInputDTO.titulos()
-                .stream()
-                .map(id -> AlumnoTitulacion.builder()
-                        .alumno(Alumno.builder().id(alumno.getId()).build())
-                        .titulacion(Titulacion.builder().id(id).build())
-                        .build())
-                .toList())
-                : null;
+//        List<AlumnoTitulacion> estudios = alumnoInputDTO.titulos() != null ?
+//                 new ArrayList<>(alumnoInputDTO.titulos()
+//                .stream()
+//                .map(id -> AlumnoTitulacion.builder()
+//                        .alumno(Alumno.builder().id(alumno.getId()).build())
+//                        .titulacion(Titulacion.builder().id(id).build())
+//                        .build())
+//                .toList())
+//                : null;
 
 
 
@@ -48,7 +48,6 @@ public class AlumnoInputDTOMapper implements Function<AlumnoInputDTO, Alumno> {
                 .telefono(alumnoInputDTO.telefono())
                 .direccion(alumnoInputDTO.direccion())
                 .dni(alumnoInputDTO.dni())
-                .estudios(estudios)
                 .build();
     }
 }
