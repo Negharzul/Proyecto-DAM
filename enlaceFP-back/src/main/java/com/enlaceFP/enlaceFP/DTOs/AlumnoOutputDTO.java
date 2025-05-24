@@ -12,7 +12,6 @@ public record AlumnoOutputDTO(
         String apellidos,
         String email,
         String telefono,
-        String direccion,
         List<String>empleos,
         List<String> titulos,
         boolean notificaciones

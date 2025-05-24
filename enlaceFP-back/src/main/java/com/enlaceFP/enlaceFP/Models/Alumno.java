@@ -23,7 +23,7 @@ public class Alumno extends Usuario{
 
     @Builder
     public Alumno(Long id, String nombre, String apellidos, String dni, LocalDateTime fechaRegistro, String password, String telefono, String direccion, boolean enabled, boolean accountNonExpired, boolean credentialNonExpired, boolean accountNonLocked, String correoElectronico, Role role, List<AlumnoEmpleo> asociaciones, List<AlumnoTitulacion> estudios) {
-        super(id, nombre, apellidos, dni, fechaRegistro, password, telefono, direccion, enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
+        super(id, nombre, apellidos, dni, fechaRegistro, password, telefono,  enabled, accountNonExpired, credentialNonExpired, accountNonLocked, correoElectronico, role);
         this.asociaciones = asociaciones;
         this.estudios = estudios;
     }

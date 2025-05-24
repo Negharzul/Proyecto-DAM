@@ -16,7 +16,6 @@ public class AlumnoOutputDTOMapper implements Function<Alumno, AlumnoOutputDTO> 
                 alumno.getApellidos(),
                 alumno.getCorreoElectronico(),
                 alumno.getTelefono(),
-                alumno.getDireccion(),
                 alumno.getAsociaciones()
                         .stream()
                         .map(asociacion->asociacion.getEmpleo().getNombreEmpleo())

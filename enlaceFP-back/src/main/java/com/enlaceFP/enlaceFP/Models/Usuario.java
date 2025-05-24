@@ -30,13 +30,11 @@ public abstract class Usuario implements UserDetails {
 
     protected String dni;
 
-    protected  LocalDateTime fechaRegistro;
+    protected  LocalDateTime fechaRegistro=LocalDateTime.now();
 
     protected String password;
 
     protected String telefono;
-
-    protected String direccion;
 
     protected boolean enabled;
 

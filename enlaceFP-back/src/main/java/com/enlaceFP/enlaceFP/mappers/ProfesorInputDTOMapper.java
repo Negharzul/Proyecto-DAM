@@ -15,6 +15,8 @@ public class ProfesorInputDTOMapper implements Function<ProfesorInputDTO, Profes
                 .nombre(profesorInputDTO.nombre())
                 .apellidos(profesorInputDTO.apellidos())
                 .correoElectronico(profesorInputDTO.email())
+                .dni(profesorInputDTO.dni())
+                .telefono(profesorInputDTO.telefono())
                 .build();
     }
 }

@@ -111,7 +111,6 @@ public class MailService {
     public String generarTextoDatosAlumno(Alumno alumno){
         StringBuilder mensaje= new StringBuilder(alumno.getNombre()+alumno.getApellidos()+"\n");
         mensaje.append("Estudios: " + alumno.getEstudios()+"\n");
-        mensaje.append("Direccion: " + alumno.getDireccion()+"\n");
         mensaje.append("Correo Electronico: " + alumno.getCorreoElectronico()+"\n");
         mensaje.append("Telefono contacto: " + alumno.getTelefono()+"\n");
 

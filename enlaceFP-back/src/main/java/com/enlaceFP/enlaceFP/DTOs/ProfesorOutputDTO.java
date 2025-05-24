@@ -5,6 +5,8 @@ public record ProfesorOutputDTO(
         String nombre,
         String apellidos,
         String rol,
-        String email
+        String email,
+        String telefono,
+        String dni
 ) {
 }

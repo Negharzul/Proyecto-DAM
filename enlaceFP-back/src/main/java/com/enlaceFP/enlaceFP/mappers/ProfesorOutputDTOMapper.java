@@ -15,6 +15,8 @@ public class ProfesorOutputDTOMapper implements Function<Profesor, ProfesorOutpu
                 profesor.getNombre(),
                 profesor.getApellidos(),
                 profesor.getRole() != null ? profesor.getRole().getNombreRole() : null,
-                profesor.getCorreoElectronico());
+                profesor.getCorreoElectronico(),
+                profesor.getTelefono(),
+                profesor.getDni());
     }
 }

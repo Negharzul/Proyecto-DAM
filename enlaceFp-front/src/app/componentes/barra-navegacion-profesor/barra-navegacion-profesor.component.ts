@@ -37,9 +37,4 @@ export class BarraNavegacionProfesorComponent implements OnInit{
     })
   }
 
-  menuAbierto = false;
-
-  toggleMenu() {
-    this.menuAbierto = !this.menuAbierto;
-  }
 }

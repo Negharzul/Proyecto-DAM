@@ -39,8 +39,10 @@ public class ProfesorService {
     }
 
     public Profesor crearProfesor(Profesor profesor) {
-        profesor.setPassword(passwordEncoder.encode(profesor.getPassword()));
+        if(profesor.getPassword()!=null) profesor.setPassword(passwordEncoder.encode(profesor.getPassword()));
+        else profesor.setPassword(passwordEncoder.encode(profesor.getDni()));
         return profesorRepository.save(profesor);
+
     }
 
     public Profesor modificarProfesor(Profesor profesor, Long idProfesor){
@@ -48,6 +50,8 @@ public class ProfesorService {
         if(profesor.getNombre()!=null)profesorModificado.setNombre(profesor.getNombre());
         if(profesor.getApellidos()!=null)profesorModificado.setApellidos(profesor.getApellidos());
         if(profesor.getCorreoElectronico()!=null)profesorModificado.setCorreoElectronico(profesor.getCorreoElectronico());
+        if(profesor.getTelefono()!=null)profesorModificado.setTelefono((profesor.getTelefono()));
+        if(profesor.getDni()!=null)profesorModificado.setDni(profesor.getDni());
 
         return profesorRepository.save(profesorModificado);
     }

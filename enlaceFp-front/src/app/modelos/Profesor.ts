@@ -3,6 +3,8 @@ export class Profesor {
   nombre?: string
   apellidos?: string
   rol?: string
-  email?: string
+  email?:string
+  telefono?:string
+  dni?: string
 
 }

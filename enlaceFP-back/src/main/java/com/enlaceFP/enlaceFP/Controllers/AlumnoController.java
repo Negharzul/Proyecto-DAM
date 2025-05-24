@@ -2,11 +2,10 @@ package com.enlaceFP.enlaceFP.Controllers;
 
 import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
-import com.enlaceFP.enlaceFP.Models.Alumno;
-import com.enlaceFP.enlaceFP.Models.AlumnoTitulacion;
-import com.enlaceFP.enlaceFP.Models.Titulacion;
+import com.enlaceFP.enlaceFP.Models.*;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
 import com.enlaceFP.enlaceFP.Services.AlumnoTitulacionService;
+import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.TitulacionService;
 import com.enlaceFP.enlaceFP.mappers.AlumnoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
@@ -30,7 +29,7 @@ public class AlumnoController {
     private final AlumnoTitulacionService alumnoTitulacionService;
     private final AlumnoOutputDTOMapper alumnoOutputDTOMapper;
     private final AlumnoInputDTOMapper alumnoInputDTOMapper;
-    private final TitulacionService titulacionService;
+    private final EmpleoService empleoService;
     private EntityManager entityManager;
 
     @GetMapping("/{idAlumno}")
@@ -57,6 +56,21 @@ public class AlumnoController {
     public ResponseEntity<List<AlumnoOutputDTO>> getAllAlumnos(){
         List<Alumno> alumnos=alumnoService.obtenerAlumnos();
         List<AlumnoOutputDTO> alumnosOutputDTO= alumnos.stream().map(alumnoOutputDTOMapper).toList();
+
+        return ResponseEntity.ok(alumnosOutputDTO);
+    }
+
+    @GetMapping("/alumnosInteresados/{idEmpleo}")
+    public ResponseEntity<List<AlumnoOutputDTO>> getAlumnosPorIdEmpleo(@PathVariable Long idEmpleo){
+
+        Empleo empleo= empleoService.obtenerEmpleoPorId(idEmpleo);
+        List<Alumno> alumnosInteresados = empleo.getAsociaciones()
+                .stream()
+                .filter(AlumnoEmpleo::getInteresado)
+                .map(AlumnoEmpleo::getAlumno)
+                .toList();
+
+        List<AlumnoOutputDTO> alumnosOutputDTO= alumnosInteresados.stream().map(alumnoOutputDTOMapper).toList();
 
         return ResponseEntity.ok(alumnosOutputDTO);
     }
