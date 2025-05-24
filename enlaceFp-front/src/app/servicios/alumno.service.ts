@@ -20,6 +20,9 @@ export class AlumnoService {
     return this.http.get<Alumno>(`${baseUrl}/alumnoPropio`,{withCredentials: true});
   }
 
+  obtenerAlumnosPorIdEmpleo(idEmpleo:number): Observable<Alumno[]>{
+    return this.http.get<Alumno[]>(`${baseUrl}/alumnosInteresados/${idEmpleo}`,{withCredentials: true});
+  }
 
   obtenerTodosLosAlumnos(): Observable<Alumno[]> {
     return this.http.get<Alumno[]>(baseUrl,{withCredentials: true});

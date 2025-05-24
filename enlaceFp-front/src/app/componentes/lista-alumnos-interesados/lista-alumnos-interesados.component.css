@@ -1,0 +1,42 @@
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    ul {
+
+      list-style: none;
+      padding: 0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+     li {
+      background-color: #c1d7f7;
+      background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+
+    h2 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      color: #222;
+    }
+
+    p {
+      margin: 2px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    ul:hover{
+      transform: scale(1.1);
+    }

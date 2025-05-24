@@ -7,6 +7,7 @@
 
 </div>
 
-<app-lista-empleos-profesor (activarFormulario)="mostrarModificacion($event)" *ngIf="mostrandoEmpleos"></app-lista-empleos-profesor>
+<app-lista-empleos-profesor (activarFormulario)="mostrarModificacion($event)" (idEmpleo)="mostrarAlumnosInteresados($event)"*ngIf="mostrandoEmpleos"></app-lista-empleos-profesor>
 <app-formulario-empleo  *ngIf="mostrandoRegistro"></app-formulario-empleo>
 <app-formulario-empleo-modificacion [idEmpleo]="idEmpleoModificar!" *ngIf="mostrandoModificacion"></app-formulario-empleo-modificacion>
+<app-lista-alumnos-interesados [idEmpleo]="idEmpleoBuscarAlumnos!" *ngIf="mostrandoAlumnoInteresados"></app-lista-alumnos-interesados>

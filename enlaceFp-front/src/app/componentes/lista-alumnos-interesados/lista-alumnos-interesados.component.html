@@ -1,0 +1,12 @@
+  <h1>Alumnos interesados</h1>
+
+  <ul class="alumnos" *ngFor="let alumno of alumnosInteresados">
+    <li>
+      <div class="info">
+        <h2>{{alumno.nombre}} {{alumno.apellidos}}</h2>
+        <p>Email: {{alumno.email}}</p>
+        <p>Teléfono: {{alumno.telefono}}</p>
+      </div>
+    </li>
+  </ul>
+

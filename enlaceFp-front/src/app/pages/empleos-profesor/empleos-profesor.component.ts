@@ -4,10 +4,11 @@ import { ListaEmpleosProfesorComponent } from "../../componentes/lista-empleos-p
 import { CommonModule } from '@angular/common';
 import { FormularioEmpleoComponent } from "../../componentes/formulario-empleo/formulario-empleo.component";
 import { FormularioEmpleoModificacionComponent } from "../../componentes/formulario-empleo-modificacion/formulario-empleo-modificacion.component";
+import { ListaAlumnosInteresadosComponent } from "../../componentes/lista-alumnos-interesados/lista-alumnos-interesados.component";
 
 @Component({
   selector: 'app-empleos-profesor',
-  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent, FormularioEmpleoModificacionComponent],
+  imports: [BarraNavegacionProfesorComponent, ListaEmpleosProfesorComponent, CommonModule, FormularioEmpleoComponent, FormularioEmpleoModificacionComponent, ListaAlumnosInteresadosComponent],
   templateUrl: './empleos-profesor.component.html',
   styleUrl: './empleos-profesor.component.css'
 })
@@ -16,9 +17,11 @@ export class EmpleosProfesorComponent {
   mostrandoRegistro=false;
   mostrandoEmpleos=true;
   mostrandoModificacion=false;
+  mostrandoAlumnoInteresados=false;
 
 
   idEmpleoModificar?:number;
+  idEmpleoBuscarAlumnos?:number;
 
   mostrarRegistro(){
     this.todosFalso();
@@ -42,6 +45,13 @@ export class EmpleosProfesorComponent {
     this.mostrandoEmpleos=false;
     this.mostrandoRegistro=false;
     this.mostrandoModificacion=false;
+    this.mostrandoAlumnoInteresados=false;
+  }
+
+  mostrarAlumnosInteresados(idEmpleo:number){
+    this.idEmpleoBuscarAlumnos=idEmpleo;
+    this.todosFalso();
+    this.mostrandoAlumnoInteresados=true;
   }
 
 }

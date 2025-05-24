@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Empleo } from '../../modelos/Empleo';
 import { EmpleoService } from '../../servicios/Empleo.service';
 import { MailService } from '../../servicios/mail.Service';
+import { AlumnoService } from '../../servicios/alumno.service';
+import { Alumno } from '../../modelos/Alumno';
 
 @Component({
   selector: 'app-lista-empleos-profesor',
@@ -15,9 +17,12 @@ export class ListaEmpleosProfesorComponent {
   empleos?:Empleo[]
 
 
-  constructor(private empleoService:EmpleoService,private mailService:MailService){}
+
+  constructor(private empleoService:EmpleoService,private mailService:MailService,private alumnoService:AlumnoService){}
 
   @Output() activarFormulario = new EventEmitter<number>();
+
+  @Output() idEmpleo = new EventEmitter<number>();
 
   emitirEvento(id:number) {
     this.activarFormulario.emit(id);
@@ -60,6 +65,11 @@ export class ListaEmpleosProfesorComponent {
     });
 
   }
+
+  mostrarAlumnosInteresados(idEmpleo:number){
+    this.idEmpleo.emit(idEmpleo);
+  }
+
 
 
 }
