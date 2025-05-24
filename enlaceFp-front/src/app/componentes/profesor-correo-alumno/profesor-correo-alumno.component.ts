@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MailService } from '../../servicios/mail.Service';
 
 @Component({
   selector: 'app-profesor-correo-alumno',
@@ -17,6 +18,8 @@ export class ProfesorCorreoAlumnoComponent implements OnChanges{
   mensaje: ''
   };
 
+  constructor(private mailService:MailService){}
+
   @Input() direccion!:string;
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -26,7 +29,13 @@ export class ProfesorCorreoAlumnoComponent implements OnChanges{
 
   enviarCorreo() {
   console.log('Correo enviado:', this.correo);
+  this.mailService.correoAlumno(this.correo.para,this.correo.asunto,this.correo.mensaje).subscribe({
+      next: value => {
+        console.log("enviar correo datos: ", value)
+
+      },
+      error: error => {console.log(error)}
+    })
 
 }
-
 }

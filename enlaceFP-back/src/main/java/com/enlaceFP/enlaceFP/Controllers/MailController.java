@@ -1,7 +1,11 @@
 package com.enlaceFP.enlaceFP.Controllers;
 
 import com.enlaceFP.enlaceFP.DTOs.EmpresaInputDTO;
+import com.enlaceFP.enlaceFP.Models.Alumno;
+import com.enlaceFP.enlaceFP.Models.AlumnoEmpleo;
+import com.enlaceFP.enlaceFP.Models.Empleo;
 import com.enlaceFP.enlaceFP.Services.AlumnoService;
+import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.MailService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +19,7 @@ import java.util.List;
 public class MailController {
 
     private final MailService mailService;
-    private final AlumnoService alumnoService;
+    private final EmpleoService empleoService;
 
     @PostMapping("/enviar")
     public ResponseEntity<?> enviarCorreo(@RequestParam String destinatario,
@@ -26,16 +30,22 @@ public class MailController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/contactarEmpresa/{idEmpresa}")
-    public ResponseEntity<?> contactarEmpresa(@PathVariable Long idEmpresa,
-                                              @RequestBody List<String> alumnos,
-                                              @RequestBody EmpresaInputDTO empresa){
+    @PostMapping("/contactarEmpresa/{idEmpleo}")
+    public ResponseEntity<?> contactarEmpresa(@PathVariable Long idEmpleo){
+
+        Empleo empleo = empleoService.obtenerEmpleoPorId(idEmpleo);
+        List<Alumno> alumnos=empleo.getAsociaciones()
+                .stream()
+                .filter(asociacion->asociacion.getInteresado()==true)
+                .map(AlumnoEmpleo::getAlumno)
+                .toList();
+
         StringBuilder mensaje=new StringBuilder("Los siguientes alumnos estan interesados en realizar la FCT en su empresa:");
-        for(String nombre: alumnos){
-            mensaje.append("\n"+nombre);
+        for(Alumno alumno: alumnos){
+            mensaje.append("\n"+alumno.getNombre());
 
         }
-        mailService.enviarCorreo(empresa.nombre(),"Lista alumnos interesados FCT",mensaje.toString());
+        mailService.enviarCorreo(empleo.getEmpresa().getCorreoElectronico(),"Lista alumnos interesados FCT",mensaje.toString());
         return ResponseEntity.noContent().build();
     }
 }

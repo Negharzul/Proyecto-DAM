@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Empleo } from '../../modelos/Empleo';
 import { EmpleoService } from '../../servicios/Empleo.service';
+import { MailService } from '../../servicios/mail.Service';
 
 @Component({
   selector: 'app-lista-empleos-profesor',
@@ -14,7 +15,7 @@ export class ListaEmpleosProfesorComponent {
   empleos?:Empleo[]
 
 
-  constructor(private empleoService:EmpleoService){}
+  constructor(private empleoService:EmpleoService,private mailService:MailService){}
 
   @Output() activarFormulario = new EventEmitter<number>();
 
@@ -50,6 +51,15 @@ export class ListaEmpleosProfesorComponent {
     });
   }
 
+  mandarCorreo(idEmpleo:number){
+    this.mailService.correoEmpresa(idEmpleo).subscribe({
+      next: () => {
+        alert("Correos enviados con exito");
+      },
+      error: (err) => console.log(err)
+    });
+
+  }
 
 
 }
