@@ -105,14 +105,28 @@ public class EmpleoController {
         Empleo empleoPersistido=empleoService.crearEmpleo(empleo);
         Map<String,Long> response= new HashMap<>();
         response.put("id",empleoPersistido.getId());
+
+
+        //TODO Refactorizar
+        List<Alumno> alumnos =alumnoService.obtenerAlumnos();
+        List<TitulacionEmpleo> asociaciones=empleoPersistido.getTitulacionesEmpleo();
+        List<Titulacion> titulos = asociaciones
+                .stream()
+                .map(TitulacionEmpleo::getTitulacion)
+                .toList();
+
+        alumnos= alumnos
+                .stream()
+                .filter(Alumno::isNotificaciones)
+                .filter(alumno->alumno
+                        .getEstudios()
+                        .stream()
+                        .anyMatch(asociacion->titulos.contains(asociacion.getTitulacion())))
+                .toList();
+
+        mailService.correoRecomendacionEmpleo(alumnos,empleoPersistido.getNombreEmpleo());
+
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
-    @PostMapping("/mail/{idEmpleo}")
-    public ResponseEntity<AlumnoOutputDTO> avisarAlumnosInteresados(@RequestBody List<Alumno> alumnos, @PathVariable Long idEmpleo){
-        mailService.correoRecomendacionEmpleo(alumnos,idEmpleo);
-
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/enviarCandidatos/{idEmpleo}")

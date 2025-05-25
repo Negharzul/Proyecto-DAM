@@ -40,11 +40,11 @@ public class MailService {
         }
     }
 
-    public void correoRecomendacionEmpleo(List<Alumno> Alumnos,Long idEmpleo){
+    public void correoRecomendacionEmpleo(List<Alumno> Alumnos,String nombreEmpleo){
         SimpleMailMessage mensaje = new SimpleMailMessage();
         for(Alumno alumno:Alumnos){
-            mensaje.setSubject("Recomendación de Empleo");
-            mensaje.setText(generarTextoRecomendacion(idEmpleo));
+            mensaje.setSubject(nombreEmpleo);
+            mensaje.setText("Nueva oferta disponible de " +nombreEmpleo+" visite la pagina web para mas información.");
             mensaje.setFrom("enlacefp76@gmail.com");
             mensaje.setTo(alumno.getCorreoElectronico());
             mailSender.send(mensaje);
@@ -95,14 +95,7 @@ public class MailService {
         return mensaje.toString();
     }
 
-    public String generarTextoRecomendacion(Long idempleo){
 
-        StringBuilder mensaje= new StringBuilder("Creemo que la siguiente oferta puede interesarle:\n");
-        mensaje.append("localhost:8081/empleo/").append(idempleo);
-
-
-        return mensaje.toString();
-    }
 
     public String generarTextoEnviarCandidatos(List<Alumno> alumnos,Empleo empleo){
 

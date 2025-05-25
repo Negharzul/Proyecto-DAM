@@ -42,16 +42,6 @@ export class BarraNavegacionAlumnoComponent implements OnInit{
     this.menuAbierto = !this.menuAbierto;
   }
 
-  Logout(){
-    this.autenticacionService.logout().subscribe({
-      next: value => {
-        console.log(value)
-
-      },
-      error: error => {console.log(error)}
-    })
-  }
-
 
 cambiarNotificaciones() {
   if (this.recibirNotificaciones) {

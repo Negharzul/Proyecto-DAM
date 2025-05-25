@@ -10,7 +10,7 @@
           <a >Perfil</a>
           <a> Notificaciones&nbsp; &nbsp; <input type="checkbox" [(ngModel)]="recibirNotificaciones" (change)="cambiarNotificaciones()"></a>
           <a>Mis empleos pendientes</a>
-          <a (click)="Logout()">Logout</a>
+          <a routerLink="/login" routerLinkActive="active">Logout</a>
         </div>
 
 
