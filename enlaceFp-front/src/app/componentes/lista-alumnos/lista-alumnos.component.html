@@ -1,10 +1,22 @@
 <h1>Alumnos</h1>
-<table class=" mi-tabla">
+<table class="mi-tabla">
   <thead>
     <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Correo</th>
+      <th scope="col" (click)="sortData('nombre')" class="ordenable">
+        Nombre
+        <i class="bi bi-arrow-down-up" [class.text-primary]="sortField === 'nombre'"></i>
+        <span *ngIf="sortField === 'nombre'"></span>
+      </th>
+      <th scope="col" (click)="sortData('apellidos')" class="ordenable">
+        Apellidos
+        <i class="bi bi-arrow-down-up" [class.text-primary]="sortField === 'nombre'"></i>
+        <span *ngIf="sortField === 'apellidos'"></span>
+      </th>
+      <th scope="col" (click)="sortData('email')" class="ordenable">
+        Correo
+        <i class="bi bi-arrow-down-up" [class.text-primary]="sortField === 'nombre'"></i>
+        <span *ngIf="sortField === 'email'"></span>
+      </th>
       <th scope="col">Teléfono</th>
       <th scope="col">DNI</th>
       <th scope="col">Títulos</th>
@@ -12,21 +24,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="tablaAlumnos" *ngFor="let alumno of alumnos">
-      <td >{{ alumno.nombre }}</td>
-      <td >{{alumno.apellidos}}</td>
+    <tr class="tablaAlumnos" *ngFor="let alumno of alumnosOrdenados">
+      <td>{{ alumno.nombre }}</td>
+      <td>{{ alumno.apellidos }}</td>
       <td>{{ alumno.email }}</td>
       <td>{{ alumno.telefono }}</td>
       <td>{{ alumno.dni }}</td>
-      <td>{{ alumno.titulos}}</td>
+      <td>{{ alumno.titulos }}</td>
       <td>
-      <button type="button" class="btn btn-success" (click)="mandarCorreo(alumno.email!)"><i class="bi bi-envelope-open"></i></button>
-      <button type="button" class="btn btn-warning" (click)="emitirEvento(alumno.id!)"><i class="bi bi-pencil-square"></i></button>
-      <button type="button" class="btn btn-danger" (click)="borrarAlumno(alumno.id!)"><i class="bi bi-trash3-fill"></i></button>
 
-
+        <button type="button" class="btn btn-success" (click)="mandarCorreo(alumno.email!)">
+          <i class="bi bi-envelope-open"></i>
+        </button>
+        <button type="button" class="btn btn-warning" (click)="emitirEvento(alumno.id!)">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <button type="button" class="btn btn-danger" (click)="borrarAlumno(alumno.id!)">
+          <i class="bi bi-trash3-fill"></i>
+        </button>
       </td>
     </tr>
-
   </tbody>
 </table>

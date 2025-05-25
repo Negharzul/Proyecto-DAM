@@ -2,12 +2,13 @@ import { Component, EventEmitter, inject, OnInit, output, Output } from '@angula
 import { AlumnoService } from '../../servicios/alumno.service';
 import { Alumno } from '../../modelos/Alumno';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-lista-alumnos',
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './lista-alumnos.component.html',
   styleUrl: './lista-alumnos.component.css',
 })
@@ -15,6 +16,9 @@ export class ListaAlumnosComponent implements OnInit{
 
   alumnos?:Alumno[];
   alumnoService = inject(AlumnoService);
+  alumnosOrdenados: Alumno[] = [];
+  sortField: string = 'id';
+  reverseSort: boolean = false;
 
   //idAlumnoSeleccionado: number | null = null;
 
@@ -48,15 +52,14 @@ export class ListaAlumnosComponent implements OnInit{
       next: value => {
         this.alumnos = value
         console.log(value)
+        this.alumnosOrdenados = [...value];
+        this.sortData(this.sortField);
 
       },
       error: error => {console.log(error)}
     })
   }
 
-  mostrarTitulos(alumno:Alumno){
-    return alumno.titulos;
-  }
 
   borrarAlumno(id:number){
     console.log("id recibida en metodo"+id)
@@ -67,6 +70,21 @@ export class ListaAlumnosComponent implements OnInit{
       },
       error: (err) => console.log(err)
     });
+  }
+
+  sortData(field: string) {
+    if (!this.alumnos) return;
+
+    this.sortField = field;
+    this.alumnosOrdenados = [...this.alumnos].sort((a: any, b: any) => {
+
+
+      if (a[field] < b[field]) return this.reverseSort ? 1 : -1;
+      if (a[field] > b[field]) return this.reverseSort ? -1 : 1;
+      return 0;
+    });
+
+    this.reverseSort = !this.reverseSort;
   }
 
 }

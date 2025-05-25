@@ -13,7 +13,7 @@
         <a routerLink="/profesor/empresa" routerLinkActive="active">Empresas</a>
         <a routerLink="/profesor/empleo" routerLinkActive="active">Empleos</a>
         <a routerLink="/profesor/titulo" routerLinkActive="active">Titulos</a>
-        <a routerLink="/profesor/admin" routerLinkActive="active">Profesores</a>
+        <a routerLink="/profesor/admin" routerLinkActive="active" *ngIf="profesor.rol==='ROLE_Admin'">Profesores</a>
 
 
     </div>

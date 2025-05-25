@@ -5,6 +5,7 @@ import com.enlaceFP.enlaceFP.DTOs.ProfesorInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.ProfesorOutputDTO;
 import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Models.Profesor;
+import com.enlaceFP.enlaceFP.Services.MailService;
 import com.enlaceFP.enlaceFP.Services.ProfesorService;
 import com.enlaceFP.enlaceFP.mappers.ProfesorInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.ProfesorOutputDTOMapper;
@@ -28,6 +29,7 @@ public class ProfesorController {
     private final ProfesorService profesorService;
     private final ProfesorOutputDTOMapper profesorOutputDTOMapper;
     private final ProfesorInputDTOMapper profesorInputDTOMapper;
+    private final MailService mailService;
 
     @GetMapping("/{idProfesor}")
     public ResponseEntity<ProfesorOutputDTO> getProfesor (@PathVariable Long idProfesor) {
@@ -67,6 +69,7 @@ public class ProfesorController {
         Profesor profesorPersistido=profesorService.crearProfesor(profesor);
         Map<String,Long> response= new HashMap<>();
         response.put("id",profesorPersistido.getId());
+        mailService.correoRegistro(profesorPersistido);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }

@@ -40,12 +40,12 @@ public class MailController {
                 .map(AlumnoEmpleo::getAlumno)
                 .toList();
 
-        StringBuilder mensaje=new StringBuilder("Los siguientes alumnos estan interesados en realizar la FCT en su empresa:");
+        StringBuilder mensaje=new StringBuilder("Los siguientes alumnos estan interesados en el empleo de" + empleo.getNombreEmpleo()+" :");
         for(Alumno alumno: alumnos){
-            mensaje.append("\n"+alumno.getNombre());
+            mensaje.append("\n Nombre: "+alumno.getNombre()+" Email: " + alumno.getCorreoElectronico()+ " Teléfono : " +alumno.getTelefono());
 
         }
-        mailService.enviarCorreo(empleo.getEmpresa().getCorreoElectronico(),"Lista alumnos interesados FCT",mensaje.toString());
+        mailService.enviarCorreo(empleo.getEmpresa().getCorreoElectronico(),"Lista alumnos interesados",mensaje.toString());
         return ResponseEntity.noContent().build();
     }
 }

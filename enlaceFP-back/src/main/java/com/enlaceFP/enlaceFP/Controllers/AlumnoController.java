@@ -3,10 +3,7 @@ package com.enlaceFP.enlaceFP.Controllers;
 import com.enlaceFP.enlaceFP.DTOs.AlumnoInputDTO;
 import com.enlaceFP.enlaceFP.DTOs.AlumnoOutputDTO;
 import com.enlaceFP.enlaceFP.Models.*;
-import com.enlaceFP.enlaceFP.Services.AlumnoService;
-import com.enlaceFP.enlaceFP.Services.AlumnoTitulacionService;
-import com.enlaceFP.enlaceFP.Services.EmpleoService;
-import com.enlaceFP.enlaceFP.Services.TitulacionService;
+import com.enlaceFP.enlaceFP.Services.*;
 import com.enlaceFP.enlaceFP.mappers.AlumnoInputDTOMapper;
 import com.enlaceFP.enlaceFP.mappers.AlumnoOutputDTOMapper;
 import jakarta.persistence.EntityManager;
@@ -31,6 +28,7 @@ public class AlumnoController {
     private final AlumnoInputDTOMapper alumnoInputDTOMapper;
     private final EmpleoService empleoService;
     private EntityManager entityManager;
+    private final MailService mailService;
 
     @GetMapping("/{idAlumno}")
     public ResponseEntity<AlumnoOutputDTO> getAlumno(@PathVariable Long idAlumno) {
@@ -83,6 +81,7 @@ public class AlumnoController {
         }
         Alumno alumno =alumnoInputDTOMapper.apply(alumnoInputDTO);
         alumnoService.crearAlumno(alumno);
+        mailService.correoRegistro(alumno);
         return ResponseEntity.status(HttpStatus.CREATED).body(alumno.getId());
 
     }

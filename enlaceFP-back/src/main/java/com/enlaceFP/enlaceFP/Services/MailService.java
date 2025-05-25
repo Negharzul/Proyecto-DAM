@@ -2,6 +2,7 @@ package com.enlaceFP.enlaceFP.Services;
 
 import com.enlaceFP.enlaceFP.Models.Alumno;
 import com.enlaceFP.enlaceFP.Models.Empleo;
+import com.enlaceFP.enlaceFP.Models.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -50,6 +51,16 @@ public class MailService {
         }
     }
 
+    public void correoRegistro(Usuario usuario){
+        SimpleMailMessage mensaje = new SimpleMailMessage();
+
+        mensaje.setSubject("Registro fp-enlance");
+        mensaje.setText(generarTextoRegistro(usuario));
+        mensaje.setFrom("enlacefp76@gmail.com");
+        mensaje.setTo(usuario.getCorreoElectronico());
+        mailSender.send(mensaje);
+    }
+
     public void correoRegistroMultiple(List<Alumno> alumnos){
         SimpleMailMessage mensaje = new SimpleMailMessage();
         for(Alumno alumno:alumnos){
@@ -72,12 +83,12 @@ public class MailService {
         mailSender.send(mensaje);
     }
 
-    public String generarTextoRegistro(Alumno alumno){
+    public String generarTextoRegistro(Usuario usuario){
 
         StringBuilder mensaje= new StringBuilder("Ha sido invitado a usar la bolsa de trabajo privada de fp-enlace.\n");
         mensaje.append("Sus credenciales son:\n");
-        mensaje.append("Usuario: "+alumno.getCorreoElectronico());
-        mensaje.append(" Contraseña: "+ alumno.getDni()+".\n");
+        mensaje.append("Usuario: "+usuario.getCorreoElectronico());
+        mensaje.append(" Contraseña: "+ usuario.getDni()+".\n");
         mensaje.append("Por favor cambie la contraseña a la mayor brevedad posible.\n");
         mensaje.append("Bienvenido.");
 

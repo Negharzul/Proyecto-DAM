@@ -4,7 +4,7 @@
   aria-label="Selección de empresa"
   (change)="emitirId($event)"
 >
-  <option value="" selected>Selecciona una Empresa</option>
+  <option value="" hidden selected>Selecciona una Empresa</option>
   <option
     *ngFor="let empresa of empresas"
     [value]="empresa.id"

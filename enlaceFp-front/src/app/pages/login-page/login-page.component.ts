@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SeleccionTituloComponent } from '../../componentes/seleccion-titulo/seleccion-titulo.component';
 import { AutenticacionService } from '../../servicios/Autenticacion.service';
@@ -10,7 +10,8 @@ import { Credenciales } from '../../modelos/Credenciales';
   selector: 'app-login-page',
   imports: [CommonModule, FormsModule],
   templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+  styleUrl: './login-page.component.css',
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class LoginPageComponent {
 
@@ -43,10 +44,10 @@ export class LoginPageComponent {
         const role = data?.nombreRole;
 
 
-        if(role === 'ROLE_Profesor'){
-          this.router.navigate(['/profesor']);
-        }else{
+        if(role === 'ROLE_Alumno'){
           this.router.navigate(['/alumno']);
+        }else{
+          this.router.navigate(['/profesor']);
         }
 
       }

@@ -1,46 +1,30 @@
-.mi-tabla {
-  width: 90%;
-  margin: 2rem auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  background-color: #c1d7f7;
-  background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-  background-repeat: repeat;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.mi-tabla thead {
+form{
+  background-image:none;
   background-color: #5f93f3;
   color: white;
+  width: 300px;
+    border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+input{
+  display: flex;
+  justify-self: center;
+  border-radius: 5px;
 }
 
-.mi-tabla th, .mi-tabla td {
-  padding: 1rem;
-  text-align: left;
+.ordenable {
+  cursor: pointer;
+  position: relative;
+  padding-right: 1.5rem !important; /* Espacio para el icono */
 }
 
-.mi-tabla tbody tr {
-  transition: background-color 0.3s ease;
-}
 
-.mi-tabla tbody tr:hover {
-  background-color: #6be9f7;
-}
-
-.mi-tabla th:first-child,
-.mi-tabla td:first-child {
-  border-top-left-radius: 10px;
-}
-
-.mi-tabla th:last-child,
-.mi-tabla td:last-child {
-  border-top-right-radius: 10px;
-}
-.mi-tabla:hover{
-  transform: scale(1.02);
+.ordenable i {
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  align-self: flex-end;
 }
 
 
