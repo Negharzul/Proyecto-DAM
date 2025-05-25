@@ -20,7 +20,6 @@
       <td>{{ alumno.dni }}</td>
       <td>{{ alumno.titulos}}</td>
       <td>
-      <button type="button" class="btn btn-success" (click)="emitirEventoDatos(alumno.id!)"><i class="bi bi-card-list"></i></button>
       <button type="button" class="btn btn-success" (click)="mandarCorreo(alumno.email!)"><i class="bi bi-envelope-open"></i></button>
       <button type="button" class="btn btn-warning" (click)="emitirEvento(alumno.id!)"><i class="bi bi-pencil-square"></i></button>
       <button type="button" class="btn btn-danger" (click)="borrarAlumno(alumno.id!)"><i class="bi bi-trash3-fill"></i></button>

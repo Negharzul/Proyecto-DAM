@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ProfesorService } from '../servicios/Profesor.service';
+import { ProfesorService } from '../../servicios/Profesor.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

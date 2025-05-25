@@ -14,16 +14,9 @@
     border-bottom: 1px solid #000000;
 }
 
-.cabecera h1 {
-    color: #2c3e50;
-    margin-bottom: 5px;
-    font-size: 28px;
-}
 
-.cabecera h1 i {
-    margin-right: 10px;
-    color: #3498db;
-}
+
+
 
 .subtitulo {
     color: #7f8c8d;
@@ -47,7 +40,7 @@
 
 
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(20, 206, 20, 0.4);
+    box-shadow: 0 4px 12px rgba(61, 71, 1, 0.5);
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 10px;
@@ -57,7 +50,7 @@
 .tarjeta-empleo:hover {
     transform: translateY(-25px);
     transform: scale(1.3);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
 }
 
 .encabezado-tarjeta {

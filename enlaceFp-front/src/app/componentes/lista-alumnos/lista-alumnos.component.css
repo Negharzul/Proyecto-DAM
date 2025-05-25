@@ -7,7 +7,7 @@
   background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
   background-repeat: repeat;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
 }
@@ -42,28 +42,6 @@
 .mi-tabla:hover{
   transform: scale(1.02);
 }
-h1{
-  display: flex;
-  justify-content: center;
-  margin-left: 25px;
-  font-family: 'Roboto Slab', serif;
-  font: 1em sans-serif;
-  font-size: 50px;
-  font-weight: 600;
-  color: black;
-  letter-spacing: 1px;
 
-}
-.clickable{
-  font-size: large;
-  font-weight: bolder;
-  font-style: oblique;
-  color: rgb(6, 126, 163);
-  text-decoration: underline;
-  cursor: pointer
-  hover
-}
-.clickable:hover{
-  color: rgb(71, 146, 168);
-  cursor: pointer
-}
+
+

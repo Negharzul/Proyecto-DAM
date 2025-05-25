@@ -36,6 +36,7 @@ export class FormularioAlumnoComponent {
   }
 
   insertarAlumno(){
+    console.log('intentando crear alumno:',this.alumno)
     this.alumnoService.insertarAlumno(this.alumno).subscribe({
       next: (alumno) => {
         console.log('Alumno creado exitosamente', this.alumno);

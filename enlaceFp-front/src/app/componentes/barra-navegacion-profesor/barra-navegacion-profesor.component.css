@@ -1,7 +1,6 @@
 .navbar {
-      background-color: #5f93f3;
-      background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */   padding-right: 40px;
+  background: linear-gradient(to right,rgba(95, 147, 243, 1), rgba(95, 147, 243, 0.5));
+  padding-right: 40px;
       padding-left: 10px;
       display: flex;
       align-items: center;
@@ -21,7 +20,7 @@
     .navbar-links a{
       text-decoration: none;
       color:black;
-      font-weight: 500;
+
       transition: color 0.3s ease;
       cursor: pointer;
     }
@@ -39,8 +38,7 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      background: #5f93f3;
-      background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+      background: linear-gradient(to right,rgba(95, 147, 243, 1), rgba(95, 147, 243, 0.5));
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       border-radius: 0.5rem;
       overflow: hidden;

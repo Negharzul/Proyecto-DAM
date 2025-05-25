@@ -10,7 +10,6 @@ export class Alumno {
   empleos?: number[]
   titulos?: number[]
   notificaciones?: boolean
-
 }
 
 

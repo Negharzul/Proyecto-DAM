@@ -14,12 +14,6 @@ input{
   width: 350px;
 }
 
-form{
-  border: 2px solid #2c546e;
-  padding: 20px;
-  width: 500px;
-  margin:  auto;
-}
 button:disabled {
   background-color: #3f5688;
 }

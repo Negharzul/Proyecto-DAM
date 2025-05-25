@@ -13,13 +13,6 @@ input,textarea{
  width: 350px;
 }
 
-form{
- border: 2px solid #2c546e; /* Borde sólido negro de 2px */
- padding: 20px; /* Espacio interno */
- width: 500px; /* Ancho opcional */
- margin:  auto; /* Centrar el formulario */
-
-}
 
 button:disabled {
   background-color: #3f5688;

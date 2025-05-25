@@ -13,28 +13,11 @@ input,textarea{
  width: 350px;
 }
 
-form{
- border: 2px solid #2c546e;
- padding: 20px;
- width: 500px;
- margin:  auto;
-}
 
 button:disabled {
   background-color: #3f5688;
 }
-h1{
-  display: flex;
-  justify-content: center;
-  margin-left: 25px;
-  font-family: 'Roboto Slab', serif;
-  font: 1em sans-serif;
-  font-size: 50px;
-  font-weight: 600;
-  color: black;
-  letter-spacing: 1px;
 
-}
 
 textarea{
   min-height: 100px;
