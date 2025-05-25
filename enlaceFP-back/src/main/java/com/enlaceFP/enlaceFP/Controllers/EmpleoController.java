@@ -12,12 +12,14 @@ import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+@PreAuthorize("hasRole('Profesor') || hasRole('Admin')")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/empleo")
@@ -58,6 +60,7 @@ public class EmpleoController {
         return ResponseEntity.ok(empleosOutputDTO);
     }
 
+    @PreAuthorize("hasRole('Alumno')")
     @GetMapping("/posiblesEmpleos")
     public ResponseEntity<List<EmpleoOutputDTO>> getPosiblesEmpleos(@AuthenticationPrincipal Alumno alumno) {
 

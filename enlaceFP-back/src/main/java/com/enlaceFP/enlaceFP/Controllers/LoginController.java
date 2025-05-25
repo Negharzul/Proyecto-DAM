@@ -9,6 +9,7 @@ import com.enlaceFP.enlaceFP.Services.ProfesorService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,30 +32,6 @@ public class LoginController {
     private final ProfesorService profesorService;
     private final PasswordEncoder passwordEncoder;
 
-    /*
-    @PostMapping
-    public ResponseEntity<Map<String,String>> login (@RequestBody LoginDTO loginDTO){
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginDTO.email(),
-                        loginDTO.password()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String role=authentication
-                .getAuthorities()
-                .stream()
-                .findFirst()
-                .map(GrantedAuthority::getAuthority)
-                .orElse("ROLE_Incorrecto");
-
-        Map<String,String> response = new HashMap<>();
-        response.put("nombreRole",role);
-        return ResponseEntity.ok(response);
-    }
-
-
-     */
     @GetMapping
     public ResponseEntity<Map<String,String>> login (@AuthenticationPrincipal Usuario usuario, HttpServletRequest request){
 

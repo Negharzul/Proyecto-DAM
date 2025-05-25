@@ -8,6 +8,7 @@ import com.enlaceFP.enlaceFP.Services.MailService;
 import com.enlaceFP.enlaceFP.Services.TitulacionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+@PreAuthorize("hasRole('Profesor') || hasRole('Admin')")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/file")

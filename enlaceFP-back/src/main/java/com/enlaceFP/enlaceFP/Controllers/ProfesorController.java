@@ -12,6 +12,7 @@ import com.enlaceFP.enlaceFP.mappers.ProfesorOutputDTOMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+@PreAuthorize("hasRole('Admin')")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/Profesor")
@@ -30,6 +32,7 @@ public class ProfesorController {
     private final ProfesorOutputDTOMapper profesorOutputDTOMapper;
     private final ProfesorInputDTOMapper profesorInputDTOMapper;
     private final MailService mailService;
+
 
     @GetMapping("/{idProfesor}")
     public ResponseEntity<ProfesorOutputDTO> getProfesor (@PathVariable Long idProfesor) {

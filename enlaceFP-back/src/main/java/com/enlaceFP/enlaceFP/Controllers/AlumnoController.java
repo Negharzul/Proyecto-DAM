@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@PreAuthorize("hasRole('Profesor') || hasRole('Admin')")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/alumno")
@@ -30,6 +32,7 @@ public class AlumnoController {
     private EntityManager entityManager;
     private final MailService mailService;
 
+
     @GetMapping("/{idAlumno}")
     public ResponseEntity<AlumnoOutputDTO> getAlumno(@PathVariable Long idAlumno) {
 
@@ -42,6 +45,7 @@ public class AlumnoController {
         }
     }
 
+    @PreAuthorize("hasRole('Alumno')")
     @GetMapping("/alumnoPropio")
     public ResponseEntity<AlumnoOutputDTO> getAlumnoPropio(@AuthenticationPrincipal Alumno alumno) {
 
@@ -49,6 +53,7 @@ public class AlumnoController {
         AlumnoOutputDTO alumnoOutputDTO= alumnoOutputDTOMapper.apply(alumnoBd);
         return ResponseEntity.ok(alumnoOutputDTO);
     }
+
 
     @GetMapping()
     public ResponseEntity<List<AlumnoOutputDTO>> getAllAlumnos(){
@@ -110,8 +115,7 @@ public class AlumnoController {
         return ResponseEntity.ok().build();
     }
 
-
-
+    @PreAuthorize("hasRole('Alumno')")
     @PatchMapping("/notificaciones")
     public ResponseEntity<Void> cambiarNotificaciones(@RequestParam boolean activar, @AuthenticationPrincipal Alumno alumno){
 

@@ -9,10 +9,12 @@ import com.enlaceFP.enlaceFP.Services.EmpleoService;
 import com.enlaceFP.enlaceFP.Services.MailService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@PreAuthorize("hasRole('Profesor') || hasRole('Admin')")
 @AllArgsConstructor
 @RestController
 @RequestMapping("Correo")
