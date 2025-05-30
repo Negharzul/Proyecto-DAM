@@ -7,9 +7,7 @@
         <div class="dropdown">
         <span class="dropdown-toggle">{{alumno.nombre}}</span>
         <div class="dropdown-menu">
-          <a >Perfil</a>
           <a> Notificaciones&nbsp; &nbsp; <input type="checkbox" [(ngModel)]="recibirNotificaciones" (change)="cambiarNotificaciones()"></a>
-          <a>Mis empleos pendientes</a>
           <a routerLink="/login" routerLinkActive="active">Logout</a>
         </div>
 

@@ -191,6 +191,8 @@ public class EmpleoController {
 
     //Seccion de Alumno-Empleo
 
+
+    @PreAuthorize("hasRole('Alumno')")
     @PostMapping("/interesadoEmpleo/{empleoId}")
     public ResponseEntity<Void> crearAlumnoEmpleo(@PathVariable Long empleoId,@RequestParam Boolean interesado, @AuthenticationPrincipal Alumno alumno){
 

@@ -32,10 +32,21 @@ export class ProfesorCorreoAlumnoComponent implements OnChanges{
   this.mailService.correoAlumno(this.correo.para,this.correo.asunto,this.correo.mensaje).subscribe({
       next: value => {
         console.log("enviar correo datos: ", value)
-
+        alert('Correo enviado');
+        this.resetForm()
       },
       error: error => {console.log(error)}
     })
 
-}
+  }
+
+  resetForm() {
+    this.correo = {
+    para: this.correo.para,
+    asunto: '',
+    mensaje: ''
+    };
+
+  }
+
 }

@@ -46,6 +46,7 @@ public class ProfesorController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin') || hasRole('Profesor')")
     @GetMapping("/profesorPropio")
     public ResponseEntity<ProfesorOutputDTO> getProfesorPropio(@AuthenticationPrincipal Profesor profesor) {
 
